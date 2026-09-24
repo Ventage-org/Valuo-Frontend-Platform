@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ValuaProp AI - Índice de Vistas y Wireframes de Tesis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 font-['Inter'] text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+          <span class="material-symbols-outlined text-xl">domain</span>
+        </div>
+        <div>
+          <span class="font-['Plus_Jakarta_Sans'] font-bold text-lg text-slate-900 tracking-tight">ValuaProp AI</span>
+          <span class="text-xs text-blue-600 font-semibold ml-1.5 px-2 py-0.5 rounded bg-blue-50 border border-blue-100">Proyecto de Tesis</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="PLAN_REORGANIZACION_WIREFRAMES.md" class="text-xs font-semibold text-slate-600 hover:text-blue-600 flex items-center gap-1">
+          <span class="material-symbols-outlined text-base">description</span>
+          Plan de Reorganización (MD)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-6xl mx-auto px-6 py-10 flex-1 w-full space-y-10">
+    <!-- Hero Banner -->
+    <div class="bg-gradient-to-r from-blue-700 via-blue-800 to-indigo-900 rounded-2xl p-8 text-white shadow-lg relative overflow-hidden">
+      <div class="max-w-2xl relative z-10 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/30 text-blue-200 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          Wireframes Completamente Alineados a Historias de Usuario (US-01 a US-23)
+        </div>
+        <h1 class="text-3xl font-bold font-['Plus_Jakarta_Sans'] tracking-tight">
+          Navegador de Vistas de la Plataforma
+        </h1>
+        <p class="text-blue-100 text-sm leading-relaxed">
+          Plataforma web de valoración predictiva algorítmica y análisis de rentabilidad (Cap Rate) diseñada para agentes inmobiliarios independientes y MYPES inmobiliarias en el mercado peruano.
+        </p>
+        <div class="pt-2 flex flex-wrap items-center gap-3">
+          <a href="inicio_de_sesi_n_y_autenticaci_n/code.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-blue-700 font-semibold text-sm hover:bg-blue-50 transition-colors shadow">
+            <span class="material-symbols-outlined text-lg">login</span>
+            Iniciar en Login (US-01/02)
+          </a>
+          <a href="dashboard_del_agente_inmobiliario/code.html" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600/80 hover:bg-blue-600 text-white font-semibold text-sm transition-colors border border-blue-400/40">
+            <span class="material-symbols-outlined text-lg">dashboard</span>
+            Ir al Dashboard Agente
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Sections Grid -->
+    <div class="space-y-6">
+      <h2 class="text-xl font-bold font-['Plus_Jakarta_Sans'] text-slate-900 flex items-center gap-2">
+        <span class="material-symbols-outlined text-blue-600">view_quilt</span>
+        Vistas y Flujo Operativo Principal
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: Login -->
+        <a href="inicio_de_sesi_n_y_autenticaci_n/code.html" class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">lock</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">US-01 / US-02</span>
+              <span class="text-xs text-emerald-600 font-semibold">Roles Duales</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              1. Inicio de Sesión &amp; Autenticación
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Selector de rol (Agente vs MLOps) con redirección automática, validación de correo corporativo y protocolo seguro fiduciario.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Abrir Vista</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <!-- Card 2: Dashboard -->
+        <a href="dashboard_del_agente_inmobiliario/code.html" class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">dashboard</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">PANEL PRINCIPAL</span>
+              <span class="text-xs text-blue-600 font-semibold">Acceso Directo</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              2. Dashboard del Agente Inmobiliario
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              KPIs fiduciarios de cartera, botón directo para iniciar nueva tasación con IA, historial de predicciones y accesos directos.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Abrir Vista</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <!-- Card 3: CRUD Mis Inmuebles -->
+        <a href="gesti_n_y_cat_logo_de_inmuebles_crud/code.html" class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">holiday_village</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">US-07 a US-12</span>
+              <span class="text-xs text-emerald-600 font-semibold">Estados Comerciales</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              3. Gestión y Catálogo de Inmuebles
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Catálogo de predios tasados con estados exclusivos (Disponible, Vendido, Alquilado, Desactivado) y botón para retasar con IA.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Abrir Vista</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <!-- Card 3b: Visualización y Detalle del Inmueble (US-10) -->
+        <a href="visualizaci_n_y_detalle_del_inmueble/code.html" class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">apartment</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">US-10 FICHA DETALLE</span>
+              <span class="text-xs text-teal-600 font-semibold">Trazabilidad Fiduciaria</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              3b. Ficha Detallada del Inmueble
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Galería fotográfica, atributos arquitectónicos, variables de entorno GIS, historial de tasaciones ML y módulo adaptativo de rentabilidad.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Abrir Vista</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <!-- Card 4: Nueva Tasación Predictiva con IA -->
+        <a href="nueva_predicci_n_ml_ingreso_de_inmueble/code.html" class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">auto_awesome</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">US-13 / US-14</span>
+              <span class="text-xs text-amber-600 font-semibold">Tasación Obligatoria</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              4. Nueva Tasación Predictiva con IA
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Ingreso de variables físicas y geoespaciales. Requisito obligatorio para calcular el precio algorítmico e ingresar el inmueble a la cartera.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Abrir Vista</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <!-- Card 5: SHAP Results -->
+        <a href="resultados_de_valoraci_n_y_explicabilidad_shap/code.html" class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">waterfall_chart</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">US-14 / US-18 / US-19</span>
+              <span class="text-xs text-cyan-600 font-semibold">Explicabilidad ML</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              5. Resultados de Valoración &amp; SHAP
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Valor predictivo central, IC del 95%, cascada de factores explicativos SHAP y botón directo hacia el análisis de rentabilidad.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Abrir Vista</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <!-- Card 6: Rentabilidad & PDF -->
+        <div class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between ring-2 ring-blue-500/20">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">picture_as_pdf</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">US-20 a US-23</span>
+              <span class="text-xs text-amber-700 font-semibold bg-amber-50 px-1.5 py-0.5 rounded">Aviso US-21 Incluido</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              6. Análisis de Rentabilidad &amp; Reportes PDF
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Catálogo de inmuebles analizados en tarjetas (Cap Rate y NOI), calculadora interactiva con OER (0%-35%) y centro de reportes PDF descargables.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              <a href="an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=rentabilidad" class="text-[11px] px-2 py-1 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-700 font-medium transition-colors">
+                💳 Cartera Rentabilidad
+              </a>
+              <a href="an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=calculadora" class="text-[11px] px-2 py-1 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-700 font-medium transition-colors">
+                🧮 Calculadora &amp; OER
+              </a>
+              <a href="an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=reportes" class="text-[11px] px-2 py-1 rounded bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-700 font-medium transition-colors">
+                📑 Centro de Reportes
+              </a>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <a href="an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=rentabilidad" class="flex items-center gap-1 hover:underline">
+              <span>Abrir Rentabilidad</span>
+              <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Secondary Modules Grid -->
+    <div class="space-y-6 pt-4 border-t border-slate-200">
+      <h2 class="text-xl font-bold font-['Plus_Jakarta_Sans'] text-slate-900 flex items-center gap-2">
+        <span class="material-symbols-outlined text-slate-700">settings</span>
+        Módulos Complementarios y de Gobernanza
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Card 7: Perfil -->
+        <a href="edici_n_de_perfil_del_agente_inmobiliario/code.html" class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">account_circle</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">US-03 / US-04</span>
+              <span class="text-xs text-slate-600 font-medium">Registro MVCS</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              Edición de Perfil del Agente Inmobiliario
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Gestión de datos de contacto, número de registro ministerial (PN-14892) y firma digital que alimenta el informe PDF emitido a clientes.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Abrir Vista</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+        <!-- Card 8: MLOps -->
+        <a href="panel_de_monitoreo_y_gobernanza_de_modelos_ml/code.html" class="group bg-white rounded-xl p-6 border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-2xl">neurology</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 font-mono">US-05 / US-06 (TH-03, 06)</span>
+              <span class="text-xs text-slate-600 font-medium">MLOps &amp; Drift</span>
+            </div>
+            <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              Panel de Monitoreo &amp; Gobernanza ML
+            </h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Métricas vigentes del modelo (MAE, RMSE, MAPE $\le 12\%$), control de drift, historial de versiones y política de aprobación de reentrenamiento.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+            <span>Abrir Vista</span>
+            <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-12 py-6">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <span>ValuaProp AI • Sistema de Valoración Inmobiliaria con Machine Learning para Tesis de Grado</span>
+      <span>Alineación Estricta con HUs.md (US-01 a US-23)</span>
+    </div>
+  </footer>
+
+</body>
+</html>

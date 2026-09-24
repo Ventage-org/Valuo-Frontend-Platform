@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>ValuaProp AI - Panel de Administración &amp; MLOps Governance</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet">
+  <style>
+    @layer base {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      main> :first-child {
+        margin-top: 0 !important;
+      }
+
+      main> :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'on-error': '#ffffff',
+            'outline-variant': '#c3c6d7',
+            'inverse-surface': '#213145',
+            'surface-variant': '#d3e4fe',
+            'surface-container': '#e5eeff',
+            'inverse-primary': '#b4c5ff',
+            'error-container': '#ffdad6',
+            'surface-container-lowest': '#ffffff',
+            'tertiary-fixed': '#6ffbbe',
+            'primary-fixed': '#dbe1ff',
+            'primary-container': '#2563eb',
+            'secondary': '#565e74',
+            'secondary-fixed-dim': '#bec6e0',
+            'on-error-container': '#93000a',
+            'surface-container-high': '#dce9ff',
+            'on-secondary': '#ffffff',
+            'secondary-container': '#dae2fd',
+            'surface-tint': '#0053db',
+            'surface-bright': '#f8f9ff',
+            'surface': '#f8f9ff',
+            'on-primary-container': '#eeefff',
+            'tertiary': '#006242',
+            'on-surface-variant': '#434655',
+            'surface-container-low': '#eff4ff',
+            'on-surface': '#0b1c30',
+            'inverse-on-surface': '#eaf1ff',
+            'on-primary': '#ffffff',
+            'surface-dim': '#cbdbf5',
+            'error': '#ba1a1a',
+            'surface-container-highest': '#d3e4fe',
+            'on-primary-fixed-variant': '#003ea8',
+            'outline': '#737686',
+            'on-secondary-fixed': '#131b2e',
+            'primary-fixed-dim': '#b4c5ff',
+            'on-tertiary-fixed-variant': '#005236',
+            'tertiary-fixed-dim': '#4edea3',
+            'on-tertiary-fixed': '#002113',
+            'on-tertiary': '#ffffff',
+            'on-tertiary-container': '#bdffdb',
+            'tertiary-container': '#007d55',
+            'on-primary-fixed': '#00174b',
+            'on-secondary-fixed-variant': '#3f465c',
+            'on-background': '#0b1c30',
+            'primary': '#004ac6',
+            'secondary-fixed': '#dae2fd',
+            'background': '#f8f9ff',
+            'on-secondary-container': '#5c647a'
+          },
+          borderRadius: {
+            'DEFAULT': '0.25rem',
+            'lg': '0.5rem',
+            'xl': '0.75rem',
+            'full': '9999px'
+          },
+          spacing: {
+            'space-md': '1rem',
+            'gutter-desktop': '1.5rem',
+            'margin-mobile': '1rem',
+            'space-2xs': '0.25rem',
+            'space-3xl': '4rem',
+            'space-xl': '2rem',
+            'space-sm': '0.75rem',
+            'space-lg': '1.5rem',
+            'gutter-mobile': '1rem',
+            'margin-desktop': '2rem',
+            'margin-tablet': '1.5rem',
+            'space-xs': '0.5rem',
+            'space-2xl': '3rem',
+            'max-width-content': '88rem'
+          },
+          fontFamily: {
+            'headline-lg': ['Plus Jakarta Sans'],
+            'body-lg': ['Inter'],
+            'headline-xl-mobile': ['Plus Jakarta Sans'],
+            'display-lg': ['Plus Jakarta Sans'],
+            'body-sm': ['Inter'],
+            'headline-xl': ['Plus Jakarta Sans'],
+            'data-metric': ['Inter'],
+            'display-lg-mobile': ['Plus Jakarta Sans'],
+            'headline-md': ['Plus Jakarta Sans'],
+            'headline-sm': ['Plus Jakarta Sans'],
+            'body-md': ['Inter'],
+            'title-md': ['Inter'],
+            'label-md': ['Inter'],
+            'label-sm': ['Inter']
+          },
+          fontSize: {
+            'headline-lg': ['1.5rem', { lineHeight: '2rem', letterSpacing: '-0.015em', fontWeight: '600' }],
+            'body-lg': ['1.125rem', { lineHeight: '1.75rem', fontWeight: '400' }],
+            'headline-xl-mobile': ['1.5rem', { lineHeight: '2rem', letterSpacing: '-0.015em', fontWeight: '600' }],
+            'display-lg': ['2.25rem', { lineHeight: '2.75rem', letterSpacing: '-0.025em', fontWeight: '700' }],
+            'body-sm': ['0.75rem', { lineHeight: '1.125rem', fontWeight: '400' }],
+            'headline-xl': ['1.875rem', { lineHeight: '2.25rem', letterSpacing: '-0.02em', fontWeight: '600' }],
+            'data-metric': ['1.5rem', { lineHeight: '2rem', letterSpacing: '-0.01em', fontWeight: '600' }],
+            'display-lg-mobile': ['1.75rem', { lineHeight: '2.25rem', letterSpacing: '-0.02em', fontWeight: '700' }],
+            'headline-md': ['1.25rem', { lineHeight: '1.75rem', letterSpacing: '-0.01em', fontWeight: '600' }],
+            'headline-sm': ['1.125rem', { lineHeight: '1.5rem', letterSpacing: '-0.005em', fontWeight: '600' }],
+            'body-md': ['0.875rem', { lineHeight: '1.375rem', fontWeight: '400' }],
+            'title-md': ['1rem', { lineHeight: '1.5rem', fontWeight: '600' }],
+            'label-md': ['0.875rem', { lineHeight: '1.25rem', fontWeight: '500' }],
+            'label-sm': ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.025em', fontWeight: '500' }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-background font-body-md text-on-surface antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- HEADER DE GOBERNANZA & NAVEGACIÓN MLOPS -->
+  <header
+    class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(15,23,42,0.06)] border-b border-surface-container-high/60">
+    <div class="max-w-max-width-content mx-auto px-gutter-desktop">
+      <div class="h-20 flex items-center justify-between gap-space-lg">
+
+        <!-- Logotipo e Identidad de la Suite -->
+        <div class="flex items-center gap-space-md">
+          <div class="flex items-center gap-space-sm cursor-pointer" onclick="switchAdminView('all')">
+            <img alt="ValuaProp AI Logo" class="h-8 w-auto object-contain"
+              src="https://lh3.googleusercontent.com/aida/AEtjO1URW3NTAL96rmqQfy0UdSsXWPCQW3pIop2zWPd8TJ2DTEGojJdooYr21rU7ACL8oGilrUzW6D0OgqjxvRaO49Z6yTzUjIO5mFpgRnJV35P37fFWzgr7U5Ch8vYFH5C7dMiTIBQkPiTrATXWAw0c0mSZZjwc7bZpYDagK4Jp1ur4wFJATXDpRNwyNuM0KlxbpDLQGsD3pqtSm705zd4XOwPcBofdAxQ-NM8FqYL-cXklkP5K4urWNZJMUw">
+            <div class="flex flex-col">
+              <span class="font-headline-sm text-headline-sm text-on-surface leading-none">ValuaProp AI</span>
+              <span class="font-label-sm text-label-sm text-primary font-bold mt-0.5">MLOps Governance Suite</span>
+            </div>
+          </div>
+          <div class="h-6 w-px bg-surface-container-highest hidden sm:block"></div>
+        </div>
+
+        <!-- 3 PESTAÑAS PRINCIPALES ESPECIFICADAS EN GUÍA (US-05, US-06, TH-07) -->
+        <nav class="hidden lg:flex items-center gap-1 p-1 bg-surface-container-low rounded-xl border border-slate-200/80">
+          <button id="nav-btn-monitoring" onclick="switchAdminView('monitoring')"
+            class="px-3.5 py-2 rounded-lg font-label-md text-label-md transition-all flex items-center gap-1.5 bg-primary text-on-primary font-semibold shadow-sm">
+            <span class="material-symbols-outlined text-base">analytics</span>
+            <span>Monitoreo MLOps (US-05)</span>
+          </button>
+          <button id="nav-btn-governance" onclick="switchAdminView('governance')"
+            class="px-3.5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base">tune</span>
+            <span>Gobernanza &amp; Model Registry (US-06)</span>
+          </button>
+          <button id="nav-btn-audit" onclick="switchAdminView('audit')"
+            class="px-3.5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base">verified_user</span>
+            <span>Auditoría &amp; Trazabilidad (TH-07)</span>
+          </button>
+          <button id="nav-btn-all" onclick="switchAdminView('all')"
+            class="px-2.5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all"
+            title="Ver Todo el Dashboard">
+            <span class="material-symbols-outlined text-base">view_agenda</span>
+          </button>
+        </nav>
+
+        <!-- Barra de Estado de Clúster & Perfil de Administrador -->
+        <div class="flex items-center gap-space-md">
+          <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200">
+            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span class="font-label-sm text-[11px] text-emerald-800 font-bold whitespace-nowrap">MLflow v2.14 • Cluster Activo</span>
+          </div>
+
+          <div class="flex items-center gap-space-sm pl-space-xs">
+            <div class="flex flex-col text-right hidden sm:block">
+              <span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">Ing. Marco Silva</span>
+              <span class="font-label-sm text-label-sm text-on-surface-variant leading-tight text-[11px]">ML Tech Lead (Admin)</span>
+            </div>
+            <img alt="Perfil de Administrador" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/30"
+              src="https://lh3.googleusercontent.com/aida/AEtjO1U0Xu7VQJiPduiWE4lz1Dld8gSH64dQQpe7xeqYSiPrSXMbfGvGpYRG8YOiHJP3_MYyIto58SnpayqK2MvcAAwpxPcFkIyYSfmTWd-OQPpdlCI_U4Scxnhm-40iQcEAHNMAZXFhK9A6hpGdH68DdlOz-IHo3SxcMrz_WKpfV3T3BaLlWqro7fDzSYxt7Cue6usjOlpPtrju_50xGSLL5uGJNIb7OWvOvGj3gPITmV2sNQgb0OZo8Or9kA">
+            <a href="../inicio_de_sesi_n_y_autenticaci_n/code.html"
+              class="p-1.5 rounded-lg text-secondary hover:text-error hover:bg-surface-container transition-colors"
+              title="Cerrar Sesión">
+              <span class="material-symbols-outlined text-xl">logout</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="w-full pt-20 bg-background flex-1 pb-16">
+    <div class="max-w-max-width-content mx-auto px-gutter-desktop py-space-lg">
+      <div class="flex flex-col w-full gap-space-lg">
+
+        <!-- BANNER DE CONTEXTO & SELECTOR DUAL DE PIPELINE (VENTA vs ALQUILER) -->
+        <div
+          class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div class="space-y-1.5 max-w-3xl">
+            <div class="flex flex-wrap items-center gap-2">
+              <span
+                class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 font-label-sm text-[11px] font-bold border border-blue-200">
+                <span class="material-symbols-outlined text-sm">shield</span>
+                Gobernanza MLOps &amp; Registry
+              </span>
+              <span id="badge-model-version"
+                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-mono text-[11px] font-bold border border-emerald-200">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                Producción: ValuaProp-Venta v2.0.0
+              </span>
+              <span class="text-outline text-xs">•</span>
+              <span class="text-xs text-secondary font-medium">Evaluación: 2026-Q1 (Split Temporal Out-of-Time)</span>
+              <span class="text-outline text-xs">•</span>
+              <button onclick="openArtifactModal('v2.0.0', 'hash-prod-884b', 'run-xgb-v2-test-884b')"
+                class="font-mono text-[11px] text-primary hover:underline font-semibold bg-primary-fixed/40 px-2 py-0.5 rounded flex items-center gap-1">
+                <span>MLflow Run #xgboost-prod-884b</span>
+                <span class="material-symbols-outlined text-xs">open_in_new</span>
+              </button>
+            </div>
+            <h1 class="font-headline-xl text-2xl lg:text-3xl text-on-surface font-bold tracking-tight">
+              Monitoreo de Modelos y Gobernanza de Reentrenamiento
+            </h1>
+            <p class="font-body-md text-xs lg:text-sm text-on-surface-variant leading-relaxed">
+              Supervisión de métricas reales de tesis sobre datos BCRP (2016–2025), control de compuertas técnicas frente al estándar de la industria (&le; 15.0%) y trazabilidad criptográfica inmutable en MLflow.
+            </p>
+          </div>
+
+          <!-- SELECTOR DUAL REACTIVO: PIPELINE VENTA vs ALQUILER -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full lg:w-auto shrink-0">
+            <div class="bg-surface-container-low p-1.5 rounded-xl flex items-center border border-slate-200 shadow-inner w-full sm:w-auto">
+              <button id="tab-venta" onclick="switchPipeline('venta')"
+                class="flex-1 sm:flex-initial px-4 py-2 rounded-lg font-label-md text-xs font-bold transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-base">real_estate_agent</span>
+                <span>Modelo de Venta (67,914 obs)</span>
+              </button>
+              <button id="tab-alquiler" onclick="switchPipeline('alquiler')"
+                class="flex-1 sm:flex-initial px-4 py-2 rounded-lg font-label-md text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-base">apartment</span>
+                <span>Modelo de Alquiler (61,603 obs)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- VISTA 1: DASHBOARD DE MONITOREO MLOPS (US-05)                             -->
+        <!-- ========================================================================= -->
+        <section id="view-monitoring" class="flex flex-col gap-6">
+
+          <!-- Encabezado de Sección 1 -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">analytics</span>
+                <h2 class="font-headline-md text-lg font-bold text-on-surface" id="monitoring-section-title">
+                  Métricas en Producción — ValuaProp-Venta (v2.0.0 Champion)
+                </h2>
+              </div>
+              <p class="font-body-sm text-xs text-on-surface-variant" id="dataset-split-info">
+                Base de evaluación Out-of-Time: Test Set BCRP 2024–2025 (n=13,582 inmuebles validados sin data leakage)
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 animate-ping"></span>
+                <span>Inferencia Estable (P95: <strong id="latency-chip">42 ms</strong>)</span>
+              </span>
+              <button onclick="refreshMetricsSimulated()"
+                class="p-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-secondary hover:text-primary transition-colors border border-slate-200"
+                title="Refrescar métricas en tiempo real">
+                <span class="material-symbols-outlined text-base">refresh</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- FILA SUPERIOR: 4 KPI CARDS CON DATOS OFICIALES DE TESIS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <!-- Card 1: MAPE (Margen Porcentual de Error) -->
+            <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+              <div class="absolute -right-3 -top-3 w-14 h-14 rounded-full bg-emerald-500/10 -z-0 pointer-events-none"></div>
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-xs uppercase font-bold text-secondary tracking-wider">MAPE (Error Margen)</span>
+                  <span class="material-symbols-outlined text-emerald-600 text-xl">percent</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                  <span class="font-data-metric text-3xl text-on-surface font-extrabold tracking-tight" id="metric-mape-val">15.04%</span>
+                  <span id="metric-mape-diff" class="font-label-sm text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                    🟢 En Tolerancia (≤ 15.0%)
+                  </span>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span class="text-secondary" id="mape-benchmark-text">Estándar Industria AVM: &le; 15.0%</span>
+                <span class="inline-flex items-center text-emerald-700 font-bold">
+                  <span class="material-symbols-outlined text-sm mr-0.5">verified</span> Cumplido
+                </span>
+              </div>
+            </div>
+
+            <!-- Card 2: MAE (Error Absoluto Medio) -->
+            <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+              <div class="absolute -right-3 -top-3 w-14 h-14 rounded-full bg-primary/10 -z-0 pointer-events-none"></div>
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-xs uppercase font-bold text-secondary tracking-wider">MAE (Error Absoluto)</span>
+                  <span class="material-symbols-outlined text-primary text-xl">straighten</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                  <span class="font-data-metric text-2xl lg:text-3xl text-primary font-extrabold tracking-tight" id="metric-mae-val">S/. 52,166</span>
+                  <span class="text-xs text-secondary font-semibold" id="metric-mae-sub">(~$13,800 USD)</span>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span class="text-secondary">Desviación Típica Promedio</span>
+                <span class="inline-flex items-center text-primary font-bold">
+                  <span class="material-symbols-outlined text-sm mr-0.5">check_circle</span> Estable
+                </span>
+              </div>
+            </div>
+
+            <!-- Card 3: R² Score (Bondad de Ajuste) -->
+            <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+              <div class="absolute -right-3 -top-3 w-14 h-14 rounded-full bg-blue-500/10 -z-0 pointer-events-none"></div>
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-xs uppercase font-bold text-secondary tracking-wider">R² Score (Ajuste)</span>
+                  <span class="material-symbols-outlined text-blue-600 text-xl">query_stats</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                  <span class="font-data-metric text-3xl text-on-surface font-extrabold tracking-tight" id="metric-r2-val">0.7470</span>
+                  <span class="font-label-sm text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
+                    74.7% Varianza
+                  </span>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span class="text-secondary">Meta Tesis: &gt; 0.7000</span>
+                <span class="inline-flex items-center text-blue-700 font-bold">
+                  <span class="material-symbols-outlined text-sm mr-0.5">trending_up</span> Sin Data Leakage
+                </span>
+              </div>
+            </div>
+
+            <!-- Card 4: Latencia Inferencia P95 -->
+            <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+              <div class="absolute -right-3 -top-3 w-14 h-14 rounded-full bg-indigo-500/10 -z-0 pointer-events-none"></div>
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="font-label-sm text-xs uppercase font-bold text-secondary tracking-wider">Latencia P95 (FastAPI)</span>
+                  <span class="material-symbols-outlined text-indigo-600 text-xl">speed</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                  <span class="font-data-metric text-3xl text-on-surface font-extrabold tracking-tight" id="metric-latency-val">42 ms</span>
+                  <span class="font-label-sm text-[11px] font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200">
+                    SLA &lt; 100 ms
+                  </span>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                <span class="text-secondary">Microservicio Dockerizado</span>
+                <span class="inline-flex items-center text-emerald-700 font-bold">
+                  <span class="material-symbols-outlined text-sm mr-0.5">bolt</span> Inmediato
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- FILA MEDIA: EVOLUCIÓN TEMPORAL, DETECCIÓN DE DRIFT Y ESTADO DEL CONTENEDOR DOCKER -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Gráfico de Rendimiento Temporal SVG (8 de 12) -->
+            <div class="lg:col-span-8 bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between gap-4">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <div>
+                  <h3 class="font-title-md text-base text-on-surface font-bold">
+                    Evolución Histórica de Precisión Out-of-Time (Últimos 6 Meses)
+                  </h3>
+                  <p class="font-body-sm text-xs text-secondary">
+                    Monitoreo contra <strong class="text-on-surface">Data Drift</strong> y fluctuaciones del ciclo inmobiliario en Lima y Callao.
+                  </p>
+                </div>
+                <div class="flex items-center gap-4 text-xs font-semibold">
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-1 bg-primary rounded-full"></span>
+                    <span class="text-secondary">MAPE (%)</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-1 bg-emerald-600 rounded-full"></span>
+                    <span class="text-secondary">MAE Normalizado</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-3 h-0.5 bg-red-400 border-dashed border-b border-red-500"></span>
+                    <span class="text-red-600 font-mono text-[11px]">Umbral SLA Industria (15.0%)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contenedor SVG Interactivo -->
+              <div class="w-full h-48 relative mt-2">
+                <svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 700 160">
+                  <!-- Líneas de Cuadrícula -->
+                  <line class="text-slate-100" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="700" y1="20" y2="20"></line>
+                  <line class="text-slate-100" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="700" y1="65" y2="65"></line>
+                  <line class="text-slate-100" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="700" y1="110" y2="110"></line>
+                  <line class="text-slate-200" stroke="currentColor" stroke-width="1" x1="0" x2="700" y1="150" y2="150"></line>
+
+                  <!-- Línea de Umbral SLA Industria (15.0%) -->
+                  <line class="text-red-400/80" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1.5" x1="0" x2="700" y1="40" y2="40"></line>
+                  <text x="695" y="36" text-anchor="end" fill="#dc2626" font-size="10" font-family="Inter" font-weight="600">Umbral SLA Industria: 15.0%</text>
+
+                  <!-- Gradiente para el Área MAPE -->
+                  <defs>
+                    <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#004ac6" stop-opacity="0.18"></stop>
+                      <stop offset="100%" stop-color="#004ac6" stop-opacity="0.0"></stop>
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Área Sombreada MAPE -->
+                  <path d="M 0 85 Q 140 82, 280 74 T 560 68 L 700 64 L 700 150 L 0 150 Z" fill="url(#chartGradient)"></path>
+
+                  <!-- Polilínea MAE (Verde) -->
+                  <polyline class="text-emerald-600" fill="none"
+                    points="0,110 140,105 280,98 420,92 560,86 700,80" stroke="currentColor" stroke-width="2.5"></polyline>
+
+                  <!-- Polilínea MAPE (Azul) -->
+                  <polyline class="text-primary" fill="none"
+                    points="0,85 140,82 280,74 420,71 560,68 700,64" stroke="currentColor" stroke-width="2.5"></polyline>
+
+                  <!-- Puntos Clave Finales -->
+                  <circle class="fill-primary stroke-white" cx="700" cy="64" r="5" stroke-width="2"></circle>
+                  <circle class="fill-emerald-600 stroke-white" cx="700" cy="80" r="5" stroke-width="2"></circle>
+                </svg>
+
+                <div class="flex justify-between font-label-sm text-[11px] text-secondary pt-2">
+                  <span>Abr 2026</span>
+                  <span>May 2026</span>
+                  <span>Jun 2026</span>
+                  <span>Jul 2026</span>
+                  <span>Ago 2026</span>
+                  <span class="font-bold text-primary">Sep 2026 (Vigente Out-of-Time)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Tarjeta de Drift & Estado Docker FastAPI (4 de 12) -->
+            <div class="lg:col-span-4 flex flex-col gap-4">
+
+              <!-- Tarjeta de Estabilidad (Data Drift & Target Drift) -->
+              <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs uppercase font-bold text-secondary tracking-wider">Detección de Drift</span>
+                  <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 text-[10px] font-bold">Distribución Estable</span>
+                </div>
+
+                <!-- PSI (Population Stability Index) -->
+                <div class="space-y-1.5 pt-1">
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="font-semibold text-on-surface">Population Stability Index (PSI)</span>
+                    <span class="font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                      0.042 (Excelente)
+                    </span>
+                  </div>
+                  <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                    <div class="bg-emerald-600 h-full rounded-full" style="width: 21%"></div>
+                  </div>
+                  <p class="text-[11px] text-secondary leading-snug">
+                    PSI &lt; 0.1 certifica ausencia de desplazamiento distributivo en m² techados y ratios de valor distrital.
+                  </p>
+                </div>
+
+                <!-- Kolmogorov-Smirnov Test -->
+                <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <div class="flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-secondary">check</span>
+                    <span class="text-secondary">Target Drift (K-S Test):</span>
+                  </div>
+                  <span class="font-mono font-bold text-on-surface">p-valor: 0.38 (H0 OK)</span>
+                </div>
+              </div>
+
+              <!-- Componente 1.4: Estado del Servicio Analítico (FastAPI en Docker) -->
+              <div class="bg-surface-container-lowest p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs uppercase font-bold text-secondary tracking-wider">Infraestructura FastAPI</span>
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 text-[10px] font-bold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Container Healthy
+                  </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs pt-1">
+                  <div class="p-2 rounded-xl bg-surface-container-low border border-slate-100">
+                    <div class="text-secondary text-[10px]">Memoria RAM</div>
+                    <div class="font-bold text-on-surface text-sm mt-0.5">1.15 / 2.00 GB</div>
+                    <div class="text-[9px] text-emerald-700 font-semibold">XGBoost + SHAP Tree</div>
+                  </div>
+                  <div class="p-2 rounded-xl bg-surface-container-low border border-slate-100">
+                    <div class="text-secondary text-[10px]">CPU Cluster</div>
+                    <div class="font-bold text-on-surface text-sm mt-0.5">12% Carga</div>
+                    <div class="text-[9px] text-emerald-700 font-semibold">4 Uvicorn Workers</div>
+                  </div>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                  <span class="text-secondary">Uptime de Servicio:</span>
+                  <span class="font-semibold text-on-surface font-mono">99.94% (28d activo)</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- VISTA 2: GOBERNANZA DE VERSIONES Y REENTRENAMIENTO (US-06)                 -->
+        <!-- ========================================================================= -->
+        <section id="view-governance" class="flex flex-col gap-6">
+
+          <!-- Encabezado de Sección 2 con Acciones Principales -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">tune</span>
+                <h2 class="font-headline-md text-lg font-bold text-on-surface">
+                  Gobernanza de Modelos &amp; MLflow Registry (US-06)
+                </h2>
+              </div>
+              <p class="font-body-sm text-xs text-on-surface-variant">
+                Comparación side-by-side entre el modelo en producción y el nuevo candidato generado por el pipeline.
+              </p>
+            </div>
+
+            <!-- Comandos Rápidos del Administrador -->
+            <div class="flex items-center gap-2">
+              <button onclick="openRetrainModal()"
+                class="px-3.5 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-primary font-bold text-xs flex items-center gap-1.5 border border-slate-200 transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-base">play_circle</span>
+                <span>Disparar Reentrenamiento Manual</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- COMPONENTE 2.1: TABLA DE MODELOS REGISTRADOS EN MLFLOW -->
+          <div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="p-4 bg-surface-container-low border-b border-slate-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-base">inventory_2</span>
+                <span class="text-xs font-bold text-on-surface uppercase tracking-wider">Catálogo MLflow Model Registry (`models:/ValuaProp-Venta`)</span>
+              </div>
+              <span class="text-[11px] text-secondary font-mono">3 versiones serializadas</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-surface-container-lowest text-secondary uppercase font-semibold text-[11px] border-b border-slate-100">
+                    <th class="py-3 px-4">Versión</th>
+                    <th class="py-3 px-4">Fecha Registro</th>
+                    <th class="py-3 px-4">Dataset Base</th>
+                    <th class="py-3 px-4">MAPE Test</th>
+                    <th class="py-3 px-4">MAE Test</th>
+                    <th class="py-3 px-4">R² Score</th>
+                    <th class="py-3 px-4">Estado MLflow</th>
+                    <th class="py-3 px-4 text-right">Acción</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 font-medium text-on-surface">
+                  <!-- Candidato v2.1.0 -->
+                  <tr class="hover:bg-amber-50/40 transition-colors">
+                    <td class="py-3.5 px-4 font-mono font-bold text-amber-900">
+                      v2.1.0-rc1
+                    </td>
+                    <td class="py-3.5 px-4 text-secondary">18 Sep 2026, 03:00</td>
+                    <td class="py-3.5 px-4 text-secondary">BCRP 2016–2025 + Distr 2026</td>
+                    <td class="py-3.5 px-4 font-bold text-emerald-700">14.32% (-0.72%)</td>
+                    <td class="py-3.5 px-4 font-mono">S/. 49,850</td>
+                    <td class="py-3.5 px-4 font-mono">0.7580</td>
+                    <td class="py-3.5 px-4">
+                      <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-bold">
+                        🟡 Candidate / Staging
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right">
+                      <button onclick="openApprovalModal()"
+                        class="text-primary font-bold hover:underline inline-flex items-center gap-1">
+                        <span>Revisar y Promover</span>
+                        <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Producción v2.0.0 -->
+                  <tr class="hover:bg-emerald-50/30 transition-colors bg-emerald-50/15">
+                    <td class="py-3.5 px-4 font-mono font-bold text-emerald-800">
+                      v2.0.0 (Champion)
+                    </td>
+                    <td class="py-3.5 px-4 text-secondary">01 Sep 2026, 10:30</td>
+                    <td class="py-3.5 px-4 text-secondary">BCRP Maestro (67,914 obs)</td>
+                    <td class="py-3.5 px-4 font-bold text-primary">15.04%</td>
+                    <td class="py-3.5 px-4 font-mono">S/. 52,166</td>
+                    <td class="py-3.5 px-4 font-mono">0.7470</td>
+                    <td class="py-3.5 px-4">
+                      <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">
+                        🟢 Production
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right">
+                      <button onclick="openArtifactModal('v2.0.0', '3b7e4112c8e', 'run-prod-884b')"
+                        class="text-secondary font-semibold hover:text-primary inline-flex items-center gap-1">
+                        <span>Artefactos</span>
+                        <span class="material-symbols-outlined text-xs">visibility</span>
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Archivado v1.0.0 -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors">
+                    <td class="py-3.5 px-4 font-mono text-secondary">
+                      v1.0.0
+                    </td>
+                    <td class="py-3.5 px-4 text-secondary">15 Ago 2026, 16:20</td>
+                    <td class="py-3.5 px-4 text-secondary">Baseline 28 features</td>
+                    <td class="py-3.5 px-4 text-secondary">17.10%</td>
+                    <td class="py-3.5 px-4 font-mono text-secondary">S/. 58,400</td>
+                    <td class="py-3.5 px-4 font-mono text-secondary">0.7120</td>
+                    <td class="py-3.5 px-4">
+                      <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold">
+                        ⚪ Archived (Rollback Checkpoint)
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right">
+                      <button onclick="openRollbackModal()"
+                        class="text-error font-semibold hover:underline inline-flex items-center gap-1">
+                        <span>Rollback</span>
+                        <span class="material-symbols-outlined text-xs">restore</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- COMPONENTE 2.2: TARJETA COMPARATIVA CARA A CARA (SIDE-BY-SIDE BENCHMARK) -->
+          <div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <!-- Header con ID de Experimento -->
+            <div class="bg-surface-container p-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-200">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-xl">compare_arrows</span>
+                <div>
+                  <h3 class="font-title-md text-sm font-bold text-on-surface">
+                    Evaluación Comparativa: Modelo Vigente en Producción vs. Candidato Propuesto
+                  </h3>
+                  <span class="text-xs text-secondary">Validación experimental de compuertas de calidad antes de promoción al Registry</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-secondary">MLflow Run ID:</span>
+                <code class="px-2 py-0.5 rounded bg-surface-container-lowest text-primary font-mono text-xs font-bold border border-slate-200">
+                  #train-exp-092c
+                </code>
+              </div>
+            </div>
+
+            <!-- Tabla de Comparación Métricas -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-surface-container-low text-secondary uppercase font-semibold text-[11px]">
+                    <th class="py-3 px-4">Métrica de Evaluación</th>
+                    <th class="py-3 px-4">Modelo Actual (v2.0.0)</th>
+                    <th class="py-3 px-4 bg-primary-fixed/20 text-on-surface font-bold">Modelo Candidato (v2.1.0-rc1)</th>
+                    <th class="py-3 px-4">Delta de Variación</th>
+                    <th class="py-3 px-4">Compuerta Técnica</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 font-medium text-on-surface">
+                  <!-- MAE -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors">
+                    <td class="py-3.5 px-4 font-semibold flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-primary"></span>
+                      MAE (Error Absoluto Medio)
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-secondary">S/. 52,166 (~$13.8k)</td>
+                    <td class="py-3.5 px-4 font-mono font-bold bg-primary-fixed/10 text-primary">S/. 49,850 (~$13.2k)</td>
+                    <td class="py-3.5 px-4">
+                      <span class="inline-flex items-center gap-0.5 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        <span class="material-symbols-outlined text-xs">arrow_downward</span>-S/. 2,316 (-4.4%)
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-emerald-700 font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-base">task_alt</span> Superada
+                    </td>
+                  </tr>
+
+                  <!-- MAPE -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors">
+                    <td class="py-3.5 px-4 font-semibold flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                      MAPE (Margen Porcentual)
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-secondary">15.04%</td>
+                    <td class="py-3.5 px-4 font-mono font-bold bg-primary-fixed/10 text-emerald-700">14.32%</td>
+                    <td class="py-3.5 px-4">
+                      <span class="inline-flex items-center gap-0.5 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        <span class="material-symbols-outlined text-xs">arrow_downward</span>-0.72 p.p. (Mejora)
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-emerald-700 font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-base">task_alt</span> &le; 15.0% (Estándar Industria)
+                    </td>
+                  </tr>
+
+                  <!-- R² Score -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors">
+                    <td class="py-3.5 px-4 font-semibold flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                      R² Score (Bondad de Ajuste)
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-secondary">0.7470</td>
+                    <td class="py-3.5 px-4 font-mono font-bold bg-primary-fixed/10 text-on-surface">0.7580</td>
+                    <td class="py-3.5 px-4">
+                      <span class="inline-flex items-center gap-0.5 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        <span class="material-symbols-outlined text-xs">arrow_upward</span>+0.0110 (Ganancia)
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-emerald-700 font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-base">task_alt</span> &gt; 0.7000 Meta
+                    </td>
+                  </tr>
+
+                  <!-- Latencia P95 -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors">
+                    <td class="py-3.5 px-4 font-semibold flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                      Latencia de Inferencia P95
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-secondary">42 ms</td>
+                    <td class="py-3.5 px-4 font-mono font-bold bg-primary-fixed/10 text-on-surface">40 ms</td>
+                    <td class="py-3.5 px-4">
+                      <span class="inline-flex items-center gap-0.5 text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        <span class="material-symbols-outlined text-xs">speed</span>-2 ms
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-emerald-700 font-bold flex items-center gap-1">
+                      <span class="material-symbols-outlined text-base">task_alt</span> SLA &lt; 100 ms
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Compuertas de Calidad Técnicas de Tesis -->
+            <div class="p-4 bg-surface-container-low border-t border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-xs">
+              <div class="flex flex-wrap items-center gap-4 text-secondary">
+                <span class="flex items-center gap-1.5 text-emerald-700 font-bold">
+                  <span class="material-symbols-outlined text-base">check_circle</span>
+                  <span>Cumple estándar de error de la industria (14.32% &le; 15.0%)</span>
+                </span>
+                <span class="flex items-center gap-1.5 text-emerald-700 font-bold">
+                  <span class="material-symbols-outlined text-base">check_circle</span>
+                  <span>Sin degradación en distritos clave (Miraflores, San Isidro, Surco)</span>
+                </span>
+                <span class="flex items-center gap-1.5 text-emerald-700 font-bold">
+                  <span class="material-symbols-outlined text-base">check_circle</span>
+                  <span>Artefactos serializados completos (`model.pkl` + `shap_beeswarm.png`)</span>
+                </span>
+              </div>
+              <span class="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold">
+                Aptitud: 100% Compuertas Superadas
+              </span>
+            </div>
+          </div>
+
+          <!-- COMPONENTE 2.3: COMANDOS DE DESPLIEGUE Y ACCIONES -->
+          <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-headline-sm text-base font-bold text-on-surface">
+                  Comandos de Despliegue y Gobernanza (US-06)
+                </h3>
+                <p class="text-xs text-secondary">
+                  Acciones autorizadas para Ingeniero ML con registro fiduciario obligatorio (TH-07).
+                </p>
+              </div>
+              <span class="text-xs font-mono text-secondary flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm text-primary">verified</span>
+                Firma SHA-256 Habilitada
+              </span>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-100">
+              <div class="flex flex-wrap items-center gap-2">
+                <!-- BOTÓN PRINCIPAL: APROBAR Y DESPLEGAR -->
+                <button onclick="openApprovalModal()"
+                  class="px-4 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white font-bold text-xs flex items-center gap-2 shadow-sm hover:shadow transition-all cursor-pointer">
+                  <span class="material-symbols-outlined text-base">rocket_launch</span>
+                  <span>Aprobar y Desplegar Modelo (v2.1.0)</span>
+                </button>
+
+                <!-- BOTÓN DE RECHAZO -->
+                <button onclick="rejectCandidate()"
+                  class="px-4 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold text-xs flex items-center gap-1.5 transition-colors cursor-pointer">
+                  <span class="material-symbols-outlined text-base text-secondary">cancel</span>
+                  <span>Rechazar Candidato</span>
+                </button>
+              </div>
+
+              <!-- BOTÓN ROJO DE CONTINGENCIA: ROLLBACK -->
+              <button onclick="openRollbackModal()"
+                class="px-4 py-2.5 rounded-xl bg-error-container/40 hover:bg-error-container/70 text-error font-bold text-xs flex items-center gap-1.5 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-base">history</span>
+                <span>Revertir / Rollback a Versión Anterior (v1.0.0)</span>
+              </button>
+            </div>
+
+            <!-- Caja Informativa de Auditoría Pre-Acción -->
+            <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-blue-900">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-600 text-base shrink-0">info</span>
+                <span>Al confirmar la promoción, el tráfico de inferencia migrará de forma progresiva (Canary 10% &gt; 50% &gt; 100%) en FastAPI.</span>
+              </div>
+              <span class="font-mono text-[11px] text-blue-800 shrink-0 font-semibold">Sesión: Marco Silva (UID #mlops-088)</span>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ========================================================================= -->
+        <!-- VISTA 3: REGISTRO DE AUDITORÍA Y TRAZABILIDAD (TH-07)                      -->
+        <!-- ========================================================================= -->
+        <section id="view-audit" class="flex flex-col gap-6">
+
+          <!-- Encabezado de Sección 3 -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">verified_user</span>
+                <h2 class="font-headline-md text-lg font-bold text-on-surface">
+                  Registro de Auditoría de Decisiones y Trazabilidad Criptográfica (TH-07)
+                </h2>
+              </div>
+              <p class="font-body-sm text-xs text-on-surface-variant">
+                Historial fiduciario inmutable que documenta quién, cuándo y por qué se alteró el modelo productivo con firma SHA-256.
+              </p>
+            </div>
+
+            <!-- Botones de Exportación Oficial -->
+            <div class="flex items-center gap-2">
+              <button onclick="exportAudit('csv')"
+                class="px-3.5 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-semibold text-xs border border-slate-200 flex items-center gap-1.5 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-base text-primary">table_view</span>
+                <span>Exportar CSV</span>
+              </button>
+              <button onclick="exportAudit('pdf')"
+                class="px-3.5 py-2 rounded-xl bg-primary hover:bg-primary-container text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-base">picture_as_pdf</span>
+                <span>Dossier Auditoría PDF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TABLA DE AUDITORÍA CRIPTOGRÁFICA -->
+          <div class="bg-surface-container-lowest rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <div class="p-4 bg-surface-container-low border-b border-slate-200 flex items-center justify-between">
+              <span class="text-xs font-bold text-on-surface uppercase tracking-wider">Libro Maestro de Transiciones de Modelos ML</span>
+              <span class="text-[11px] text-secondary font-mono" id="audit-count-badge">3 registros auditados</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr class="bg-surface-container-lowest text-secondary uppercase font-semibold text-[11px] border-b border-slate-100">
+                    <th class="py-3 px-4">Fecha y Hora (UTC)</th>
+                    <th class="py-3 px-4">Administrador</th>
+                    <th class="py-3 px-4">Versión</th>
+                    <th class="py-3 px-4">Acción Ejecutada</th>
+                    <th class="py-3 px-4">Métricas Delta</th>
+                    <th class="py-3 px-4">Motivo / Justificación Registrada</th>
+                    <th class="py-3 px-4 text-right">Firma SHA-256</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-table-body" class="divide-y divide-slate-100 font-medium text-on-surface">
+
+                  <!-- Registro 1: Promoción v2.1.0 -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors">
+                    <td class="py-3.5 px-4 font-mono text-secondary">
+                      2026-09-18 11:45
+                    </td>
+                    <td class="py-3.5 px-4">
+                      <div class="font-bold text-on-surface">Ing. Marco Silva</div>
+                      <div class="text-[10px] text-secondary">ML Lead (UID #mlops-088)</div>
+                    </td>
+                    <td class="py-3.5 px-4 font-mono font-bold text-primary">v2.1.0</td>
+                    <td class="py-3.5 px-4">
+                      <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200 flex items-center gap-1 w-fit">
+                        <span class="material-symbols-outlined text-xs">rocket_launch</span>
+                        PROMOVIDO A PRODUCCIÓN
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-emerald-700 font-bold">
+                      MAPE: 15.04% &rarr; 14.32% (-0.72%)
+                    </td>
+                    <td class="py-3.5 px-4 text-secondary max-w-xs">
+                      "Incorporación de datos BCRP Q1-2026 y recalibración de ponderación temporal."
+                    </td>
+                    <td class="py-3.5 px-4 text-right">
+                      <button onclick="showHashDetail('a9f3c8e14b2d770a82f3c9e1')"
+                        class="font-mono text-[11px] text-primary hover:underline bg-slate-100 px-2 py-0.5 rounded">
+                        a9f3c8e1...
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Registro 2: Promoción v2.0.0 Definitiva Tesis -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors">
+                    <td class="py-3.5 px-4 font-mono text-secondary">
+                      2026-09-02 09:15
+                    </td>
+                    <td class="py-3.5 px-4">
+                      <div class="font-bold text-on-surface">Dra. Sofía Aranda</div>
+                      <div class="text-[10px] text-secondary">Data Scientist (UID #ds-042)</div>
+                    </td>
+                    <td class="py-3.5 px-4 font-mono font-bold text-primary">v2.0.0</td>
+                    <td class="py-3.5 px-4">
+                      <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200 flex items-center gap-1 w-fit">
+                        <span class="material-symbols-outlined text-xs">verified</span>
+                        PROMOVIDO A PRODUCCIÓN
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-emerald-700 font-bold">
+                      MAPE: 17.10% &rarr; 15.04% (-2.06%)
+                    </td>
+                    <td class="py-3.5 px-4 text-secondary max-w-xs">
+                      "Modelo definitivo de Tesis: 33 features con ratios espaciales y ponderación E1."
+                    </td>
+                    <td class="py-3.5 px-4 text-right">
+                      <button onclick="showHashDetail('3b7e4112c8e9fa0145bc89a2')"
+                        class="font-mono text-[11px] text-primary hover:underline bg-slate-100 px-2 py-0.5 rounded">
+                        3b7e4112...
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Registro 3: Rollback Preventivo v1.9.8 -->
+                  <tr class="hover:bg-surface-container-low/40 transition-colors">
+                    <td class="py-3.5 px-4 font-mono text-secondary">
+                      2026-08-20 16:30
+                    </td>
+                    <td class="py-3.5 px-4">
+                      <div class="font-bold text-on-surface">Ing. Marco Silva</div>
+                      <div class="text-[10px] text-secondary">ML Lead (UID #mlops-088)</div>
+                    </td>
+                    <td class="py-3.5 px-4 font-mono font-bold text-amber-900">v1.9.8</td>
+                    <td class="py-3.5 px-4">
+                      <span class="px-2.5 py-0.5 rounded-full bg-red-50 text-red-800 text-[10px] font-bold border border-red-200 flex items-center gap-1 w-fit">
+                        <span class="material-symbols-outlined text-xs">history</span>
+                        REVERTIDO A V1.9.0
+                      </span>
+                    </td>
+                    <td class="py-3.5 px-4 font-mono text-secondary">
+                      MAPE: 18.20% &rarr; 16.50% (Rollback)
+                    </td>
+                    <td class="py-3.5 px-4 text-secondary max-w-xs">
+                      "Rollback preventivo: anomalía de predicción en tipologías dúplex."
+                    </td>
+                    <td class="py-3.5 px-4 text-right">
+                      <button onclick="showHashDetail('7d819c4021ef9a823b490c12')"
+                        class="font-mono text-[11px] text-primary hover:underline bg-slate-100 px-2 py-0.5 rounded">
+                        7d819c40...
+                      </button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Footer Informativo de la Tabla de Auditoría -->
+            <div class="p-3 bg-surface-container-low border-t border-slate-200 flex items-center justify-between text-xs text-secondary">
+              <span>Firma SHA-256 generada sobre el artefacto binario `model.pkl` para garantizar que no fue adulterado.</span>
+              <span class="font-mono text-[11px] font-semibold text-primary">Norma Fiduciaria MVCS / ISO-27001</span>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODALES DE CONTROL, DESPLIEGUE Y REENTRENAMIENTO                          -->
+  <!-- ========================================================================= -->
+
+  <!-- MODAL 1: APROBACIÓN DE PROMOCIÓN A PRODUCCIÓN (US-06) -->
+  <div class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm items-center justify-center p-4" id="modal-approval">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-xl w-full p-6 shadow-2xl flex flex-col gap-4 border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">verified</span>
+          </span>
+          <div>
+            <h4 class="font-title-md text-base text-on-surface font-bold">Aprobar Promoción a Producción</h4>
+            <span class="text-xs text-secondary">Transición en MLflow Registry: Candidate &rarr; Production</span>
+          </div>
+        </div>
+        <button class="text-secondary hover:text-on-surface" onclick="closeModal('modal-approval')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1.5 border border-slate-100">
+          <div class="flex justify-between">
+            <span class="text-secondary">Pipeline:</span>
+            <span class="font-bold text-on-surface" id="modal-pipeline-name">ValuaProp-Venta (XGBoost)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-secondary">Versión Candidata:</span>
+            <span class="font-mono font-bold text-primary">v2.1.0-rc1</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-secondary">Mejora de MAPE:</span>
+            <span class="font-bold text-emerald-700">14.32% (-0.72 p.p. vs v2.0.0)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-secondary">Reducción de MAE:</span>
+            <span class="font-bold text-emerald-700">-S/. 2,316 (-4.4%)</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="font-semibold text-on-surface" for="audit-reason">
+            Motivo Técnico / Justificación de la Aprobación (Requerido para Auditoría TH-07):
+            <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            class="w-full p-3 rounded-xl bg-surface-container-low text-on-surface placeholder:text-secondary/60 focus:outline-none focus:ring-2 focus:ring-primary border border-slate-200"
+            id="audit-reason"
+            placeholder="Ej: Incorporación de datos BCRP 2026 y recalibración de ponderación temporal. Cumple estándar de error de la industria (≤ 15.0%) sin distorsión espacial."
+            rows="3"></textarea>
+        </div>
+
+        <label class="flex items-center gap-2 text-secondary cursor-pointer pt-1">
+          <input checked="" class="rounded text-primary focus:ring-primary accent-primary" id="confirm-canary" type="checkbox">
+          <span>Habilitar transición progresiva de tráfico en FastAPI (Canary 10% &rarr; 50% &rarr; 100%).</span>
+        </label>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+        <button class="px-4 py-2 rounded-lg bg-surface-container text-secondary font-semibold hover:bg-slate-200 transition-colors text-xs"
+          onclick="closeModal('modal-approval')">
+          Cancelar
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-primary text-white font-bold hover:bg-primary-container shadow transition-all flex items-center gap-1.5 text-xs cursor-pointer"
+          onclick="executePromotion()">
+          <span class="material-symbols-outlined text-base">check_circle</span>
+          <span>Confirmar y Desplegar Modelo</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: ROLLBACK / REVERSIÓN A VERSIÓN ANTERIOR (US-06) -->
+  <div class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm items-center justify-center p-4" id="modal-rollback">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-xl w-full p-6 shadow-2xl flex flex-col gap-4 border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="w-9 h-9 rounded-xl bg-error-container text-error flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">warning</span>
+          </span>
+          <div>
+            <h4 class="font-title-md text-base text-on-surface font-bold">Confirmar Reversión Inmediata (Rollback)</h4>
+            <span class="text-xs text-error font-semibold">Acción correctiva fiduciaria de contingencia</span>
+          </div>
+        </div>
+        <button class="text-secondary hover:text-on-surface" onclick="closeModal('modal-rollback')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <p class="text-on-surface leading-relaxed">
+          Está a punto de degradar el modelo vigente a estado <code class="font-mono bg-slate-100 px-1 py-0.5 rounded">Archived</code> y promover de inmediato la versión archivada previa <strong class="text-on-surface">v1.0.0</strong> (Checkpoint SHA: #7d819c40).
+        </p>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="font-semibold text-on-surface" for="rollback-reason">
+            Causa del Rollback (Registro Obligatorio de Incidencia):
+            <span class="text-red-500">*</span>
+          </label>
+          <textarea
+            class="w-full p-3 rounded-xl bg-surface-container-low text-on-surface placeholder:text-secondary/60 focus:outline-none focus:ring-2 focus:ring-error border border-slate-200"
+            id="rollback-reason" placeholder="Indicar anomalía detectada en tiempo real, deriva de precios o solicitud de peritaje..." rows="2"></textarea>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+        <button class="px-4 py-2 rounded-lg bg-surface-container text-secondary font-semibold hover:bg-slate-200 transition-colors text-xs"
+          onclick="closeModal('modal-rollback')">
+          Abortar
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-error text-white font-bold hover:bg-red-700 shadow transition-all flex items-center gap-1.5 text-xs cursor-pointer"
+          onclick="executeRollback()">
+          <span class="material-symbols-outlined text-base">restore</span>
+          <span>Ejecutar Rollback a v1.0.0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: DISPARAR REENTRENAMIENTO MANUAL -->
+  <div class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm items-center justify-center p-4" id="modal-retrain">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-xl w-full p-6 shadow-2xl flex flex-col gap-4 border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">play_circle</span>
+          </span>
+          <div>
+            <h4 class="font-title-md text-base text-on-surface font-bold">Disparar Reentrenamiento de Pipeline ML</h4>
+            <span class="text-xs text-secondary">Ejecución en Clúster: `03_entrenamiento_xgboost.py`</span>
+          </div>
+        </div>
+        <button class="text-secondary hover:text-on-surface" onclick="closeModal('modal-retrain')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1.5 border border-slate-100">
+          <div class="flex justify-between">
+            <span class="text-secondary">Script Objetivo:</span>
+            <span class="font-mono font-bold text-on-surface" id="retrain-script-label">src/03_entrenamiento_xgboost.py</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-secondary">Dataset a Procesar:</span>
+            <span class="font-bold text-on-surface">BCRP 2016–2025 + Scraping Q1-2026 (71,400 obs)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-secondary">Variables Predictoras:</span>
+            <span class="font-bold text-primary">33 Features (Físicas + Geoespaciales OSM + ENAHO)</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div class="flex flex-col gap-1">
+            <label class="font-semibold text-secondary">Max Depth (Profundidad):</label>
+            <input type="text" value="6" readonly class="p-2 rounded-lg bg-slate-100 text-on-surface font-mono border border-slate-200">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="font-semibold text-secondary">Learning Rate (&eta;):</label>
+            <input type="text" value="0.05" readonly class="p-2 rounded-lg bg-slate-100 text-on-surface font-mono border border-slate-200">
+          </div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-amber-900 leading-snug">
+          El proceso se ejecutará en segundo plano en el clúster. Al finalizar, registrará automáticamente el nuevo Run en MLflow y el candidato aparecerá en la tabla de evaluación.
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+        <button class="px-4 py-2 rounded-lg bg-surface-container text-secondary font-semibold hover:bg-slate-200 transition-colors text-xs"
+          onclick="closeModal('modal-retrain')">
+          Cancelar
+        </button>
+        <button class="px-4 py-2 rounded-lg bg-primary text-white font-bold hover:bg-primary-container shadow transition-all flex items-center gap-1.5 text-xs cursor-pointer"
+          onclick="executeRetrain()">
+          <span class="material-symbols-outlined text-base">rocket</span>
+          <span>Iniciar Entrenamiento en Clúster</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: DETALLE DE FIRMA CRIPTOGRÁFICA Y ARTEFACTOS MLFLOW -->
+  <div class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm items-center justify-center p-4" id="modal-artifact">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-6 shadow-2xl flex flex-col gap-4 border border-slate-100">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="w-9 h-9 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">fingerprint</span>
+          </span>
+          <div>
+            <h4 class="font-title-md text-base text-on-surface font-bold">Certificado de Artefacto MLflow</h4>
+            <span class="text-xs text-secondary font-mono" id="modal-artifact-ver">models:/ValuaProp-Venta/2</span>
+          </div>
+        </div>
+        <button class="text-secondary hover:text-on-surface" onclick="closeModal('modal-artifact')">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="flex flex-col gap-1">
+          <span class="font-semibold text-secondary">Firma Digital SHA-256 (Inmutable):</span>
+          <code class="p-2.5 rounded-lg bg-slate-100 font-mono text-[11px] text-primary break-all border border-slate-200 select-all"
+            id="modal-artifact-hash">
+            3b7e4112c8e9fa0145bc89a2d04e38c92a5431bf689e47201b1248df991a0c84
+          </code>
+        </div>
+
+        <div class="flex flex-col gap-1 pt-1">
+          <span class="font-semibold text-secondary">Artefactos Serializados en el Bucket:</span>
+          <div class="space-y-1 bg-surface-container-low p-2.5 rounded-xl border border-slate-100 font-mono text-[11px]">
+            <div class="flex items-center justify-between text-on-surface">
+              <span>• model.pkl (Ensamble XGBoost binario)</span>
+              <span class="text-secondary">48.2 MB</span>
+            </div>
+            <div class="flex items-center justify-between text-on-surface">
+              <span>• features_metadata.json (33 variables)</span>
+              <span class="text-secondary">14.6 KB</span>
+            </div>
+            <div class="flex items-center justify-between text-on-surface">
+              <span>• distrito_encoder.json (Target Encoding)</span>
+              <span class="text-secondary">8.2 KB</span>
+            </div>
+            <div class="flex items-center justify-between text-on-surface">
+              <span>• shap_beeswarm.png (Explicabilidad Global)</span>
+              <span class="text-secondary">412 KB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-800 flex items-center gap-2 text-[11px]">
+          <span class="material-symbols-outlined text-sm text-emerald-600">verified</span>
+          <span>Integridad certificada: El binario en producción coincide bit a bit con el Run registrado.</span>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+        <button class="px-4 py-1.5 rounded-lg bg-surface-container text-secondary font-semibold hover:bg-slate-200 transition-colors text-xs"
+          onclick="closeModal('modal-artifact')">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST FEEDBACK NOTIFICATION -->
+  <div class="fixed bottom-6 right-6 z-50 hidden bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transition-transform border border-slate-700"
+    id="toast-notify">
+    <span class="material-symbols-outlined text-emerald-400 text-xl" id="toast-icon">task_alt</span>
+    <div class="flex flex-col">
+      <span class="font-bold text-xs" id="toast-title">Acción Completada</span>
+      <span class="text-[11px] text-slate-300" id="toast-desc">Modelo actualizado en producción.</span>
+    </div>
+  </div>
+
+  <!-- FOOTER INSTITUCIONAL Y TRAZABILIDAD -->
+  <footer class="w-full bg-surface-container-low shadow-[0_-1px_6px_rgba(15,23,42,0.03)] border-t border-slate-200/60">
+    <div class="max-w-max-width-content mx-auto px-gutter-desktop py-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm font-label-sm text-xs text-on-surface-variant">
+      <div>
+        <span class="font-bold text-on-surface">ValuaProp AI MLOps Suite</span> •
+        <span>Registry MLflow Activo</span> •
+        <span class="font-mono text-[11px]">SHA-256 Trazabilidad Fiduciaria</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>SLA Inferencia: &lt; 100 ms</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+        <span>Docker Container Healthy</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+        <span>&copy; 2026 ValuaProp Platform</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT INTERACTIVO COMPLETO: NAVEGACIÓN ENTRE 3 VISTAS, DUAL PIPELINE Y GOBERNANZA -->
+  <script>
+    // Estado Central de la Suite
+    let currentPipeline = 'venta';
+    let currentView = 'all'; // 'monitoring' | 'governance' | 'audit' | 'all'
+
+    // Datos Reales de la Investigación de Tesis
+    const PIPELINE_DATA = {
+      venta: {
+        name: 'ValuaProp-Venta',
+        version: 'v2.0.0 (Champion)',
+        datasetName: 'BCRP Maestro (67,914 obs)',
+        splitInfo: 'Base de evaluación Out-of-Time: Test Set BCRP 2024–2025 (n=13,582 inmuebles validados sin data leakage)',
+        runHash: '#xgboost-prod-884b',
+        mape: '15.04%',
+        mae: 'S/. 52,166',
+        maeSub: '(~$13,800 USD)',
+        r2: '0.7470',
+        r2Variance: '74.7% Varianza',
+        latency: '42 ms',
+        script: 'src/03_entrenamiento_xgboost.py',
+        candidateVersion: 'v2.1.0-rc1',
+        candidateMape: '14.32%',
+        candidateMae: 'S/. 49,850'
+      },
+      alquiler: {
+        name: 'ValuaProp-Alquiler',
+        version: 'v2.0.0 (Champion)',
+        datasetName: 'BCRP Maestro (61,603 obs)',
+        splitInfo: 'Base de evaluación Out-of-Time: Test Set BCRP Alquiler 2024–2025 (n=12,320 arriendos validados)',
+        runHash: '#xgboost-alquiler-772c',
+        mape: '13.85%',
+        mae: 'S/. 320 / mes',
+        maeSub: '(~$85 USD / mes)',
+        r2: '0.7620',
+        r2Variance: '76.2% Varianza',
+        latency: '38 ms',
+        script: 'src/03_entrenamiento_alquiler.py',
+        candidateVersion: 'v2.1.0-rc1',
+        candidateMape: '13.10%',
+        candidateMae: 'S/. 295 / mes'
+      }
+    };
+
+    // 1. Conmutador de Vistas del Administrador (US-05, US-06, TH-07)
+    function switchAdminView(viewName) {
+      currentView = viewName;
+      const secMonitoring = document.getElementById('view-monitoring');
+      const secGovernance = document.getElementById('view-governance');
+      const secAudit = document.getElementById('view-audit');
+
+      const btnMon = document.getElementById('nav-btn-monitoring');
+      const btnGov = document.getElementById('nav-btn-governance');
+      const btnAud = document.getElementById('nav-btn-audit');
+      const btnAll = document.getElementById('nav-btn-all');
+
+      // Reset de estilos de navegación
+      [btnMon, btnGov, btnAud, btnAll].forEach(btn => {
+        btn.className = "px-3.5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all flex items-center gap-1.5";
+      });
+
+      const activeClass = "px-3.5 py-2 rounded-lg font-label-md text-label-md transition-all flex items-center gap-1.5 bg-primary text-on-primary font-semibold shadow-sm";
+
+      if (viewName === 'monitoring') {
+        secMonitoring.classList.remove('hidden');
+        secGovernance.classList.add('hidden');
+        secAudit.classList.add('hidden');
+        btnMon.className = activeClass;
+        window.location.hash = 'monitoreo';
+      } else if (viewName === 'governance') {
+        secMonitoring.classList.add('hidden');
+        secGovernance.classList.remove('hidden');
+        secAudit.classList.add('hidden');
+        btnGov.className = activeClass;
+        window.location.hash = 'gobernanza';
+      } else if (viewName === 'audit') {
+        secMonitoring.classList.add('hidden');
+        secGovernance.classList.add('hidden');
+        secAudit.classList.remove('hidden');
+        btnAud.className = activeClass;
+        window.location.hash = 'auditoria';
+      } else {
+        // 'all' -> Muestra las 3 vistas en secuencia integrada
+        secMonitoring.classList.remove('hidden');
+        secGovernance.classList.remove('hidden');
+        secAudit.classList.remove('hidden');
+        btnAll.className = activeClass;
+        window.location.hash = '';
+      }
+    }
+
+    // 2. Conmutador Dual de Pipeline (Venta vs Alquiler con datos reales)
+    function switchPipeline(type) {
+      currentPipeline = type;
+      const data = PIPELINE_DATA[type];
+
+      const btnVenta = document.getElementById('tab-venta');
+      const btnAlquiler = document.getElementById('tab-alquiler');
+
+      if (type === 'alquiler') {
+        btnAlquiler.className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg font-label-md text-xs font-bold transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5";
+        btnVenta.className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg font-label-md text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all flex items-center justify-center gap-1.5";
+      } else {
+        btnVenta.className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg font-label-md text-xs font-bold transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1.5";
+        btnAlquiler.className = "flex-1 sm:flex-initial px-4 py-2 rounded-lg font-label-md text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all flex items-center justify-center gap-1.5";
+      }
+
+      // Actualizar Encabezados y Badges
+      document.getElementById('badge-model-version').innerHTML = `
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+        Producción: ${data.name} ${data.version}
+      `;
+      document.getElementById('monitoring-section-title').innerText = `Métricas en Producción — ${data.name} (${data.version})`;
+      document.getElementById('dataset-split-info').innerText = data.splitInfo;
+
+      // Actualizar KPIs Oficiales de Tesis
+      document.getElementById('metric-mape-val').innerText = data.mape;
+      const mapeDiff = document.getElementById('metric-mape-diff');
+      if (mapeDiff) {
+        mapeDiff.innerText = type === 'alquiler' ? '🟢 Excelente (13.85% ≤ 15%)' : '🟢 En Tolerancia (≤ 15.0%)';
+      }
+      document.getElementById('metric-mae-val').innerText = data.mae;
+      document.getElementById('metric-mae-sub').innerText = data.maeSub;
+      document.getElementById('metric-r2-val').innerText = data.r2;
+      document.getElementById('metric-latency-val').innerText = data.latency;
+      document.getElementById('latency-chip').innerText = data.latency;
+
+      // Actualizar modal context
+      document.getElementById('modal-pipeline-name').innerText = `${data.name} (XGBoost)`;
+      document.getElementById('retrain-script-label').innerText = data.script;
+
+      showToast("Pipeline Conmutado", `Visualizando métricas oficiales de ${data.name} (${data.datasetName})`);
+    }
+
+    // 3. Modales de Gobernanza
+    function openApprovalModal() {
+      document.getElementById('modal-approval').classList.remove('hidden');
+      document.getElementById('modal-approval').classList.add('flex');
+    }
+
+    function openRollbackModal() {
+      document.getElementById('modal-rollback').classList.remove('hidden');
+      document.getElementById('modal-rollback').classList.add('flex');
+    }
+
+    function openRetrainModal() {
+      document.getElementById('modal-retrain').classList.remove('hidden');
+      document.getElementById('modal-retrain').classList.add('flex');
+    }
+
+    function openArtifactModal(version, hash, runId) {
+      document.getElementById('modal-artifact-ver').innerText = `models:/ValuaProp-${currentPipeline === 'venta' ? 'Venta' : 'Alquiler'}/${version}`;
+      document.getElementById('modal-artifact-hash').innerText = hash === 'hash-prod-884b' ? '3b7e4112c8e9fa0145bc89a2d04e38c92a5431bf689e47201b1248df991a0c84' : hash;
+      document.getElementById('modal-artifact').classList.remove('hidden');
+      document.getElementById('modal-artifact').classList.add('flex');
+    }
+
+    function showHashDetail(shortHash) {
+      openArtifactModal('v2.0.0', shortHash, 'run-checkpoint');
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+
+    function rejectCandidate() {
+      if (confirm("¿Confirmar rechazo del candidato v2.1.0-rc1? El artefacto quedará catalogado como 'Rejected' en MLflow Model Registry.")) {
+        showToast("Candidato Rechazado", "El candidato v2.1.0-rc1 fue archivado. Se preserva el modelo v2.0.0 en producción.");
+      }
+    }
+
+    function executePromotion() {
+      const reason = document.getElementById('audit-reason').value;
+      if (!reason.trim()) {
+        alert("Por favor ingrese la justificación técnica obligatoria para el registro fiduciario de auditoría (TH-07).");
+        return;
+      }
+      closeModal('modal-approval');
+
+      // Insertar nuevo registro dinámicamente en la tabla de auditoría
+      const tbody = document.getElementById('audit-table-body');
+      const newRow = document.createElement('tr');
+      newRow.className = "hover:bg-emerald-50/40 transition-colors bg-emerald-50/20";
+      newRow.innerHTML = `
+        <td class="py-3.5 px-4 font-mono text-secondary">Recién Desplegado (Ahora)</td>
+        <td class="py-3.5 px-4">
+          <div class="font-bold text-on-surface">Ing. Marco Silva</div>
+          <div class="text-[10px] text-secondary">ML Lead (UID #mlops-088)</div>
+        </td>
+        <td class="py-3.5 px-4 font-mono font-bold text-emerald-800">v2.1.0</td>
+        <td class="py-3.5 px-4">
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold flex items-center gap-1 w-fit">
+            <span class="material-symbols-outlined text-xs">rocket_launch</span>
+            PROMOVIDO A PRODUCCIÓN
+          </span>
+        </td>
+        <td class="py-3.5 px-4 font-mono text-emerald-700 font-bold">
+          MAPE: 15.04% &rarr; 14.32% (-0.72%)
+        </td>
+        <td class="py-3.5 px-4 text-secondary max-w-xs font-semibold text-on-surface">
+          "${reason}"
+        </td>
+        <td class="py-3.5 px-4 text-right">
+          <span class="font-mono text-[11px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-bold">
+            f4b1a82c...
+          </span>
+        </td>
+      `;
+      tbody.insertBefore(newRow, tbody.firstChild);
+
+      showToast("¡Modelo Desplegado!", "Transición en MLflow a Stage 'Production' completada con éxito. Canary activo.");
+    }
+
+    function executeRollback() {
+      const reason = document.getElementById('rollback-reason').value;
+      if (!reason.trim()) {
+        alert("Indique la causa o motivo de contingencia del rollback.");
+        return;
+      }
+      closeModal('modal-rollback');
+      showToast("Rollback Ejecutado", "Se ha restaurado la versión archivada previa en el clúster FastAPI.");
+    }
+
+    function executeRetrain() {
+      closeModal('modal-retrain');
+      showToast("Pipeline Disparado", "Trabajo de entrenamiento enviado al Clúster en segundo plano. Monitoreando en MLflow...");
+    }
+
+    function refreshMetricsSimulated() {
+      showToast("Métricas Actualizadas", "Sincronizado con telemetría de FastAPI en tiempo real.");
+    }
+
+    function exportAudit(format) {
+      showToast(`Exportando ${format.toUpperCase()}`, `Generando registro de auditoría fiduciaria criptográfica en formato ${format.toUpperCase()}...`);
+    }
+
+    function showToast(title, desc) {
+      const toast = document.getElementById('toast-notify');
+      document.getElementById('toast-title').innerText = title;
+      document.getElementById('toast-desc').innerText = desc;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 4500);
+    }
+
+    // Inicializar vista según el hash de URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('monitoreo')) {
+        switchAdminView('monitoring');
+      } else if (hash.includes('gobernanza')) {
+        switchAdminView('governance');
+      } else if (hash.includes('auditoria')) {
+        switchAdminView('audit');
+      }
+    });
+  </script>
+
+</body>
+
+</html>

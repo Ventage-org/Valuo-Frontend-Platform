@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Ficha Detallada del Inmueble | ValuaProp AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap"
+    rel="stylesheet">
+  <style>
+    @layer base {
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overscroll-behavior: none;
+      }
+
+      main> :first-child {
+        margin-top: 0 !important;
+      }
+
+      main> :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-highest": "#d3e4fe",
+            "surface-container": "#e5eeff",
+            "tertiary": "#006242",
+            "on-secondary-fixed-variant": "#3f465c",
+            "surface-tint": "#0053db",
+            "primary-fixed": "#dbe1ff",
+            "on-tertiary-container": "#bdffdb",
+            "surface-dim": "#cbdbf5",
+            "primary": "#004ac6",
+            "on-error": "#ffffff",
+            "background": "#f8f9ff",
+            "outline-variant": "#c3c6d7",
+            "secondary": "#565e74",
+            "on-background": "#0b1c30",
+            "inverse-primary": "#b4c5ff",
+            "surface-container-low": "#eff4ff",
+            "on-primary-fixed": "#00174b",
+            "inverse-surface": "#213145",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#6ffbbe",
+            "tertiary-fixed-dim": "#4edea3",
+            "primary-fixed-dim": "#b4c5ff",
+            "surface-variant": "#d3e4fe",
+            "secondary-fixed-dim": "#bec6e0",
+            "on-primary-fixed-variant": "#003ea8",
+            "primary-container": "#2563eb",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed": "#002113",
+            "on-surface-variant": "#434655",
+            "surface-container-high": "#dce9ff",
+            "secondary-fixed": "#dae2fd",
+            "on-surface": "#0b1c30",
+            "surface": "#f8f9ff",
+            "on-secondary-container": "#5c647a",
+            "tertiary-container": "#007d55",
+            "error": "#ba1a1a",
+            "on-primary-container": "#eeefff",
+            "on-secondary-fixed": "#131b2e",
+            "outline": "#737686",
+            "on-primary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f8f9ff",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#005236",
+            "error-container": "#ffdad6",
+            "inverse-on-surface": "#eaf1ff",
+            "secondary-container": "#dae2fd"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.5rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.75rem",
+            "space-3xl": "4rem",
+            "margin-mobile": "1rem",
+            "margin-desktop": "2rem",
+            "space-2xl": "3rem",
+            "max-width-content": "88rem",
+            "space-2xs": "0.25rem",
+            "margin-tablet": "1.5rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "1.5rem"
+          },
+          fontFamily: {
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "data-metric": ["Inter"],
+            "title-md": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"]
+          },
+          fontSize: {
+            "headline-xl-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "fontWeight": "500" }],
+            "headline-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl": ["1.875rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "500" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "data-metric": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "title-md": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "body-sm": ["0.75rem", { "lineHeight": "1.125rem", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body
+  class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+  <!-- Header Superior de Navegación Unificada -->
+  <header
+    class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div
+      class="h-20 w-full px-gutter-desktop max-w-max-width-content mx-auto flex items-center justify-between gap-space-md">
+      <div class="flex items-center gap-space-lg">
+        <a href="../dashboard_del_agente_inmobiliario/code.html" class="flex items-center gap-space-sm">
+          <img alt="ValuaProp AI Logo" class="h-8 w-auto object-contain"
+            src="https://lh3.googleusercontent.com/aida/AEtjO1URW3NTAL96rmqQfy0UdSsXWPCQW3pIop2zWPd8TJ2DTEGojJdooYr21rU7ACL8oGilrUzW6D0OgqjxvRaO49Z6yTzUjIO5mFpgRnJV35P37fFWzgr7U5Ch8vYFH5C7dMiTIBQkPiTrATXWAw0c0mSZZjwc7bZpYDagK4Jp1ur4wFJATXDpRNwyNuM0KlxbpDLQGsD3pqtSm705zd4XOwPcBofdAxQ-NM8FqYL-cXklkP5K4urWNZJMUw">
+          <span class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">ValuaProp AI</span>
+        </a>
+      </div>
+      <nav class="hidden lg:flex items-center gap-1.5 p-1 bg-surface-container-low rounded-lg">
+        <a class="px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+          data-path="panel-principal" href="../dashboard_del_agente_inmobiliario/code.html">Panel Principal</a>
+        <a class="px-3 py-2 rounded-lg font-label-md text-label-md bg-primary-container text-on-primary-container font-semibold shadow-sm"
+          data-path="mis-inmuebles" href="../gesti_n_y_cat_logo_de_inmuebles_crud/code.html">Mis Inmuebles</a>
+        <a class="px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+          data-path="rentabilidad"
+          href="../an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=rentabilidad">Rentabilidad</a>
+        <a class="px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+          data-path="reportes" href="../an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=reportes">Reportes</a>
+        <a class="px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors"
+          data-path="nueva-prediccion-ml" href="../nueva_predicci_n_ml_ingreso_de_inmueble/code.html">+ Nueva Tasación
+          IA</a>
+      </nav>
+      <div class="flex items-center gap-space-md">
+        <a href="../edici_n_de_perfil_del_agente_inmobiliario/code.html"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors font-label-md text-label-md">
+          <span class="material-symbols-outlined text-lg text-primary">account_circle</span>
+          <span class="font-medium">Carlos Mendoza</span>
+        </a>
+        <a href="../inicio_de_sesi_n_y_autenticaci_n/code.html"
+          class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-secondary hover:text-error hover:bg-error-container/30 transition-colors font-label-md text-label-md"
+          title="Cerrar Sesión (US-03)">
+          <span class="material-symbols-outlined text-lg">logout</span>
+          <span class="hidden sm:inline">Salir</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="w-full pt-20 bg-background min-h-[calc(100vh-80px)] pb-16">
+    <div class="max-w-max-width-content mx-auto px-gutter-desktop py-space-lg flex flex-col gap-6">
+
+      <!-- Breadcrumbs & Navegación Superior -->
+      <div class="flex items-center justify-between">
+        <nav class="flex items-center gap-2 text-xs text-secondary font-medium">
+          <a href="../gesti_n_y_cat_logo_de_inmuebles_crud/code.html"
+            class="hover:text-primary transition-colors flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">arrow_back</span>
+            <span>Mis Inmuebles</span>
+          </a>
+          <span>/</span>
+          <span class="text-on-surface font-semibold">Detalle del Inmueble (US-10)</span>
+        </nav>
+
+        <!-- Toggle Interactivo para Demo de Tesis: Simular Inmueble con/sin Análisis de Rentabilidad -->
+        <div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg border border-slate-200">
+          <span class="text-[11px] text-secondary font-semibold uppercase tracking-wider">Demo Evaluador:</span>
+          <button id="btn-toggle-rent-state" onclick="toggleRentabilityState()"
+            class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">swap_horiz</span>
+            <span id="rent-state-label">Alternar: Con Análisis Guardado</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Barra de Título & Acciones Rápidas del Inmueble -->
+      <div
+        class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div class="flex flex-col gap-2">
+          <div class="flex flex-wrap items-center gap-2">
+            <span
+              class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-label-sm text-label-sm font-semibold border border-emerald-200"
+              id="badge-commercial-state">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+              Disponible
+            </span>
+            <span
+              class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">
+              Venta
+            </span>
+            <span
+              class="px-2.5 py-0.5 rounded-full bg-surface-container-low text-secondary font-mono text-xs font-medium">
+              Código CT-90412
+            </span>
+            <span class="text-xs text-secondary font-medium">
+              Miraflores · Sector 4 (Malecón)
+            </span>
+            <span class="px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-mono text-[10px] font-bold">
+              US-10 FICHA DETALLE
+            </span>
+          </div>
+          <h1 class="font-headline-xl text-2xl lg:text-3xl font-bold text-on-surface tracking-tight"
+            id="prop-main-title">
+            Dúplex 145 m² · Malecón de la Reserva 740, Miraflores
+          </h1>
+
+          <!-- Cinta Destacada de Variables Físicas Ingresadas (Lectura Rápida de Atributos Clave) -->
+          <div class="flex flex-wrap items-center gap-2 pt-1">
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface border border-slate-200/70 shadow-2xs">
+              <span class="material-symbols-outlined text-primary text-sm">square_foot</span>
+              <span>145 m² Techados</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface border border-slate-200/70 shadow-2xs">
+              <span class="material-symbols-outlined text-primary text-sm">crop_free</span>
+              <span>168 m² Totales (23 m² Terraza)</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface border border-slate-200/70 shadow-2xs">
+              <span class="material-symbols-outlined text-primary text-sm">bed</span>
+              <span>3 Dormitorios</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface border border-slate-200/70 shadow-2xs">
+              <span class="material-symbols-outlined text-primary text-sm">bathtub</span>
+              <span>2 Baños + Visita</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface border border-slate-200/70 shadow-2xs">
+              <span class="material-symbols-outlined text-primary text-sm">directions_car</span>
+              <span>2 Cocheras Paralelas + Depósito</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface border border-slate-200/70 shadow-2xs">
+              <span class="material-symbols-outlined text-primary text-sm">layers</span>
+              <span>Piso 14 y 15 (Edificio 18 pisos)</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface border border-slate-200/70 shadow-2xs">
+              <span class="material-symbols-outlined text-emerald-600 text-sm">visibility</span>
+              <span>Vista Frente a Parque y Mar</span>
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-surface-container-low text-xs font-semibold text-on-surface border border-slate-200/70 shadow-2xs">
+              <span class="material-symbols-outlined text-primary text-sm">history</span>
+              <span>Antigüedad: 6 años (2019)</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Acciones Principales en Cabecera -->
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Botón Notorio: Ver Valoración & Factores de Precio -->
+          <a href="../resultados_de_valoraci_n_y_explicabilidad_shap/code.html"
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary hover:bg-primary-container text-white text-xs font-bold shadow-sm hover:shadow transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-base">insights</span>
+            <span>Valoración & Factores de Precio</span>
+          </a>
+
+          <!-- Acción Principal: Generar y Descargar Reporte (US-22) -->
+          <button onclick="openReportModal()"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary text-xs font-bold border border-slate-200 transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-base">picture_as_pdf</span>
+            <span>Generar y Descargar Reporte</span>
+            <span class="material-symbols-outlined text-sm">arrow_drop_down</span>
+          </button>
+
+          <button onclick="alert('Abriendo editor de inmueble (US-08)...')"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface text-xs font-semibold transition-colors">
+            <span class="material-symbols-outlined text-base">edit</span>
+            <span>Editar (US-08)</span>
+          </button>
+
+          <a href="../nueva_predicci_n_ml_ingreso_de_inmueble/code.html"
+            class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-primary text-xs font-bold transition-all">
+            <span class="material-symbols-outlined text-base">auto_awesome</span>
+            <span>Retasar</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Galería Fotográfica en Cuadrícula Asimétrica -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3 h-[380px] md:h-[420px]">
+        <!-- Foto Principal (8 cols) -->
+        <div class="md:col-span-8 rounded-2xl overflow-hidden relative shadow-sm group">
+          <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW09gf-Vx4nduLLY24cnqFH3xdKF37DmvJIUKCNdvQHdFyiVEuOXDCa3x5jVyPk0renrbvO8bBthw0cWx1LfqXQZPkLgXu7Egnef_FE9Vx6Wxvv0yhBb3lbHINQ63H1COibwtSul8qqrbGJTuMQGWBwetKguUlQjnR6oHQQTDoavVFe7KhirnII0nJ8jk1JUSnJ1Te45J2uIEVkwQhY6HP9hVgU0IGBbMA4y2j_c65zmqJUxFZt0iT"
+            alt="Fotografía principal del inmueble - Vista de sala y terraza hacia el Malecón">
+          <div
+            class="absolute bottom-3 left-3 bg-on-background/70 backdrop-blur-md text-white px-3 py-1 rounded-lg text-xs font-medium flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm">photo_camera</span>
+            <span>Fachada Exterior y Balcón Panorámico</span>
+          </div>
+        </div>
+
+        <!-- 3 Fotos Secundarias Apiladas (4 cols) -->
+        <div class="hidden md:grid md:col-span-4 grid-rows-3 gap-3">
+          <div class="rounded-xl overflow-hidden relative shadow-sm group">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9pjrve1fBf7UVIDrVu0rqPDmQ8-vkhVHEbnviQHCpIt45XPBxAmiQ8uzwcQcdmnHm_g23185w-8S-8DmSS4eQYNp1_01QK2LVTYufrLJo0c_2B_c_JF03fyekfHzl7ZdaH8gQuoJ26XMa85Q40huTHG9DR7c83m4KX5WqhLe4NcDataMpnvNEh3YxGl2weAwt_llAwGQKL9_R5dy09Gn9Jj2qaa58uTKBwjpIRbEckGAEB0a6ncph"
+              alt="Sala de estar moderna y comedor integrado">
+            <span
+              class="absolute bottom-2 left-2 bg-on-background/60 text-white text-[10px] px-2 py-0.5 rounded font-medium">Interior
+              Sala</span>
+          </div>
+          <div class="rounded-xl overflow-hidden relative shadow-sm group">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgmKIDeO3BgJd_6gvSE8xVftxFNCPTJj4oSg5DN5LVeUPdoZF6B3liN-SEgYt-bHIuwcZ9fToqhYKEdsk8tgXyjmnvGG6ijCfThCpUrAcNyyGvzBKcCkrtWHfOa3rRO2txTA7306xht0JBr6AGNR8DPiadeTP2Judc6X7KtZ7EQbIav0yKYAITDhQB0GON-DO5J7zy3_QpLkzDtq4u_ORwXQi4cp4FvWTFINxrQo343qhN8TPEqYb8"
+              alt="Terraza superior con vista al mar">
+            <span
+              class="absolute bottom-2 left-2 bg-on-background/60 text-white text-[10px] px-2 py-0.5 rounded font-medium">Terraza
+              Piso 15</span>
+          </div>
+          <div class="rounded-xl overflow-hidden relative shadow-sm group">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYVNVhk35yLWEdd77SCzyn90YDayhIR_kRTwMofnuWi91M5cD69COii7iVF3YbqwDcLLWiAZU-k5EQyqW2XrVtq3y6Bj78no35ot7iIdkqCf2Kgh_ddQ1jiSP98Y_qYpu2hi_D04YMImEPyQGolChLEZZhuvZ5rIXBsE7lYRukmnkaLYufzs_WRSa2Den5UdFA8IUGjWf68eddxFXvNb62Wjbs_RJrMkodqgtynZwkF3g-3UuNU5ZD"
+              alt="Dormitorio principal en suite">
+            <span
+              class="absolute bottom-2 left-2 bg-on-background/60 text-white text-[10px] px-2 py-0.5 rounded font-medium">Master
+              Suite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout Principal en Dos Columnas: Detalle Técnico (65%) vs Sidebar Fiduciario (35%) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- Columna Izquierda: Ficha Técnica, Ubicación Geoespacial e Historial ML (8 de 12) -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+
+          <!-- Tarjeta 1: Ficha Técnica y Dimensiones -->
+          <section
+            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">description</span>
+                <h2 class="font-headline-sm text-lg font-bold text-on-surface">Ficha Técnica y Métricas Físicas</h2>
+              </div>
+              <span class="text-xs text-secondary font-medium">Atributos arquitectónicos verificados</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 pt-1">
+              <!-- Atributo 1: Tipo -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Tipo de Inmueble</span>
+                  <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-primary/10 text-primary">Dúplex</span>
+                </div>
+                <span class="text-sm font-bold text-on-surface mt-1">Departamento Dúplex</span>
+                <span class="text-[10px] text-secondary">Tipología residencial</span>
+              </div>
+
+              <!-- Atributo 2: Área Techada -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Área Techada</span>
+                  <span
+                    class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800">Techada</span>
+                </div>
+                <span class="text-sm font-bold text-primary mt-1">145 m²</span>
+                <span class="text-[10px] text-secondary">Área construida</span>
+              </div>
+
+              <!-- Atributo 3: Área Total Ocupada -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Área Total Ocupada</span>
+                  <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-primary/10 text-primary">Total</span>
+                </div>
+                <span class="text-sm font-bold text-on-surface mt-1">168 m²</span>
+                <span class="text-[10px] text-secondary">Techada + descubierta</span>
+              </div>
+
+              <!-- Atributo 4: Área Libre Descubierta -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Área Libre / Terraza</span>
+                  <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-primary/10 text-primary">Terraza</span>
+                </div>
+                <span class="text-sm font-bold text-on-surface mt-1">23 m²</span>
+                <span class="text-[10px] text-secondary">Terraza y balcón exterior</span>
+              </div>
+
+              <!-- Atributo 5: Dormitorios -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Dormitorios</span>
+                  <span
+                    class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-primary/10 text-primary">Habitaciones</span>
+                </div>
+                <span class="text-sm font-bold text-on-surface mt-1">3 Dormitorios</span>
+                <span class="text-[10px] text-secondary">Principal c/ walk-in closet</span>
+              </div>
+
+              <!-- Atributo 6: Baños -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Baños Completos</span>
+                  <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-primary/10 text-primary">Servicios</span>
+                </div>
+                <span class="text-sm font-bold text-on-surface mt-1">2 Baños + 1 Visita</span>
+                <span class="text-[10px] text-secondary">2 completos + 1 medio baño</span>
+              </div>
+
+              <!-- Atributo 7: Estacionamientos -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Estacionamientos</span>
+                  <span
+                    class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800">Cocheras</span>
+                </div>
+                <span class="text-sm font-bold text-on-surface mt-1">2 Cocheras</span>
+                <span class="text-[10px] text-secondary">Paralelas + 1 Depósito</span>
+              </div>
+
+              <!-- Atributo 8: Nivel / Pisos -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Piso / Nivel</span>
+                  <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-primary/10 text-primary">Piso Alto</span>
+                </div>
+                <span class="text-sm font-bold text-on-surface mt-1">Piso 14 y 15</span>
+                <span class="text-[10px] text-secondary">Edificio de 18 pisos</span>
+              </div>
+
+              <!-- Atributo 9: Tipo de Vista (Ingresada en Formulario) -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Tipo de Vista</span>
+                  <span
+                    class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800">Panorámica</span>
+                </div>
+                <span class="text-sm font-bold text-emerald-700 mt-1">Frente a Parque & Mar</span>
+                <span class="text-[10px] text-secondary">Vista Exterior Panorámica</span>
+              </div>
+
+              <!-- Atributo 10: Antigüedad -->
+              <div class="flex flex-col p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] text-secondary font-medium">Antigüedad</span>
+                  <span
+                    class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-slate-100 text-slate-700">Edificación</span>
+                </div>
+                <span class="text-sm font-bold text-on-surface mt-1">6 años</span>
+                <span class="text-[10px] text-secondary">Año 2019 (Semi-estreno)</span>
+              </div>
+            </div>
+
+            <!-- Amenities & Equipamiento -->
+            <div class="flex flex-col gap-2 pt-2">
+              <span class="text-xs font-semibold text-secondary uppercase tracking-wider">Amenities y Equipamiento del
+                Inmueble</span>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-xs font-medium text-on-surface">
+                  <span class="material-symbols-outlined text-sm text-primary">balcony</span>
+                  Terraza con Vista al Mar
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-xs font-medium text-on-surface">
+                  <span class="material-symbols-outlined text-sm text-primary">elevator</span>
+                  Ascensor Directo al Dpto
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-xs font-medium text-on-surface">
+                  <span class="material-symbols-outlined text-sm text-primary">shield</span>
+                  Seguridad y Conserjería 24/7
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-xs font-medium text-on-surface">
+                  <span class="material-symbols-outlined text-sm text-primary">deck</span>
+                  Áreas Comunes / Rooftop
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-xs font-medium text-on-surface">
+                  <span class="material-symbols-outlined text-sm text-primary">pets</span>
+                  Edificio Pet Friendly
+                </span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Tarjeta 2: Ubicación y Variables Geoespaciales de Entorno (Datos Públicos Validados) -->
+          <section
+            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">satellite_alt</span>
+                <h2 class="font-headline-sm text-lg font-bold text-on-surface">Ubicación y Variables Geoespaciales de
+                  Entorno</h2>
+              </div>
+              <span class="text-xs text-tertiary font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">verified</span>
+                Datos Públicos Validados (OSM + INEI)
+              </span>
+            </div>
+
+            <!-- Mapa Visual Interactivo del Sector con Banner Requerido -->
+            <div class="relative w-full h-56 rounded-xl overflow-hidden shadow-inner group">
+              <div class="w-full h-full bg-cover bg-center"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChAftutMzNbP6OQSeb6Xr5eus8c6TdC7_TpQHB1fg-AkduzA_sY4Dc-khqto_jINZKtHu5WlOZoTbX_gUw4ORtMZZOYtPiw3arFBXvwsxTVVByqR6ObDMnKcMU8m_DlOB7zu7wM_5drsPNbE8yKYzd1fwoxHbXmGvlFmr4q2yf8N0HCb9VQ0Mcg6PXlzcfm4shZrx4Ornidicm3S9K3j6JkesZXtYjxoSZLzzmN-43cBIyYXgg7nD4')">
+              </div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/30 to-slate-900/50 flex flex-col justify-between p-4">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span
+                    class="bg-surface-container-lowest/95 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-bold text-on-surface flex items-center gap-1.5 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    GPS: -12.1264, -77.0341 · Malecón de la Reserva 740, Miraflores
+                  </span>
+                  <span
+                    class="bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-lg text-[11px] font-medium text-white/90">
+                    Miraflores · Frente al Mar
+                  </span>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between text-white text-xs gap-1">
+                  <span class="font-medium drop-shadow-sm">Georreferenciación Google Places API · 6 Métricas de
+                    Accesibilidad Urbana (OSM)</span>
+                  <span
+                    class="px-2 py-0.5 rounded bg-emerald-600/90 text-white text-[10px] font-bold self-start sm:self-auto">Entorno
+                    Validado</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Grid de 6 Métricas de Accesibilidad Urbana (Basadas en Datos Públicos ENAHO, PNP, OSM) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-1">
+
+              <!-- [1] Nivel Socioeconómico (NSE) -->
+              <div
+                class="p-3.5 rounded-xl bg-surface-container-low border border-slate-100 flex flex-col justify-between gap-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 text-primary text-xs font-bold">
+                    <span class="material-symbols-outlined text-base">groups</span>
+                    <span>Nivel Socioeconómico (NSE)</span>
+                  </div>
+                  <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 font-semibold">[1]
+                    INEI</span>
+                </div>
+                <div>
+                  <div class="text-sm font-extrabold text-on-surface">Predominancia: NSE A (68.4%)</div>
+                  <div class="text-[11px] text-secondary mt-0.5">Fuente: ENAHO - INEI Distrital</div>
+                </div>
+              </div>
+
+              <!-- [2] Seguridad Ciudadana -->
+              <div
+                class="p-3.5 rounded-xl bg-surface-container-low border border-slate-100 flex flex-col justify-between gap-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 text-tertiary text-xs font-bold">
+                    <span class="material-symbols-outlined text-base">shield</span>
+                    <span>Seguridad Ciudadana</span>
+                  </div>
+                  <span
+                    class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold">[2]
+                    PNP</span>
+                </div>
+                <div>
+                  <div class="text-sm font-extrabold text-on-surface flex items-center gap-1.5">
+                    <span>Tasa Hurto/Robo:</span>
+                    <span class="text-emerald-700 font-extrabold">Baja</span>
+                  </div>
+                  <div class="text-[11px] text-secondary mt-0.5">PNP: 24.8 denuncias / 10k hab</div>
+                </div>
+              </div>
+
+              <!-- [3] Transporte Público -->
+              <div
+                class="p-3.5 rounded-xl bg-surface-container-low border border-slate-100 flex flex-col justify-between gap-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 text-blue-700 text-xs font-bold">
+                    <span class="material-symbols-outlined text-base">directions_bus</span>
+                    <span>Transporte Público</span>
+                  </div>
+                  <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 font-semibold">[3]
+                    OSM</span>
+                </div>
+                <div>
+                  <div class="text-[11px] text-secondary">Paradero / Estación</div>
+                  <div class="text-sm font-extrabold text-on-surface mt-0.5">A 350 m <span
+                      class="text-xs text-secondary font-medium">(0.35 km)</span></div>
+                </div>
+              </div>
+
+              <!-- [4] Parques y Espacios Verdes -->
+              <div
+                class="p-3.5 rounded-xl bg-surface-container-low border border-slate-100 flex flex-col justify-between gap-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 text-emerald-700 text-xs font-bold">
+                    <span class="material-symbols-outlined text-base">park</span>
+                    <span>Parques y Espacios Verdes</span>
+                  </div>
+                  <span
+                    class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold">[4]
+                    OSM</span>
+                </div>
+                <div>
+                  <div class="text-[11px] text-secondary">Proximidad a Parque</div>
+                  <div class="text-sm font-extrabold text-on-surface mt-0.5">A 180 m <span
+                      class="text-xs text-secondary font-medium">(0.18 km)</span></div>
+                </div>
+              </div>
+
+              <!-- [5] Salud y Educación -->
+              <div
+                class="p-3.5 rounded-xl bg-surface-container-low border border-slate-100 flex flex-col justify-between gap-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 text-indigo-700 text-xs font-bold">
+                    <span class="material-symbols-outlined text-base">local_hospital</span>
+                    <span>Salud y Educación</span>
+                  </div>
+                  <span
+                    class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 font-semibold">[5]
+                    OSM</span>
+                </div>
+                <div>
+                  <div class="text-[11px] text-secondary">Colegios y Clínicas</div>
+                  <div class="text-sm font-extrabold text-on-surface mt-0.5">Clínica: 0.8 km · Colegio: 0.4 km</div>
+                </div>
+              </div>
+
+              <!-- [6] Centralidad y Comercio -->
+              <div
+                class="p-3.5 rounded-xl bg-surface-container-low border border-slate-100 flex flex-col justify-between gap-2">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5 text-amber-700 text-xs font-bold">
+                    <span class="material-symbols-outlined text-base">storefront</span>
+                    <span>Centralidad y Comercio</span>
+                  </div>
+                  <span
+                    class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-50 text-amber-700 font-semibold">[6]
+                    OSM</span>
+                </div>
+                <div>
+                  <div class="text-[11px] text-secondary">Distancia a Centro Urbano</div>
+                  <div class="text-sm font-extrabold text-on-surface mt-0.5">Centro Financiero: 4.2 km · C. Comercial: 0.6 km</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Callout fiduciario basado en fuentes públicas -->
+
+          </section>
+
+          <!-- Tarjeta 3: Historial de Tasaciones de este Inmueble -->
+          <section
+            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">history</span>
+                <h2 class="font-headline-sm text-lg font-bold text-on-surface">Historial de Tasaciones del Inmueble</h2>
+              </div>
+              <span class="text-xs text-secondary font-mono">4 registros históricos</span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs">
+                <thead>
+                  <tr class="bg-surface-container-low text-secondary uppercase font-semibold text-[11px]">
+                    <th class="py-2.5 px-3 rounded-l-lg">Fecha</th>
+                    <th class="py-2.5 px-3">Operación</th>
+                    <th class="py-2.5 px-3">Valor Tasado</th>
+                    <th class="py-2.5 px-3 text-center">Confianza</th>
+                    <th class="py-2.5 px-3">Metodología</th>
+                    <th class="py-2.5 px-3 rounded-r-lg text-right">Factores de Valor</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 font-medium text-on-surface">
+                  <tr class="hover:bg-surface-container-low/50 transition-colors">
+                    <td class="py-3 px-3">15 Sep 2026</td>
+                    <td class="py-3 px-3">
+                      <span
+                        class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px] font-bold">Venta</span>
+                    </td>
+                    <td class="py-3 px-3 font-bold text-primary text-sm">$512,000</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 font-semibold">96%</span>
+                    </td>
+                    <td class="py-3 px-3 text-secondary">Tasación Algorítmica</td>
+                    <td class="py-3 px-3 text-right">
+                      <a href="../resultados_de_valoraci_n_y_explicabilidad_shap/code.html"
+                        class="inline-flex items-center gap-1 text-primary hover:underline font-bold">
+                        <span class="material-symbols-outlined text-sm">insights</span>
+                        <span>Ver Factores</span>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-surface-container-low/50 transition-colors">
+                    <td class="py-3 px-3">28 Ago 2026</td>
+                    <td class="py-3 px-3">
+                      <span
+                        class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary text-[10px] font-bold">Alquiler</span>
+                    </td>
+                    <td class="py-3 px-3 font-bold text-on-surface text-sm">$1,450 /mes</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">91%</span>
+                    </td>
+                    <td class="py-3 px-3 text-secondary">Tasación Comparativa</td>
+                    <td class="py-3 px-3 text-right">
+                      <a href="../resultados_de_valoraci_n_y_explicabilidad_shap/code.html"
+                        class="inline-flex items-center gap-1 text-primary hover:underline font-bold">
+                        <span class="material-symbols-outlined text-sm">insights</span>
+                        <span>Ver Factores</span>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-surface-container-low/50 transition-colors">
+                    <td class="py-3 px-3">12 Jul 2026</td>
+                    <td class="py-3 px-3">
+                      <span
+                        class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px] font-bold">Venta</span>
+                    </td>
+                    <td class="py-3 px-3 font-bold text-on-surface text-sm">$498,400</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">94%</span>
+                    </td>
+                    <td class="py-3 px-3 text-secondary">Tasación de Mercado</td>
+                    <td class="py-3 px-3 text-right">
+                      <a href="../resultados_de_valoraci_n_y_explicabilidad_shap/code.html"
+                        class="inline-flex items-center gap-1 text-primary hover:underline font-bold">
+                        <span class="material-symbols-outlined text-sm">insights</span>
+                        <span>Ver Factores</span>
+                      </a>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-surface-container-low/50 transition-colors">
+                    <td class="py-3 px-3">03 May 2026</td>
+                    <td class="py-3 px-3">
+                      <span
+                        class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed text-[10px] font-bold">Venta</span>
+                    </td>
+                    <td class="py-3 px-3 font-bold text-on-surface text-sm">$486,900</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-semibold">92%</span>
+                    </td>
+                    <td class="py-3 px-3 text-secondary">Tasación de Mercado</td>
+                    <td class="py-3 px-3 text-right">
+                      <a href="../resultados_de_valoraci_n_y_explicabilidad_shap/code.html"
+                        class="inline-flex items-center gap-1 text-primary hover:underline font-bold">
+                        <span class="material-symbols-outlined text-sm">insights</span>
+                        <span>Ver Factores</span>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-secondary">
+              <span>El histórico se preserva permanentemente para auditoría y trazabilidad fiduciaria (US-12).</span>
+              <a href="../nueva_predicci_n_ml_ingreso_de_inmueble/code.html"
+                class="text-primary font-bold hover:underline flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">refresh</span>
+                <span>Calcular Nueva Tasación para este Inmueble</span>
+              </a>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Columna Derecha: Sidebar Fiduciario y Rentabilidad Condicional (4 de 12) -->
+        <aside class="lg:col-span-4 flex flex-col gap-5">
+
+          <!-- Card 1: Tasación de Mercado Vigente -->
+          <div
+            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border-2 border-primary/20 flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-secondary">Tasación de Mercado
+                Vigente</span>
+              <span
+                class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                Calibrado
+              </span>
+            </div>
+
+            <div class="flex flex-col">
+              <div class="flex items-baseline gap-2">
+                <span class="font-display-lg text-3xl font-extrabold text-on-surface tracking-tight"
+                  id="sidebar-price">$512,000</span>
+                <span class="text-xs font-semibold text-secondary">USD</span>
+              </div>
+              <p class="text-xs text-secondary mt-1">
+                Intervalo de confianza 95%: <strong class="text-on-surface font-semibold">$498,200 – $524,600</strong>
+              </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+              <div class="flex flex-col">
+                <span class="text-secondary">Nivel de Confianza</span>
+                <span class="font-bold text-on-surface text-sm">96% (Alto)</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-secondary">Margen Estimado</span>
+                <span class="font-bold text-emerald-700 text-sm">± 2.5%</span>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span class="text-secondary">Metodología</span>
+                <span class="font-semibold text-on-surface">Tasación Inteligente</span>
+              </div>
+              <div class="flex flex-col mt-2">
+                <span class="text-secondary">Última Actualización</span>
+                <span class="font-semibold text-on-surface">Hace 2 horas</span>
+              </div>
+            </div>
+
+            <a href="../resultados_de_valoraci_n_y_explicabilidad_shap/code.html"
+              class="w-full py-3 px-4 rounded-xl bg-primary hover:bg-primary-container text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition-all">
+              <span class="material-symbols-outlined text-base">insights</span>
+              <span>Ver Factores de Valoración</span>
+            </a>
+          </div>
+
+          <!-- Card 2: Módulo Adaptativo de Rentabilidad (Petición Específica del Usuario) -->
+          <!-- Se gestiona dinámicamente: NO abruma con números crudos; ofrece botón para calcular o ver guardado -->
+          <div id="card-rentability-container"
+            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-3">
+
+            <!-- Estado 1: Inmueble con Análisis de Rentabilidad Guardado -->
+            <div id="rent-state-saved" class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-tertiary text-xl">analytics</span>
+                  <span class="text-xs font-bold text-on-surface uppercase tracking-wider">Rentabilidad
+                    Registrada</span>
+                </div>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold">Análisis
+                  Activo</span>
+              </div>
+
+              <p class="text-xs text-secondary leading-relaxed">
+                Este inmueble cuenta con estimación financiera de retorno calculada para inversores inmobiliarios:
+              </p>
+
+              <!-- Resumen compacto y elegante (sin saturar la pantalla técnica) -->
+              <div class="grid grid-cols-2 gap-2 bg-surface-container-low p-3 rounded-xl">
+                <div>
+                  <span class="text-[11px] text-secondary">Cap Rate Bruto</span>
+                  <div class="text-base font-extrabold text-tertiary">4.85% / año</div>
+                </div>
+                <div>
+                  <span class="text-[11px] text-secondary">ROI Estimado</span>
+                  <div class="text-base font-extrabold text-emerald-700">6.85%</div>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <!-- Botón de Análisis de Rentabilidad -->
+                <a href="../an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=calculadora&id=CT-90412"
+                  class="w-full py-2.5 px-4 rounded-xl bg-tertiary text-on-tertiary hover:bg-tertiary-container text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all">
+                  <span class="material-symbols-outlined text-base">calculate</span>
+                  <span>Ver Análisis de Rentabilidad Completo</span>
+                </a>
+                <!-- Botón Notorio: Factores Determinantes del Precio -->
+                <a href="../resultados_de_valoraci_n_y_explicabilidad_shap/code.html"
+                  class="w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm hover:shadow transition-all">
+                  <span class="material-symbols-outlined text-base">insights</span>
+                  <span>Ver Factores Determinantes del Precio</span>
+                </a>
+                <a href="../an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=rentabilidad"
+                  class="w-full py-2 px-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+                  <span class="material-symbols-outlined text-sm text-primary">view_module</span>
+                  <span>Ver Todos los Inmuebles en Rentabilidad</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Estado 2: Inmueble SIN Análisis de Rentabilidad (Solo recién ingresado) -->
+            <div id="rent-state-empty" class="hidden flex-col gap-3">
+              <div class="flex items-center gap-2 text-on-surface">
+                <span class="material-symbols-outlined text-primary text-xl">savings</span>
+                <span class="text-xs font-bold uppercase tracking-wider">Análisis de Rentabilidad</span>
+              </div>
+
+              <div
+                class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900 flex flex-col gap-1">
+                <span class="font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm text-amber-600">help</span>
+                  Pendiente de Evaluación
+                </span>
+                <p class="text-[11px] text-amber-800 leading-relaxed">
+                  Aún no has generado el cálculo de Cap Rate ni proyección de flujo de caja para este inmueble en
+                  cartera.
+                </p>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <a href="../an_lisis_de_rentabilidad_y_reporte_pdf/code.html?tab=calculadora&id=CT-90412"
+                  class="w-full py-2.5 px-4 rounded-xl bg-tertiary hover:bg-tertiary-container text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all">
+                  <span class="material-symbols-outlined text-base">calculate</span>
+                  <span>Realizar Análisis de Rentabilidad (US-20)</span>
+                </a>
+                <a href="../resultados_de_valoraci_n_y_explicabilidad_shap/code.html"
+                  class="w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold flex items-center justify-center gap-2 shadow-sm transition-all">
+                  <span class="material-symbols-outlined text-base">insights</span>
+                  <span>Ver Factores Determinantes del Precio</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Card 3: Acciones sobre el Inmueble (US-11, US-12, US-22) -->
+          <div
+            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-3.5">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-secondary">Acciones de Gestión
+              Inmobiliaria</span>
+
+            <button onclick="handleStatusChangeModal()"
+              class="w-full py-2.5 px-4 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface font-semibold text-xs flex items-center justify-between transition-colors">
+              <span class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-tertiary text-base">check_circle</span>
+                <span>Cambiar Estado: Marcar Vendido / Alquilado (US-11)</span>
+              </span>
+              <span class="material-symbols-outlined text-sm text-secondary">chevron_right</span>
+            </button>
+
+            <button onclick="handleDeactivate()"
+              class="w-full py-2.5 px-4 rounded-xl bg-error-container/20 hover:bg-error-container/40 text-error font-semibold text-xs flex items-center justify-between transition-colors">
+              <span class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">visibility_off</span>
+                <span>Desactivar Inmueble de Cartera (US-12)</span>
+              </span>
+              <span class="material-symbols-outlined text-sm">chevron_right</span>
+            </button>
+          </div>
+
+          <!-- Card 4: Trazabilidad y Seguridad Fiduciaria (US-04, US-12) -->
+          <div
+            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-2.5 text-xs">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-secondary">Trazabilidad Fiduciaria</span>
+
+            <div class="flex items-center justify-between py-1 border-b border-slate-100">
+              <span class="text-secondary">Fecha de Ingreso</span>
+              <span class="font-semibold text-on-surface">03 Ene 2025</span>
+            </div>
+
+            <div class="flex items-center justify-between py-1 border-b border-slate-100">
+              <span class="text-secondary">Agente Asignado</span>
+              <span class="font-semibold text-on-surface flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs text-primary">badge</span>
+                Carlos Mendoza S. (MVCS 14892)
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between py-1 border-b border-slate-100">
+              <span class="text-secondary">Última Actualización</span>
+              <span class="font-semibold text-on-surface">14 Sep 2026, 16:30</span>
+            </div>
+
+            <div class="flex items-center justify-between py-1">
+              <span class="text-secondary">Estado Fiduciario</span>
+              <span class="font-semibold text-tertiary flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">verified</span>
+                Cartera Propia Activa
+              </span>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal Interactivo: Cambio de Estado Comercial (US-11) -->
+  <div id="status-modal"
+    class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-surface-container-lowest rounded-2xl max-w-md w-full p-6 shadow-2xl flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-tertiary">check_circle</span>
+          <span>Actualizar Estado Comercial (US-11)</span>
+        </h3>
+        <button onclick="closeStatusModal()" class="text-secondary hover:text-on-surface">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <p class="text-xs text-secondary leading-relaxed">
+        Selecciona el nuevo estado comercial del inmueble para mantener el inventario al día y preservar el registro
+        histórico y la trazabilidad fiduciaria:
+      </p>
+
+      <div class="flex flex-col gap-2">
+        <label
+          class="flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-primary cursor-pointer transition-colors">
+          <div class="flex items-center gap-2">
+            <input type="radio" name="new-state" value="Disponible" checked class="accent-primary">
+            <div>
+              <div class="text-xs font-bold text-on-surface">Disponible</div>
+              <div class="text-[11px] text-secondary">Activo para comercialización y nuevas tasaciones</div>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700">Activo</span>
+        </label>
+
+        <label
+          class="flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-primary cursor-pointer transition-colors">
+          <div class="flex items-center gap-2">
+            <input type="radio" name="new-state" value="Vendido" class="accent-primary">
+            <div>
+              <div class="text-xs font-bold text-on-surface">Vendido</div>
+              <div class="text-[11px] text-secondary">Transacción cerrada con comprador</div>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-700">Cierre</span>
+        </label>
+
+        <label
+          class="flex items-center justify-between p-3 rounded-xl border border-slate-200 hover:border-primary cursor-pointer transition-colors">
+          <div class="flex items-center gap-2">
+            <input type="radio" name="new-state" value="Alquilado" class="accent-primary">
+            <div>
+              <div class="text-xs font-bold text-on-surface">Alquilado</div>
+              <div class="text-[11px] text-secondary">Arrendamiento suscrito formalmente</div>
+            </div>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-50 text-purple-700">Renta</span>
+        </label>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+        <button onclick="closeStatusModal()"
+          class="px-4 py-2 rounded-lg text-xs font-semibold text-secondary hover:bg-slate-100">
+          Cancelar
+        </button>
+        <button onclick="saveStatusModal()"
+          class="px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container">
+          Guardar Estado
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Interactivo: Generar y Descargar Reporte Oficial (US-22) -->
+  <div id="report-modal"
+    class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div
+      class="bg-surface-container-lowest rounded-2xl max-w-xl w-full p-6 sm:p-7 shadow-2xl flex flex-col gap-5 border border-slate-100 animate-in fade-in zoom-in-95 duration-200">
+
+      <div class="flex items-start justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-2xl">picture_as_pdf</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-on-surface">Generar y Descargar Reporte Oficial</h3>
+            <span class="text-xs text-secondary">Expediente Nº VAL-2026-8842-PE · Dúplex Miraflores</span>
+          </div>
+        </div>
+        <button onclick="closeReportModal()"
+          class="text-secondary hover:text-on-surface p-1 rounded-lg hover:bg-slate-100">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <p class="text-xs text-secondary leading-relaxed">
+        Selecciona el tipo de informe fiduciario requerido según el objetivo de tu cliente (Inversionista vs. Comprador
+        para vivir / Vendedor):
+      </p>
+
+      <!-- Selector de Tipología de Reporte -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+
+        <!-- Tarjeta Opción A: Reporte Completo (Integral) -->
+        <div
+          class="p-4 rounded-xl border-2 border-emerald-500/80 bg-emerald-50/20 flex flex-col justify-between gap-3 shadow-2xs hover:border-emerald-600 transition-all">
+          <div class="flex flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">
+                Para Inversionista
+              </span>
+              <span class="material-symbols-outlined text-emerald-600 text-lg">finance_chip</span>
+            </div>
+            <h4 class="text-sm font-bold text-on-surface">Reporte Completo Integral</h4>
+            <p class="text-[11px] text-secondary leading-snug">
+              Incluye los 4 bloques: Ficha, Tasación de Venta ($512k), Proyección de Alquiler, Cuadro de <strong>Cap
+                Rate Neto, Gross Yield y NOI</strong> con Aviso US-21.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-1.5 pt-2 border-t border-emerald-200/60">
+            <button onclick="downloadReportDirect('A')"
+              class="w-full py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-base">download</span>
+              <span>Descargar PDF Completo</span>
+            </button>
+            <a href="../an_lisis_de_rentabilidad_y_reporte_pdf/code.html?escenario=A"
+              class="w-full py-1.5 px-2 rounded-lg bg-white hover:bg-emerald-50 text-emerald-800 text-[11px] font-semibold text-center border border-emerald-200 transition-colors">
+              Previsualizar Lámina A4
+            </a>
+          </div>
+        </div>
+
+        <!-- Tarjeta Opción B: Solo Tasación Comercial -->
+        <div
+          class="p-4 rounded-xl border-2 border-blue-500/80 bg-blue-50/20 flex flex-col justify-between gap-3 shadow-2xs hover:border-blue-600 transition-all">
+          <div class="flex flex-col gap-1.5">
+            <div class="flex items-center justify-between">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-800 uppercase">
+                Vivienda / Venta
+              </span>
+              <span class="material-symbols-outlined text-blue-600 text-lg">description</span>
+            </div>
+            <h4 class="text-sm font-bold text-on-surface">Solo Tasación Comercial</h4>
+            <p class="text-[11px] text-secondary leading-snug">
+              Orientado a vivienda o propietario vendedor: Ficha, Valor Comercial PEN/USD, Valor por m² y
+              <strong>Desglose de Factores Determinantes</strong> (sin módulo de alquiler ni Cap Rate).
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-1.5 pt-2 border-t border-blue-200/60">
+            <button onclick="downloadReportDirect('B')"
+              class="w-full py-2 px-3 rounded-lg bg-primary hover:bg-primary-container text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all cursor-pointer">
+              <span class="material-symbols-outlined text-base">download</span>
+              <span>Descargar PDF Tasación</span>
+            </button>
+            <a href="../an_lisis_de_rentabilidad_y_reporte_pdf/code.html?escenario=B"
+              class="w-full py-1.5 px-2 rounded-lg bg-white hover:bg-blue-50 text-primary text-[11px] font-semibold text-center border border-blue-200 transition-colors">
+              Previsualizar Lámina A4
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Certificación y Cierre -->
+      <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs text-secondary">
+        <span class="flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm text-emerald-600">verified</span>
+          <span>Firma Digital y Registro MVCS: PN-14892</span>
+        </span>
+        <button onclick="closeReportModal()"
+          class="px-4 py-1.5 rounded-lg text-xs font-semibold text-secondary hover:bg-slate-100">
+          Cerrar
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast-message"
+    class="hidden fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 text-xs">
+    <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
+    <span id="toast-text">Acción completada.</span>
+  </div>
+
+  <!-- Footer Institucional -->
+  <footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-t border-slate-100">
+    <div
+      class="max-w-max-width-content mx-auto px-gutter-desktop py-space-md flex flex-col md:flex-row items-center justify-between gap-space-md text-xs text-secondary">
+      <span>© 2025 ValuaProp AI. Sistema de Valoración y Tasación Inmobiliaria Inteligente.</span>
+      <div class="flex items-center gap-4">
+        <span>Ficha de Inmueble (US-10)</span>
+        <span>•</span>
+        <span>Código Registro: CT-90412</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Interactivo de la Vista -->
+  <script>
+    let hasRentabilityAnalysis = true;
+
+    function toggleRentabilityState() {
+      hasRentabilityAnalysis = !hasRentabilityAnalysis;
+      const stateSaved = document.getElementById('rent-state-saved');
+      const stateEmpty = document.getElementById('rent-state-empty');
+      const label = document.getElementById('rent-state-label');
+
+      if (hasRentabilityAnalysis) {
+        stateSaved.classList.remove('hidden');
+        stateSaved.classList.add('flex');
+        stateEmpty.classList.remove('flex');
+        stateEmpty.classList.add('hidden');
+        label.innerText = 'Alternar: Con Análisis Guardado';
+      } else {
+        stateSaved.classList.remove('flex');
+        stateSaved.classList.add('hidden');
+        stateEmpty.classList.remove('hidden');
+        stateEmpty.classList.add('flex');
+        label.innerText = 'Alternar: Sin Análisis (Pendiente)';
+      }
+    }
+
+    function openReportModal() {
+      const modal = document.getElementById('report-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeReportModal() {
+      const modal = document.getElementById('report-modal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast-message');
+      const toastText = document.getElementById('toast-text');
+      toastText.innerText = text;
+      toast.classList.remove('hidden');
+      setTimeout(() => { toast.classList.add('hidden'); }, 3000);
+    }
+
+    function downloadReportDirect(scenario) {
+      closeReportModal();
+      const tipo = scenario === 'A' ? 'Reporte Integral (Venta + Rentabilidad)' : 'Solo Tasación Comercial (US-14)';
+      showToast(`Generando y descargando PDF fiduciario: ${tipo}...`);
+
+      // Abre la vista de reporte con impresión directa
+      setTimeout(() => {
+        window.open(`../an_lisis_de_rentabilidad_y_reporte_pdf/code.html?escenario=${scenario}&print=1`, '_blank');
+      }, 500);
+    }
+
+    function handleStatusChangeModal() {
+      const modal = document.getElementById('status-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeStatusModal() {
+      const modal = document.getElementById('status-modal');
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+
+    function saveStatusModal() {
+      const selected = document.querySelector('input[name="new-state"]:checked').value;
+      const badge = document.getElementById('badge-commercial-state');
+      badge.innerText = selected;
+      closeStatusModal();
+      showToast(`Estado comercial actualizado a: ${selected} (US-11)`);
+    }
+
+    function handleDeactivate() {
+      if (confirm('¿Estás seguro de desactivar este inmueble de tu cartera activa (US-12)?\n\nEl histórico de tasaciones y características se conservará íntegramente en el registro fiduciario.')) {
+        window.location.href = '../gesti_n_y_cat_logo_de_inmuebles_crud/code.html';
+      }
+    }
+  </script>
+
+</body>
+
+</html>

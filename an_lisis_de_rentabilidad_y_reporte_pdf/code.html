@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Análisis de Rentabilidad & Reporte PDF | ValuaProp AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+    @media print {
+      body * { visibility: hidden; }
+      #printable-pdf-sheet, #printable-pdf-sheet * { visibility: visible; }
+      #printable-pdf-sheet {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-highest": "#d3e4fe",
+            "surface-container": "#e5eeff",
+            "tertiary": "#006242",
+            "on-secondary-fixed-variant": "#3f465c",
+            "surface-tint": "#0053db",
+            "primary-fixed": "#dbe1ff",
+            "on-tertiary-container": "#bdffdb",
+            "surface-dim": "#cbdbf5",
+            "primary": "#004ac6",
+            "on-error": "#ffffff",
+            "background": "#f8f9ff",
+            "outline-variant": "#c3c6d7",
+            "secondary": "#565e74",
+            "on-background": "#0b1c30",
+            "inverse-primary": "#b4c5ff",
+            "surface-container-low": "#eff4ff",
+            "on-primary-fixed": "#00174b",
+            "inverse-surface": "#213145",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#6ffbbe",
+            "tertiary-fixed-dim": "#4edea3",
+            "primary-fixed-dim": "#b4c5ff",
+            "surface-variant": "#d3e4fe",
+            "secondary-fixed-dim": "#bec6e0",
+            "on-primary-fixed-variant": "#003ea8",
+            "primary-container": "#2563eb",
+            "on-secondary": "#ffffff",
+            "on-tertiary-fixed": "#002113",
+            "on-surface-variant": "#434655",
+            "surface-container-high": "#dce9ff",
+            "secondary-fixed": "#dae2fd",
+            "on-surface": "#0b1c30",
+            "surface": "#f8f9ff",
+            "on-secondary-container": "#5c647a",
+            "tertiary-container": "#007d55",
+            "error": "#ba1a1a",
+            "on-primary-container": "#eeefff",
+            "on-secondary-fixed": "#131b2e",
+            "outline": "#737686",
+            "on-primary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "surface-bright": "#f8f9ff",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#005236",
+            "error-container": "#ffdad6",
+            "inverse-on-surface": "#eaf1ff",
+            "secondary-container": "#dae2fd"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.5rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.75rem",
+            "space-3xl": "4rem",
+            "margin-mobile": "1rem",
+            "margin-desktop": "2rem",
+            "space-2xl": "3rem",
+            "max-width-content": "88rem",
+            "space-2xs": "0.25rem",
+            "margin-tablet": "1.5rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "1.5rem"
+          },
+          fontFamily: {
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Inter"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "display-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Inter"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "data-metric": ["Inter"],
+            "title-md": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"]
+          },
+          fontSize: {
+            "headline-xl-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-md": ["0.875rem", { "lineHeight": "1.25rem", "fontWeight": "500" }],
+            "headline-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl": ["1.875rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-md": ["1.25rem", { "lineHeight": "1.75rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }],
+            "body-lg": ["1.125rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+            "display-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "label-sm": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "500" }],
+            "display-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "data-metric": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "title-md": ["1rem", { "lineHeight": "1.5rem", "fontWeight": "600" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "body-sm": ["0.75rem", { "lineHeight": "1.125rem", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+  <!-- Header Superior de Navegación Unificada -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-20 w-full px-gutter-desktop max-w-max-width-content mx-auto flex items-center justify-between gap-space-md">
+      <div class="flex items-center gap-space-lg">
+        <a href="../dashboard_del_agente_inmobiliario/code.html" class="flex items-center gap-space-sm">
+          <img alt="ValuaProp AI Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1URW3NTAL96rmqQfy0UdSsXWPCQW3pIop2zWPd8TJ2DTEGojJdooYr21rU7ACL8oGilrUzW6D0OgqjxvRaO49Z6yTzUjIO5mFpgRnJV35P37fFWzgr7U5Ch8vYFH5C7dMiTIBQkPiTrATXWAw0c0mSZZjwc7bZpYDagK4Jp1ur4wFJATXDpRNwyNuM0KlxbpDLQGsD3pqtSm705zd4XOwPcBofdAxQ-NM8FqYL-cXklkP5K4urWNZJMUw">
+          <span class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">ValuaProp AI</span>
+        </a>
+      </div>
+      <nav class="hidden lg:flex items-center gap-1.5 p-1 bg-surface-container-low rounded-lg">
+        <a class="px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="panel-principal" href="../dashboard_del_agente_inmobiliario/code.html">Panel Principal</a>
+        <a class="px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="mis-inmuebles" href="../gesti_n_y_cat_logo_de_inmuebles_crud/code.html">Mis Inmuebles</a>
+        <a class="px-3 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="nueva-prediccion-ml" href="../nueva_predicci_n_ml_ingreso_de_inmueble/code.html">+ Nueva Tasación IA</a>
+        <a id="nav-item-rentabilidad" class="px-3.5 py-2 rounded-lg font-label-md text-label-md bg-primary-container text-on-primary-container font-semibold shadow-sm cursor-pointer" href="javascript:void(0)" onclick="showView('rentabilidad')">Rentabilidad</a>
+        <a id="nav-item-reportes" class="px-3.5 py-2 rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer" href="javascript:void(0)" onclick="showView('reportes')">Reportes</a>
+      </nav>
+      <div class="flex items-center gap-space-md">
+        <a href="../edici_n_de_perfil_del_agente_inmobiliario/code.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors font-label-md text-label-md">
+          <span class="material-symbols-outlined text-lg text-primary">account_circle</span>
+          <span class="font-medium">Carlos Mendoza</span>
+        </a>
+        <a href="../inicio_de_sesi_n_y_autenticaci_n/code.html" class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-secondary hover:text-error hover:bg-error-container/30 transition-colors font-label-md text-label-md" title="Cerrar Sesión (US-03)">
+          <span class="material-symbols-outlined text-lg">logout</span>
+          <span class="hidden sm:inline">Salir</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="w-full pt-20 bg-background min-h-[calc(100vh-80px)] pb-16">
+    <div class="flex flex-col w-full">
+
+      <!-- ========================================================================= -->
+      <!-- VISTA 1: CARTERA DE RENTABILIDAD EN TARJETAS (US-20)                       -->
+      <!-- ========================================================================= -->
+      <div id="tab-content-rentabilidad" class="tab-pane w-full max-w-max-width-content mx-auto px-gutter-desktop py-space-lg flex flex-col gap-6">
+        
+        <!-- Cabecera Limpia de Cartera de Rentabilidad -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-1">
+          <div>
+            <h1 class="text-2xl font-bold font-['Plus_Jakarta_Sans'] text-on-surface tracking-tight">
+              Cartera de Rentabilidad
+            </h1>
+            <p class="text-xs text-secondary mt-0.5">
+              Inmuebles evaluados con retorno sobre la inversión (Cap Rate y NOI). Haz clic en una tarjeta para abrir su análisis interactivo completo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Grid de Tarjetas de Inmuebles con Rentabilidad (4 Tarjetas Fiduciarias) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <!-- Tarjeta 1: Dúplex Miraflores Malecón -->
+          <div onclick="openPropertyRentability('p1')" class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group cursor-pointer">
+            <div>
+              <div class="relative h-44 w-full overflow-hidden bg-slate-100">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW09gf-Vx4nduLLY24cnqFH3xdKF37DmvJIUKCNdvQHdFyiVEuOXDCa3x5jVyPk0renrbvO8bBthw0cWx1LfqXQZPkLgXu7Egnef_FE9Vx6Wxvv0yhBb3lbHINQ63H1COibwtSul8qqrbGJTuMQGWBwetKguUlQjnR6oHQQTDoavVFe7KhirnII0nJ8jk1JUSnJ1Te45J2uIEVkwQhY6HP9hVgU0IGBbMA4y2j_c65zmqJUxFZt0iT"
+                     alt="Dúplex Malecón Miraflores" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-white/95 backdrop-blur text-primary text-[11px] font-bold shadow-xs">
+                    Departamento Dúplex
+                  </span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-900/80 backdrop-blur text-white text-[11px] font-medium">
+                    Miraflores
+                  </span>
+                </div>
+                <div class="absolute top-3 right-3">
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-600 text-white text-[11px] font-bold shadow-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">trending_up</span>
+                    Semáforo: Óptimo
+                  </span>
+                </div>
+                <div class="absolute bottom-2 left-3 text-white text-xs font-medium drop-shadow-md">
+                  145 m² techados · 3 dorms · 2 baños · 2 cocheras
+                </div>
+              </div>
+
+              <div class="p-5 flex flex-col gap-3.5">
+                <div>
+                  <h3 class="font-bold text-base text-on-surface group-hover:text-primary transition-colors">
+                    Dúplex 145 m² · Malecón de la Reserva 740
+                  </h3>
+                  <p class="text-xs text-secondary mt-0.5">Miraflores · Sector 4 Malecón · Frente al Mar</p>
+                </div>
+
+                <!-- Bloque de Métricas Clave de Rentabilidad (CAP RATE & NOI) -->
+                <div class="grid grid-cols-2 gap-2.5 p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-primary">Cap Rate Neto</span>
+                    <span class="text-2xl font-black text-primary font-['Plus_Jakarta_Sans']">5.19%</span>
+                    <span class="text-[10px] text-secondary font-medium">Unlevered Anual</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">NOI Anual Proyectado</span>
+                    <span class="text-xl font-bold text-tertiary font-['Plus_Jakarta_Sans'] mt-0.5">$14,790</span>
+                    <span class="text-[10px] text-secondary font-medium">$1,233 /mes neto</span>
+                  </div>
+                </div>
+
+                <!-- Indicadores Complementarios -->
+                <div class="grid grid-cols-3 gap-2 text-center text-xs py-1 border-t border-slate-100">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Venta (ML)</span>
+                    <span class="font-bold text-on-surface">$285,000</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Renta / Mes (ML)</span>
+                    <span class="font-bold text-on-surface">$1,450 /m</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Años (GRM)</span>
+                    <span class="font-bold text-on-surface">16.4 años</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Acción Directa -->
+            <div class="p-4 bg-slate-50 border-t border-slate-100">
+              <button onclick="event.stopPropagation(); openPropertyRentability('p1');" class="w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-base">calculate</span>
+                <span>Ver Análisis de Rentabilidad Completo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tarjeta 2: Penthouse San Isidro Conquistadores -->
+          <div class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary/50 shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group">
+            <div>
+              <div class="relative h-44 w-full overflow-hidden bg-slate-100">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgmKIDeO3BgJd_6gvSE8xVftxFNCPTJj4oSg5DN5LVeUPdoZF6B3liN-SEgYt-bHIuwcZ9fToqhYKEdsk8tgXyjmnvGG6ijCfThCpUrAcNyyGvzBKcCkrtWHfOa3rRO2txTA7306xht0JBr6AGNR8DPiadeTP2Judc6X7KtZ7EQbIav0yKYAITDhQB0GON-DO5J7zy3_QpLkzDtq4u_ORwXQi4cp4FvWTFINxrQo343qhN8TPEqYb8"
+                     alt="Penthouse San Isidro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-white/95 backdrop-blur text-primary text-[11px] font-bold shadow-xs">
+                    Penthouse Dúplex
+                  </span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-900/80 backdrop-blur text-white text-[11px] font-medium">
+                    San Isidro
+                  </span>
+                </div>
+                <div class="absolute top-3 right-3">
+                  <span class="px-2.5 py-1 rounded-md bg-amber-600 text-white text-[11px] font-bold shadow-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">savings</span>
+                    Ticket Alto (4.65%)
+                  </span>
+                </div>
+                <div class="absolute bottom-2 left-3 text-white text-xs font-medium drop-shadow-md">
+                  210 m² techados · 4 dorms · 3 baños · 3 cocheras
+                </div>
+              </div>
+
+              <div class="p-5 flex flex-col gap-3.5">
+                <div>
+                  <h3 class="font-bold text-base text-on-surface group-hover:text-primary transition-colors">
+                    Penthouse 210 m² · Av. Los Conquistadores 410
+                  </h3>
+                  <p class="text-xs text-secondary mt-0.5">San Isidro · Sector Financiero / Golf</p>
+                </div>
+
+                <!-- Bloque de Métricas Clave de Rentabilidad -->
+                <div class="grid grid-cols-2 gap-2.5 p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-primary">Cap Rate Neto</span>
+                    <span class="text-2xl font-black text-primary font-['Plus_Jakarta_Sans']">4.65%</span>
+                    <span class="text-[10px] text-secondary font-medium">Unlevered Anual</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">NOI Anual Proyectado</span>
+                    <span class="text-xl font-bold text-tertiary font-['Plus_Jakarta_Sans'] mt-0.5">$23,808</span>
+                    <span class="text-[10px] text-secondary font-medium">$1,984 /mes neto</span>
+                  </div>
+                </div>
+
+                <!-- Indicadores Complementarios -->
+                <div class="grid grid-cols-3 gap-2 text-center text-xs py-1 border-t border-slate-100">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Venta (ML)</span>
+                    <span class="font-bold text-on-surface">$512,000</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Renta / Mes (ML)</span>
+                    <span class="font-bold text-on-surface">$2,400 /m</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Años (GRM)</span>
+                    <span class="font-bold text-on-surface">17.8 años</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Acción Directa -->
+            <div class="p-4 bg-slate-50 border-t border-slate-100">
+              <button onclick="event.stopPropagation(); openPropertyRentability('p2');" class="w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-base">calculate</span>
+                <span>Ver Análisis de Rentabilidad Completo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tarjeta 3: Loft Estudio Barranco -->
+          <div onclick="openPropertyRentability('p3')" class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group cursor-pointer">
+            <div>
+              <div class="relative h-44 w-full overflow-hidden bg-slate-100">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQn9iP_p91MGpNtVeyFfLAAdSXWwjLTWVlPO3SN11B_ekcSmvPP9vww5c-A6gt6d-x2IiVZYhKLvcQBq2i-LMIbyMfUd7E0PCU-l0OxCsfzRVZKdCAlNLOqFCr1SRrnmI1jmH-qPo9ljdpQ_Fn8f2JLvLAIib05N7Pjfvfv8kU0t4QP5oRzJMDqgXdoQrj3uIbDlUU3jR1MlQX2s-PgA33eIOHo_xeTfluOejIbbzg9vvjNKARgs0d"
+                     alt="Loft Estudio Barranco" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-white/95 backdrop-blur text-primary text-[11px] font-bold shadow-xs">
+                    Loft Estudio
+                  </span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-900/80 backdrop-blur text-white text-[11px] font-medium">
+                    Barranco
+                  </span>
+                </div>
+                <div class="absolute top-3 right-3">
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-600 text-white text-[11px] font-bold shadow-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">rocket_launch</span>
+                    Atractivo Alto (6.82%)
+                  </span>
+                </div>
+                <div class="absolute bottom-2 left-3 text-white text-xs font-medium drop-shadow-md">
+                  58 m² techados · 1 dorm · 1 baño · 1 cochera
+                </div>
+              </div>
+
+              <div class="p-5 flex flex-col gap-3.5">
+                <div>
+                  <h3 class="font-bold text-base text-on-surface group-hover:text-primary transition-colors">
+                    Loft Estudio 58 m² · Jr. Pedro de Osma 180
+                  </h3>
+                  <p class="text-xs text-secondary mt-0.5">Barranco · Zona Turística y Tradicional</p>
+                </div>
+
+                <!-- Bloque de Métricas Clave de Rentabilidad -->
+                <div class="grid grid-cols-2 gap-2.5 p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-primary">Cap Rate Neto</span>
+                    <span class="text-2xl font-black text-emerald-600 font-['Plus_Jakarta_Sans']">6.82%</span>
+                    <span class="text-[10px] text-secondary font-medium">Alto Rendimiento</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">NOI Anual Proyectado</span>
+                    <span class="text-xl font-bold text-tertiary font-['Plus_Jakarta_Sans'] mt-0.5">$9,203</span>
+                    <span class="text-[10px] text-secondary font-medium">$767 /mes neto</span>
+                  </div>
+                </div>
+
+                <!-- Indicadores Complementarios -->
+                <div class="grid grid-cols-3 gap-2 text-center text-xs py-1 border-t border-slate-100">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Venta (ML)</span>
+                    <span class="font-bold text-on-surface">$135,000</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Renta / Mes (ML)</span>
+                    <span class="font-bold text-on-surface">$890 /m</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Años (GRM)</span>
+                    <span class="font-bold text-on-surface">12.6 años</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Acción Directa -->
+            <div class="p-4 bg-slate-50 border-t border-slate-100">
+              <button onclick="event.stopPropagation(); openPropertyRentability('p3');" class="w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-base">calculate</span>
+                <span>Ver Análisis de Rentabilidad Completo</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tarjeta 4: Departamento Alcanfores Miraflores -->
+          <div onclick="openPropertyRentability('p4')" class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group cursor-pointer">
+            <div>
+              <div class="relative h-44 w-full overflow-hidden bg-slate-100">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYVNVhk35yLWEdd77SCzyn90YDayhIR_kRTwMofnuWi91M5cD69COii7iVF3YbqwDcLLWiAZU-k5EQyqW2XrVtq3y6Bj78no35ot7iIdkqCf2Kgh_ddQ1jiSP98Y_qYpu2hi_D04YMImEPyQGolChLEZZhuvZ5rIXBsE7lYRukmnkaLYufzs_WRSa2Den5UdFA8IUGjWf68eddxFXvNb62Wjbs_RJrMkodqgtynZwkF3g-3UuNU5ZD"
+                     alt="Depa Alcanfores Miraflores" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="absolute top-3 left-3 flex items-center gap-1.5">
+                  <span class="px-2.5 py-1 rounded-md bg-white/95 backdrop-blur text-primary text-[11px] font-bold shadow-xs">
+                    Departamento Flat
+                  </span>
+                  <span class="px-2.5 py-1 rounded-md bg-slate-900/80 backdrop-blur text-white text-[11px] font-medium">
+                    Miraflores
+                  </span>
+                </div>
+                <div class="absolute top-3 right-3">
+                  <span class="px-2.5 py-1 rounded-md bg-emerald-600 text-white text-[11px] font-bold shadow-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">trending_up</span>
+                    Semáforo: Óptimo (5.42%)
+                  </span>
+                </div>
+                <div class="absolute bottom-2 left-3 text-white text-xs font-medium drop-shadow-md">
+                  100 m² techados · 2 dorms · 2 baños · 1 cochera
+                </div>
+              </div>
+
+              <div class="p-5 flex flex-col gap-3.5">
+                <div>
+                  <h3 class="font-bold text-base text-on-surface group-hover:text-primary transition-colors">
+                    Departamento 100 m² · Calle Alcanfores 580
+                  </h3>
+                  <p class="text-xs text-secondary mt-0.5">Miraflores · Cerca a Parque Reducto y Larco</p>
+                </div>
+
+                <!-- Bloque de Métricas Clave de Rentabilidad -->
+                <div class="grid grid-cols-2 gap-2.5 p-3 rounded-xl bg-surface-container-low border border-slate-100">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-primary">Cap Rate Neto</span>
+                    <span class="text-2xl font-black text-primary font-['Plus_Jakarta_Sans']">5.42%</span>
+                    <span class="text-[10px] text-secondary font-medium">Unlevered Anual</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-tertiary">NOI Anual Proyectado</span>
+                    <span class="text-xl font-bold text-tertiary font-['Plus_Jakarta_Sans'] mt-0.5">$13,286</span>
+                    <span class="text-[10px] text-secondary font-medium">$1,107 /mes neto</span>
+                  </div>
+                </div>
+
+                <!-- Indicadores Complementarios -->
+                <div class="grid grid-cols-3 gap-2 text-center text-xs py-1 border-t border-slate-100">
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Venta (ML)</span>
+                    <span class="font-bold text-on-surface">$245,000</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Renta / Mes (ML)</span>
+                    <span class="font-bold text-on-surface">$1,300 /m</span>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[10px] text-secondary">Años (GRM)</span>
+                    <span class="font-bold text-on-surface">15.7 años</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de Acción Directa -->
+            <div class="p-4 bg-slate-50 border-t border-slate-100">
+              <button onclick="event.stopPropagation(); openPropertyRentability('p4');" class="w-full py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-base">calculate</span>
+                <span>Ver Análisis de Rentabilidad Completo</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Aviso Normativo US-21 Fiduciario -->
+        <div class="p-3.5 rounded-xl bg-surface-container-low border border-slate-200 text-xs text-secondary flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-primary text-base mt-0.5">info</span>
+          <p class="leading-relaxed">
+            <strong class="text-on-surface font-semibold">Nota Regulatoria (US-21):</strong> Los cálculos de Cap Rate Neto presentados se basan en métricas no apalancadas (Unlevered) conforme a los estándares de valoración para Lima Metropolitana. No contemplan amortizaciones ni cuotas de crédito hipotecario.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- VISTA 2: CALCULADORA Y ANÁLISIS COMPLETO (Flujo Actual Enriquecido)         -->
+      <!-- ========================================================================= -->
+      <div id="tab-content-calculadora" class="tab-pane hidden w-full">
+      <!-- Layout Principal en Dos Columnas Institucionales (6 cols / 6 cols) -->
+      <div class="max-w-max-width-content mx-auto w-full px-gutter-desktop py-space-lg">
+
+        <!-- Barra de Retorno Limpia -->
+        <div class="flex items-center justify-between py-2 border-b border-slate-200 mb-5">
+          <button id="calc-back-btn" onclick="showView('rentabilidad')" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-primary font-semibold text-xs transition-all cursor-pointer">
+            <span class="material-symbols-outlined text-base">arrow_back</span>
+            <span>Volver a Cartera de Rentabilidad</span>
+          </button>
+          <span class="text-xs text-secondary font-medium" id="calc-current-title">Inmueble: Dúplex Malecón de la Reserva 740, Miraflores</span>
+        </div>
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-space-xl items-start">
+
+          <!-- COLUMNA IZQUIERDA: Calculadora y Motor Financiero de Rentabilidad (6 cols) -->
+          <section class="xl:col-span-6 flex flex-col gap-5">
+
+            <!-- Cabecera y Switch de Moneda -->
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">
+                  Motor Financiero • Fusión ML (Venta &amp; Alquiler)
+                </span>
+                <!-- Switch de Moneda: USD vs Soles -->
+                <div class="flex items-center bg-surface-container-low p-1 rounded-lg border border-slate-200">
+                  <button id="btn-curr-usd" onclick="setCurrency('USD')" class="px-3 py-1 rounded text-xs font-bold bg-primary text-white shadow-sm transition-all">
+                    $ USD
+                  </button>
+                  <button id="btn-curr-pen" onclick="setCurrency('PEN')" class="px-3 py-1 rounded text-xs font-semibold text-secondary hover:text-on-surface transition-all">
+                    S/. Soles
+                  </button>
+                </div>
+              </div>
+              <h1 class="font-headline-lg text-2xl lg:text-3xl font-bold text-on-surface tracking-tight">
+                Análisis de Rentabilidad &amp; Cap Rate Unlevered
+              </h1>
+              <p class="font-body-md text-body-md text-secondary leading-relaxed">
+                Conecta las estimaciones de venta y canon de arrendamiento generadas por los modelos predictivos mediante el ratio de gastos operativos (<strong class="text-on-surface">OER</strong>).
+              </p>
+            </div>
+
+            <!-- Aviso Obligatorio de Financiamiento Hipotecario (US-21) -->
+            <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-start gap-3 text-on-surface">
+              <span class="material-symbols-outlined text-amber-600 text-xl shrink-0 mt-0.5">account_balance</span>
+              <div class="text-body-sm space-y-0.5">
+                <p class="font-bold text-amber-900 flex items-center gap-1.5 text-xs">
+                  <span>Aviso Normativo de Financiamiento (Criterio US-21)</span>
+                </p>
+                <p class="text-amber-950/80 text-xs leading-relaxed">
+                  Este indicador refleja el rendimiento para una compra al contado sin financiamiento; si el comprador utiliza crédito hipotecario, el retorno real de su capital variará de acuerdo a las cuotas de su préstamo.
+                </p>
+              </div>
+            </div>
+
+            <!-- [1] TARJETAS PRINCIPALES (4 KPIs Estrella del Modelo Financiero) -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <!-- KPI 1: Cap Rate Neto -->
+              <div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm border-2 border-primary/20 flex flex-col justify-between">
+                <div class="flex items-center justify-between text-secondary">
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-primary">Cap Rate Neto</span>
+                  <span class="material-symbols-outlined text-primary text-base">percent</span>
+                </div>
+                <div class="my-1.5">
+                  <div class="text-2xl font-extrabold text-primary tracking-tight" id="kpi-cap-rate-neto">5.19%</div>
+                </div>
+                <span class="text-[10px] text-secondary font-medium">Unlevered Anual</span>
+              </div>
+
+              <!-- KPI 2: Cap Rate Bruto -->
+              <div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="flex items-center justify-between text-secondary">
+                  <span class="text-[11px] font-bold uppercase tracking-wider">Gross Yield</span>
+                  <span class="material-symbols-outlined text-secondary text-base">trending_up</span>
+                </div>
+                <div class="my-1.5">
+                  <div class="text-2xl font-bold text-on-surface tracking-tight" id="kpi-cap-rate-bruto">6.11%</div>
+                </div>
+                <span class="text-[10px] text-secondary font-medium">Bruto sobre Venta</span>
+              </div>
+
+              <!-- KPI 3: NOI Anual -->
+              <div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="flex items-center justify-between text-secondary">
+                  <span class="text-[11px] font-bold uppercase tracking-wider text-tertiary">NOI Anual</span>
+                  <span class="material-symbols-outlined text-tertiary text-base">payments</span>
+                </div>
+                <div class="my-1.5">
+                  <div class="text-xl font-bold text-tertiary tracking-tight" id="kpi-noi-anual">$14,790</div>
+                </div>
+                <span class="text-[10px] text-secondary font-medium" id="kpi-noi-mensual">$1,233 /mes neto</span>
+              </div>
+
+              <!-- KPI 4: Años de Recuperación (GRM) -->
+              <div class="p-3.5 rounded-xl bg-surface-container-lowest shadow-sm border border-slate-100 flex flex-col justify-between">
+                <div class="flex items-center justify-between text-secondary">
+                  <span class="text-[11px] font-bold uppercase tracking-wider">Años (GRM)</span>
+                  <span class="material-symbols-outlined text-secondary text-base">timelapse</span>
+                </div>
+                <div class="my-1.5">
+                  <div class="text-2xl font-bold text-on-surface tracking-tight" id="kpi-grm">16.4</div>
+                </div>
+                <span class="text-[10px] text-secondary font-medium">Retorno Simple</span>
+              </div>
+            </div>
+
+            <!-- [2] PANEL DE PARÁMETROS EDITABLES & ENTRADAS DE MACHINE LEARNING -->
+            <div class="rounded-2xl bg-surface-container-lowest p-5 shadow-sm border border-slate-100 flex flex-col gap-4">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-xl">tune</span>
+                  <h2 class="font-title-md text-sm font-bold text-on-surface">Entradas ML y Sensibilidad de Gastos (OER)</h2>
+                </div>
+                <span class="text-xs text-secondary">Sincronización en vivo</span>
+              </div>
+
+              <!-- Entradas de los 2 Modelos ML -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Modelo 1: Valor Comercial Venta -->
+                <div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1">
+                  <label class="text-xs font-semibold text-secondary flex items-center justify-between">
+                    <span>V_venta (Modelo XGBoost Venta)</span>
+                    <span class="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded">Modelo 1</span>
+                  </label>
+                  <div class="relative flex items-center mt-1">
+                    <span class="absolute left-3 text-sm font-bold text-secondary" id="symbol-sale">$</span>
+                    <input type="number" id="input-sale-price" value="285000" step="5000" oninput="calculateRentability()"
+                           class="w-full pl-7 pr-3 py-2 bg-surface-container-lowest rounded-lg font-bold text-base text-primary focus:outline-none focus:ring-2 focus:ring-primary/30">
+                  </div>
+                  <span class="text-[11px] text-secondary">Predicción puntual fiduciaria</span>
+                </div>
+
+                <!-- Modelo 2: Alquiler Mensual -->
+                <div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1">
+                  <label class="text-xs font-semibold text-secondary flex items-center justify-between">
+                    <span>P_alquiler (Modelo XGBoost Alquiler)</span>
+                    <span class="text-[10px] font-bold text-tertiary bg-tertiary/10 px-1.5 py-0.5 rounded">Modelo 2</span>
+                  </label>
+                  <div class="relative flex items-center mt-1">
+                    <span class="absolute left-3 text-sm font-bold text-secondary" id="symbol-rent">$</span>
+                    <input type="number" id="input-monthly-rent" value="1450" step="50" oninput="calculateRentability()"
+                           class="w-full pl-7 pr-3 py-2 bg-surface-container-lowest rounded-lg font-bold text-base text-tertiary focus:outline-none focus:ring-2 focus:ring-tertiary/30">
+                  </div>
+                  <span class="text-[11px] text-secondary">Canon mensual estimado</span>
+                </div>
+              </div>
+
+              <!-- Slider OER (Operating Expense Ratio) -->
+              <div class="flex flex-col gap-2 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="text-xs font-bold text-on-surface flex items-center gap-1">
+                      <span>Ratio de Gastos Operativos (OER)</span>
+                      <span class="material-symbols-outlined text-xs text-secondary" title="Operating Expense Ratio: Porcentaje del ingreso bruto destinado a mantenimiento, arbitrios, predial y rotación">info</span>
+                    </span>
+                    <p class="text-[11px] text-secondary">Ajuste de sensibilidad para departamentos en Lima</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-base font-extrabold text-primary" id="label-oer-display">15%</span>
+                    <span class="text-xs text-secondary ml-1 font-semibold" id="label-oer-usd">($2,610/año)</span>
+                  </div>
+                </div>
+                <input type="range" id="slider-oer" min="0" max="35" step="1" value="15" oninput="calculateRentability()"
+                       class="w-full accent-primary cursor-pointer h-2 bg-slate-200 rounded-lg">
+                <div class="flex justify-between text-[10px] text-secondary font-medium">
+                  <span>0% (Sin gastos)</span>
+                  <span class="text-primary font-bold">15% - 20% (Sugerido Lima)</span>
+                  <span>35% (Conservador)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- [3] DESGLOSE EN CASCADA DEL FLUJO ANUAL -->
+            <div class="rounded-2xl bg-surface-container-lowest p-5 shadow-sm border border-slate-100 flex flex-col gap-3">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-tertiary text-xl">waterfall_chart</span>
+                  <h2 class="font-title-md text-sm font-bold text-on-surface">Desglose en Cascada del Flujo Financiero</h2>
+                </div>
+                <span class="text-xs font-mono text-secondary">Fórmula Unlevered</span>
+              </div>
+
+              <div class="space-y-2 text-xs">
+                <!-- Línea 1: GSI -->
+                <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+                  <div class="flex items-center gap-2">
+                    <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[11px]">+</span>
+                    <div>
+                      <span class="font-bold text-on-surface">Ingreso Bruto Anual (GSI)</span>
+                      <p class="text-[10px] text-secondary" id="formula-gsi">P_alquiler ($1,450) × 12 meses</p>
+                    </div>
+                  </div>
+                  <span class="font-bold text-on-surface text-sm" id="cascade-gsi">$17,400</span>
+                </div>
+
+                <!-- Línea 2: OpEx (OER) -->
+                <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+                  <div class="flex items-center gap-2">
+                    <span class="w-5 h-5 rounded-full bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-[11px]">-</span>
+                    <div>
+                      <span class="font-bold text-on-surface">Gastos Operativos Anuales (OpEx)</span>
+                      <p class="text-[10px] text-secondary" id="formula-opex">GSI × OER (15%)</p>
+                    </div>
+                  </div>
+                  <span class="font-bold text-error text-sm" id="cascade-opex">-$2,610</span>
+                </div>
+
+                <!-- Línea 3: NOI -->
+                <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-high/80 border border-primary/20">
+                  <div class="flex items-center gap-2">
+                    <span class="w-5 h-5 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-[11px]">=</span>
+                    <div>
+                      <span class="font-bold text-primary">Ingreso Operativo Neto Anual (NOI)</span>
+                      <p class="text-[10px] text-secondary">Flujo neto disponible para el inversionista</p>
+                    </div>
+                  </div>
+                  <span class="font-extrabold text-primary text-base" id="cascade-noi">$14,790</span>
+                </div>
+
+                <!-- Línea 4: Valor Venta -->
+                <div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-low">
+                  <div class="flex items-center gap-2">
+                    <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-[11px]">/</span>
+                    <div>
+                      <span class="font-bold text-on-surface">Valor Comercial de Venta (V_venta)</span>
+                      <p class="text-[10px] text-secondary">Base de tasación fiduciaria algorítmica</p>
+                    </div>
+                  </div>
+                  <span class="font-bold text-on-surface text-sm" id="cascade-sale">$285,000</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- [4] BENCHMARK DISTRITAL & NOTA METODOLÓGICA -->
+            <div class="rounded-2xl bg-surface-container-lowest p-5 shadow-sm border border-slate-100 flex flex-col gap-3">
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">Benchmark Distrital &amp; Semáforo de Rentabilidad</span>
+              
+              <!-- Semáforo dinámico de 3 tramos -->
+              <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                <div id="gauge-bajo" class="p-2.5 rounded-xl bg-surface-container-low border border-transparent transition-all flex flex-col gap-1">
+                  <span class="text-[11px] font-bold text-secondary">Bajo (&lt; 4.5%)</span>
+                  <span class="text-[10px] text-secondary">San Isidro / Golf / Malecón Premium</span>
+                </div>
+                <div id="gauge-promedio" class="p-2.5 rounded-xl bg-emerald-50 border-2 border-emerald-500 transition-all flex flex-col gap-1">
+                  <span class="text-[11px] font-bold text-emerald-800">Promedio (4.5% - 6.5%)</span>
+                  <span class="text-[10px] text-emerald-700">Lima Moderna (Miraflores, Surco, San Borja)</span>
+                </div>
+                <div id="gauge-atractivo" class="p-2.5 rounded-xl bg-surface-container-low border border-transparent transition-all flex flex-col gap-1">
+                  <span class="text-[11px] font-bold text-secondary">Atractivo (&gt; 6.5%)</span>
+                  <span class="text-[10px] text-secondary">Zonas de Expansión / Tickets Accesibles</span>
+                </div>
+              </div>
+
+              <!-- Cuadro de Supuestos y Limitaciones Metodológicas de Tesis -->
+              <div class="mt-2 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-secondary flex flex-col gap-1">
+                <span class="font-bold text-on-surface flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs text-primary">verified</span>
+                  Bases del Cálculo Financiero (Rigor de Tesis):
+                </span>
+                <ul class="list-disc pl-4 space-y-0.5 text-[11px]">
+                  <li><strong>Modelo No Apalancado (Unlevered):</strong> Supone adquisición 100% con capital propio sin costos financieros de deuda.</li>
+                  <li><strong>Sin Especulación de Plusvalía:</strong> No asume apreciaciones futuras ficticias de terreno; evalúa únicamente flujo de caja operativo de renta.</li>
+                  <li><strong>OER Parametrizado:</strong> Estimación representativa que no sustituye la contabilidad legal del edificio.</li>
+                </ul>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- COLUMNA DERECHA: Previsualización de Reporte Oficial en PDF (6 cols) -->
+          <section class="xl:col-span-6 flex flex-col gap-4">
+
+            <!-- Toolbar de Exportación y Compartición (US-22, US-23) - Minimalista y Elegante -->
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center justify-between">
+                <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">
+                  Previsualización de Documento • US-22
+                </span>
+                <span class="text-xs text-secondary font-mono">Lámina Oficial A4</span>
+              </div>
+              
+              <div class="flex flex-wrap items-center justify-between gap-2.5">
+                <!-- Selector Minimalista de Modo de Reporte -->
+                <div class="inline-flex p-1 bg-surface-container rounded-xl gap-1">
+                  <button type="button" id="btn-scenario-a" onclick="setReportScenario('A')"
+                    class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-primary shadow-xs transition-all flex items-center gap-1.5 cursor-pointer">
+                    <span class="material-symbols-outlined text-sm text-emerald-600">finance_chip</span>
+                    <span>Reporte Completo</span>
+                  </button>
+
+                  <button type="button" id="btn-scenario-b" onclick="setReportScenario('B')"
+                    class="px-3 py-1.5 rounded-lg text-xs font-semibold text-secondary hover:text-on-surface transition-all flex items-center gap-1.5 cursor-pointer">
+                    <span class="material-symbols-outlined text-sm text-blue-600">description</span>
+                    <span>Solo Rentabilidad / Tasación</span>
+                  </button>
+                </div>
+
+                <!-- Acciones Rápidas: Enlace, WhatsApp y Descarga Directa -->
+                <div class="flex items-center gap-1.5">
+                  <button onclick="copyPublicLink()" title="Copiar Enlace Fiduciario" class="p-2 rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors text-xs font-semibold shadow-xs">
+                    <span class="material-symbols-outlined text-base">link</span>
+                  </button>
+                  <button onclick="shareWhatsapp()" title="Compartir vía WhatsApp" class="p-2 rounded-lg bg-surface-container text-tertiary hover:bg-surface-container-high transition-colors text-xs font-semibold shadow-xs">
+                    <span class="material-symbols-outlined text-base">chat</span>
+                  </button>
+                  <button onclick="triggerDownloadPDF()" class="px-3.5 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors text-xs font-bold flex items-center gap-1.5 shadow-sm cursor-pointer">
+                    <span class="material-symbols-outlined text-base">download</span>
+                    <span id="btn-print-label">Descargar PDF</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lámina A4 del Reporte PDF Oficial -->
+            <div class="w-full bg-surface-container-low rounded-2xl p-4 shadow-sm overflow-hidden flex flex-col items-center">
+              
+              <div class="w-full flex items-center justify-between px-2 pb-2 text-secondary text-xs">
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                  <span id="pdf-format-label">Formato A4 Certificado para Inversionista</span>
+                </span>
+                <span class="px-2 py-0.5 rounded bg-surface-container text-[10px] font-mono" id="pdf-doc-hash">HASH: 9a2f-e8b4-0c18</span>
+              </div>
+
+              <!-- Hoja Física A4 del Documento -->
+              <div id="printable-pdf-sheet" class="w-full max-w-[620px] bg-white shadow-md rounded-xl p-6 sm:p-8 flex flex-col gap-4 border border-slate-200 select-none transition-all">
+                
+                <!-- Encabezado Institucional -->
+                <div class="flex items-start justify-between border-b border-slate-100 pb-3">
+                  <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                      <div class="h-6 w-6 rounded bg-primary flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined text-sm">analytics</span>
+                      </div>
+                      <span class="font-headline-sm text-base font-bold text-primary tracking-tight">ValuaProp AI</span>
+                    </div>
+                    <span class="text-[10px] text-secondary mt-0.5">Sistema Certificado de Tasación Predictiva y Cap Rate con Machine Learning</span>
+                  </div>
+                  <div class="text-right flex flex-col items-end">
+                    <span class="text-xs font-bold text-on-surface uppercase" id="pdf-header-title">INFORME EJECUTIVO DE VALORACIÓN</span>
+                    <span class="text-[10px] text-secondary">Expediente Nº VAL-2026-8842-PE</span>
+                    <span class="text-[10px] text-tertiary font-bold" id="pdf-header-subtitle">Fines Crediticios y de Inversión (Escenario A)</span>
+                  </div>
+                </div>
+
+                <!-- Ficha del Inmueble en PDF -->
+                <div class="p-3 rounded-lg bg-surface-container-low flex flex-col sm:flex-row gap-3 items-center">
+                  <img class="w-full sm:w-28 h-20 rounded-lg object-cover shrink-0" 
+                       src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW09gf-Vx4nduLLY24cnqFH3xdKF37DmvJIUKCNdvQHdFyiVEuOXDCa3x5jVyPk0renrbvO8bBthw0cWx1LfqXQZPkLgXu7Egnef_FE9Vx6Wxvv0yhBb3lbHINQ63H1COibwtSul8qqrbGJTuMQGWBwetKguUlQjnR6oHQQTDoavVFe7KhirnII0nJ8jk1JUSnJ1Te45J2uIEVkwQhY6HP9hVgU0IGBbMA4y2j_c65zmqJUxFZt0iT" 
+                       alt="Inmueble tasado">
+                  <div class="flex flex-col gap-0.5 w-full min-w-0">
+                    <span id="pdf-prop-subtitle" class="text-[10px] font-bold text-primary uppercase">Miraflores · Malecón de la Reserva 740</span>
+                    <h3 id="pdf-prop-title" class="text-sm font-bold text-on-surface truncate">Dúplex 145 m² · Vista al Malecón</h3>
+                    <div class="flex gap-2 text-[10px] text-secondary pt-0.5">
+                      <span>• 3 Dormitorios</span>
+                      <span>• 2 Baños</span>
+                      <span>• 2 Estacionamientos</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- BLOQUE MODELO 1: Dual ML (Venta + Alquiler) - Visible en Escenario A -->
+                <div id="pdf-block-dual-ml" class="grid grid-cols-2 gap-3 p-3.5 rounded-lg bg-surface-container-high/40 text-xs">
+                  <div>
+                    <span class="text-[10px] text-secondary block">Valor Comercial Estimado (Venta)</span>
+                    <span class="text-lg font-bold text-primary" id="pdf-sale-price">$285,000 USD</span>
+                    <span class="text-[10px] text-secondary block mt-0.5">Modelo XGBoost Venta (MAE 3.8%)</span>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-secondary block">Canon de Arrendamiento Mensual</span>
+                    <span class="text-lg font-bold text-tertiary" id="pdf-monthly-rent">$1,450 /mes</span>
+                    <span class="text-[10px] text-secondary block mt-0.5">Modelo XGBoost Alquiler (MAE 4.2%)</span>
+                  </div>
+                </div>
+
+                <!-- BLOQUE MODELO 2: Solo Tasación Comercial - Visible en Escenario B -->
+                <div id="pdf-block-single-ml" class="hidden flex-col gap-2 p-3.5 rounded-lg bg-surface-container-high/40 text-xs border border-primary/20">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <span class="text-[10px] text-secondary uppercase font-bold tracking-wider">Tasación Comercial Certificada (US-14)</span>
+                      <div class="flex items-baseline gap-2 mt-0.5">
+                        <span class="text-xl font-black text-primary" id="pdf-b-sale-price">$285,000 USD</span>
+                        <span class="text-xs font-semibold text-secondary" id="pdf-b-sale-pen">(S/. 1,068,750 PEN)</span>
+                      </div>
+                    </div>
+                    <div class="text-right">
+                      <span class="text-[10px] text-secondary block">Valor Unitario</span>
+                      <span class="text-sm font-bold text-on-surface" id="pdf-b-unit-price">$1,965 USD/m²</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] text-secondary pt-1 border-t border-slate-200">
+                    <span><strong>Rango de Confianza (95% CI):</strong> $275,000 - $295,000 USD</span>
+                    <span><strong>Modelo:</strong> XGBoost Regressor (MAE 3.8%)</span>
+                  </div>
+                </div>
+
+                <!-- BLOQUE CONDICIONAL A: Rendimiento Financiero OER & NOI (Escenario A) -->
+                <div id="pdf-block-rentability" class="flex flex-col gap-3">
+                  <div class="flex flex-col gap-2">
+                    <span class="text-xs font-bold text-on-surface uppercase tracking-wider">Desglose de Rendimiento Anual Unlevered</span>
+                    
+                    <div class="grid grid-cols-4 gap-2 text-center text-xs">
+                      <div class="p-2 rounded bg-surface-container-low">
+                        <span class="text-[10px] text-secondary block">Cap Rate Neto</span>
+                        <span class="text-sm font-extrabold text-primary" id="pdf-cap-rate">5.19%</span>
+                      </div>
+                      <div class="p-2 rounded bg-surface-container-low">
+                        <span class="text-[10px] text-secondary block">Gross Yield</span>
+                        <span class="text-sm font-bold text-on-surface" id="pdf-gross-yield">6.11%</span>
+                      </div>
+                      <div class="p-2 rounded bg-surface-container-low">
+                        <span class="text-[10px] text-secondary block">NOI Neto Anual</span>
+                        <span class="text-sm font-bold text-tertiary" id="pdf-noi-value">$14,790</span>
+                      </div>
+                      <div class="p-2 rounded bg-surface-container-low">
+                        <span class="text-[10px] text-secondary block">Años Retorno</span>
+                        <span class="text-sm font-bold text-on-surface" id="pdf-grm-value">16.4 años</span>
+                      </div>
+                    </div>
+
+                    <!-- Tabla Desglose Cascada en PDF -->
+                    <table class="w-full text-left text-[11px] mt-1">
+                      <tbody class="divide-y divide-slate-100 text-secondary">
+                        <tr>
+                          <td class="py-1">Ingreso Bruto Anual Estimado (GSI)</td>
+                          <td class="py-1 text-right font-bold text-on-surface" id="pdf-gsi-value">$17,400 USD</td>
+                        </tr>
+                        <tr>
+                          <td class="py-1">Gastos Operativos Deductibles (OER: <span id="pdf-oer-pct">15%</span>)</td>
+                          <td class="py-1 text-right font-bold text-error" id="pdf-opex-value">-$2,610 USD</td>
+                        </tr>
+                        <tr class="font-bold text-primary">
+                          <td class="py-1">Ingreso Operativo Neto (NOI Libre)</td>
+                          <td class="py-1 text-right text-xs" id="pdf-noi-table-value">$14,790 USD</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Aviso Obligatorio de Financiamiento (US-21) impreso en la lámina -->
+                  <div class="p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-950 flex items-start gap-2 text-[10px] leading-snug">
+                    <span class="material-symbols-outlined text-amber-700 text-sm shrink-0 mt-0.5">info</span>
+                    <p>
+                      <strong>Aviso Normativo de Supuesto (US-21):</strong> Este indicador refleja el rendimiento para una compra al contado sin financiamiento; si el comprador utiliza crédito hipotecario, el retorno real de su capital variará de acuerdo a las cuotas de su préstamo.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- BLOQUE CONDICIONAL B: Explicabilidad SHAP de la Tasación (Escenario B) -->
+                <div id="pdf-block-shap-commercial" class="hidden flex-col gap-2.5 p-3 rounded-lg bg-surface-container-low/80 border border-slate-200">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+                      <span class="material-symbols-outlined text-primary text-sm">waterfall_chart</span>
+                      Desglose de Factores Clave en el Valor (Explicabilidad SHAP)
+                    </span>
+                    <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-surface-container text-secondary">TreeSHAP</span>
+                  </div>
+                  <p class="text-[10px] text-secondary leading-tight">
+                    Contribución relativa al precio estimado respecto a la media de departamentos en Lima Metropolitana:
+                  </p>
+
+                  <div class="flex flex-col gap-2 text-[11px] pt-1">
+                    <!-- Factor 1: Area Techada -->
+                    <div>
+                      <div class="flex justify-between items-center mb-0.5">
+                        <span class="font-semibold text-on-surface text-[10px]">Área Techada (145 m²)</span>
+                        <span class="font-bold text-emerald-700 text-[10px]">+$52,000 USD (+18.2%)</span>
+                      </div>
+                      <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-emerald-600 h-1.5 rounded-full" style="width: 78%"></div>
+                      </div>
+                    </div>
+
+                    <!-- Factor 2: Microzona Malecón -->
+                    <div>
+                      <div class="flex justify-between items-center mb-0.5">
+                        <span class="font-semibold text-on-surface text-[10px]">Microzona (Malecón Reserva Miraflores)</span>
+                        <span class="font-bold text-emerald-700 text-[10px]">+$38,500 USD (+13.5%)</span>
+                      </div>
+                      <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-emerald-600 h-1.5 rounded-full" style="width: 58%"></div>
+                      </div>
+                    </div>
+
+                    <!-- Factor 3: Estacionamientos -->
+                    <div>
+                      <div class="flex justify-between items-center mb-0.5">
+                        <span class="font-semibold text-on-surface text-[10px]">Estacionamientos (2 plazas)</span>
+                        <span class="font-bold text-emerald-700 text-[10px]">+$18,000 USD (+6.3%)</span>
+                      </div>
+                      <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-emerald-600 h-1.5 rounded-full" style="width: 32%"></div>
+                      </div>
+                    </div>
+
+                    <!-- Factor 4: Antigüedad -->
+                    <div>
+                      <div class="flex justify-between items-center mb-0.5">
+                        <span class="font-semibold text-on-surface text-[10px]">Antigüedad del Edificio (12 años)</span>
+                        <span class="font-bold text-amber-700 text-[10px]">-$14,200 USD (-5.0%)</span>
+                      </div>
+                      <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                        <div class="bg-amber-500 h-1.5 rounded-full" style="width: 24%"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="p-2 rounded bg-white border border-slate-200/80 text-[9px] text-secondary leading-tight mt-0.5">
+                    <strong>Dictamen Comercial:</strong> Valoración de mercado fidedigna orientada a compraventa directa y fijación de precio de salida sin evaluación de flujo de arrendamiento.
+                  </div>
+                </div>
+
+                <!-- Firma Fiduciaria y Registro MVCS del Agente -->
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold text-xs">
+                      CM
+                    </div>
+                    <div class="flex flex-col">
+                      <span class="text-xs font-bold text-on-surface">Carlos Mendoza Salazar</span>
+                      <span class="text-[10px] text-secondary">Agente Inmobiliario Registro MVCS: PN-14892</span>
+                      <span class="text-[10px] text-secondary">ValuaProp AI Partner · Lima, Perú</span>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col items-center">
+                    <div class="h-7 w-24 flex items-center justify-center">
+                      <svg class="w-20 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 100 40">
+                        <path d="M5 25 Q 15 5, 25 22 T 45 18 T 65 24 T 90 12 M20 30 C 35 32, 70 30, 85 28"></path>
+                      </svg>
+                    </div>
+                    <span class="text-[8px] text-secondary tracking-widest uppercase">FIRMA ELECTRÓNICA</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
+      </div>
+      </div> <!-- Fin Pestaña 2: Calculadora Completa -->
+
+      <!-- ========================================================================= -->
+      <!-- VISTA 3: CENTRO DE REPORTES PDF EN TARJETAS (US-22, US-23)                 -->
+      <!-- ========================================================================= -->
+      <div id="tab-content-reportes" class="tab-pane hidden w-full max-w-max-width-content mx-auto px-gutter-desktop py-space-lg flex flex-col gap-6">
+
+        <!-- Cabecera Limpia del Centro de Reportes -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-1">
+          <div>
+            <h1 class="text-2xl font-bold font-['Plus_Jakarta_Sans'] text-on-surface tracking-tight">
+              Centro de Reportes PDF
+            </h1>
+            <p class="text-xs text-secondary mt-0.5">
+              Dossiers de inversión y tasaciones comerciales emitidas. Selecciona un reporte para visualizarlo o imprimirlo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Filtros por Tipo de Reporte -->
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center gap-2" id="report-type-filter">
+            <button onclick="filterReportCards('all')" id="rf-all" class="px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs font-bold shadow-xs cursor-pointer">Todos los Reportes (5)</button>
+            <button onclick="filterReportCards('A')" id="rf-A" class="px-3.5 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-secondary text-xs font-medium border border-slate-200 cursor-pointer">Dossier Inversión (3)</button>
+            <button onclick="filterReportCards('B')" id="rf-B" class="px-3.5 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-secondary text-xs font-medium border border-slate-200 cursor-pointer">Tasación Comercial (2)</button>
+          </div>
+        </div>
+
+        <!-- Grid de Tarjetas de Reportes PDF (5 Reportes Fiduciarios) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="reports-grid">
+
+          <!-- Reporte 1: Dossier Inversión Dúplex Miraflores -->
+          <div data-scenario="A" onclick="previewReportItem('p1', 'A')" class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group cursor-pointer">
+            <div class="p-5 flex flex-col gap-3.5">
+              <div class="flex items-start justify-between gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">finance_chip</span>
+                  Escenario A · Inversión
+                </span>
+                <span class="font-mono text-[10px] text-secondary">HASH: 9a2f-e8b4</span>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-sm text-on-surface group-hover:text-primary transition-colors">
+                  Dúplex 145 m² · Malecón de la Reserva 740
+                </h3>
+                <p class="text-[11px] text-secondary mt-0.5">Miraflores · Emisión: 15 Sep 2026</p>
+              </div>
+
+              <!-- Ficha Resumen de Valores en Reporte -->
+              <div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1.5 text-xs">
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Valor Tasado Venta:</span>
+                  <span class="font-bold text-primary font-['Plus_Jakarta_Sans']">$285,000 USD</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Canon Alquiler Proyectado:</span>
+                  <span class="font-semibold text-on-surface">$1,450 /mes</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-slate-200/60 pt-1">
+                  <span class="text-secondary text-[11px] font-semibold text-emerald-800">Cap Rate Neto Unlevered:</span>
+                  <span class="font-extrabold text-emerald-700 font-['Plus_Jakarta_Sans']">5.19%</span>
+                </div>
+              </div>
+
+              <div class="text-[10px] text-secondary leading-tight">
+                <strong>Contenido del Dossier:</strong> Ficha técnica, Inferencia dual XGBoost, Cap Rate, Sensibilidad OER, y aviso legal normativo de financiamiento (US-21).
+              </div>
+            </div>
+
+            <!-- Botones de Acción del Reporte -->
+            <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-1.5">
+              <button onclick="event.stopPropagation(); previewReportItem('p1', 'A')" class="flex-1 py-2 px-2.5 rounded-lg bg-primary hover:bg-primary-container text-white text-[11px] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>Ver Hoja A4</span>
+              </button>
+              <button onclick="event.stopPropagation(); directPrintReport('p1', 'A')" class="p-2 rounded-lg bg-white hover:bg-slate-100 text-secondary hover:text-on-surface border border-slate-200 transition-colors" title="Imprimir / Descargar PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+              </button>
+              <button onclick="event.stopPropagation(); shareWhatsappItem('Dúplex Miraflores', '$285,000', '5.19%')" class="p-2 rounded-lg bg-white hover:bg-emerald-50 text-emerald-700 border border-slate-200 transition-colors" title="Compartir WhatsApp">
+                <span class="material-symbols-outlined text-sm">share</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Reporte 2: Dossier Inversión Penthouse San Isidro -->
+          <div data-scenario="A" onclick="previewReportItem('p2', 'A')" class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group cursor-pointer">
+            <div class="p-5 flex flex-col gap-3.5">
+              <div class="flex items-start justify-between gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">finance_chip</span>
+                  Escenario A · Inversión
+                </span>
+                <span class="font-mono text-[10px] text-secondary">HASH: 8b3c-f9c2</span>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-sm text-on-surface group-hover:text-primary transition-colors">
+                  Penthouse 210 m² · Av. Los Conquistadores 410
+                </h3>
+                <p class="text-[11px] text-secondary mt-0.5">San Isidro · Emisión: 14 Sep 2026</p>
+              </div>
+
+              <!-- Ficha Resumen de Valores en Reporte -->
+              <div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1.5 text-xs">
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Valor Tasado Venta:</span>
+                  <span class="font-bold text-primary font-['Plus_Jakarta_Sans']">$512,000 USD</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Canon Alquiler Proyectado:</span>
+                  <span class="font-semibold text-on-surface">$2,400 /mes</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-slate-200/60 pt-1">
+                  <span class="text-secondary text-[11px] font-semibold text-emerald-800">Cap Rate Neto Unlevered:</span>
+                  <span class="font-extrabold text-emerald-700 font-['Plus_Jakarta_Sans']">4.65%</span>
+                </div>
+              </div>
+
+              <div class="text-[10px] text-secondary leading-tight">
+                <strong>Contenido del Dossier:</strong> Reporte integral para patrimonios de ticket alto, flujo neto de caja, OER del 18% y análisis de absorción.
+              </div>
+            </div>
+
+            <!-- Botones de Acción del Reporte -->
+            <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-1.5">
+              <button onclick="event.stopPropagation(); previewReportItem('p2', 'A')" class="flex-1 py-2 px-2.5 rounded-lg bg-primary hover:bg-primary-container text-white text-[11px] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>Ver Hoja A4</span>
+              </button>
+              <button onclick="event.stopPropagation(); directPrintReport('p2', 'A')" class="p-2 rounded-lg bg-white hover:bg-slate-100 text-secondary hover:text-on-surface border border-slate-200 transition-colors" title="Imprimir / Descargar PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+              </button>
+              <button onclick="event.stopPropagation(); shareWhatsappItem('Penthouse San Isidro', '$512,000', '4.65%')" class="p-2 rounded-lg bg-white hover:bg-emerald-50 text-emerald-700 border border-slate-200 transition-colors" title="Compartir WhatsApp">
+                <span class="material-symbols-outlined text-sm">share</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Reporte 3: Tasación Comercial Casa Familiar Surco (Escenario B) -->
+          <div data-scenario="B" onclick="previewReportItem('p5', 'B')" class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group cursor-pointer">
+            <div class="p-5 flex flex-col gap-3.5">
+              <div class="flex items-start justify-between gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-blue-50 text-blue-800 text-[10px] font-bold border border-blue-200 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">description</span>
+                  Escenario B · Comercial
+                </span>
+                <span class="font-mono text-[10px] text-secondary">HASH: 5e6f-c2f5</span>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-sm text-on-surface group-hover:text-primary transition-colors">
+                  Casa Familiar 280 m² · Chacarilla del Estanque
+                </h3>
+                <p class="text-[11px] text-secondary mt-0.5">Surco · Emisión: 12 Sep 2026</p>
+              </div>
+
+              <!-- Ficha Resumen de Valores en Reporte -->
+              <div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1.5 text-xs">
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Valor de Lista Comercial:</span>
+                  <span class="font-bold text-primary font-['Plus_Jakarta_Sans']">$380,000 USD</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Valor en Moneda Local:</span>
+                  <span class="font-semibold text-on-surface">S/. 1,425,000 PEN</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-slate-200/60 pt-1">
+                  <span class="text-secondary text-[11px] font-semibold text-blue-800">Valor Unitario por m²:</span>
+                  <span class="font-extrabold text-blue-700 font-['Plus_Jakarta_Sans']">$1,357 /m²</span>
+                </div>
+              </div>
+
+              <div class="text-[10px] text-secondary leading-tight">
+                <strong>Contenido del Dossier:</strong> Ficha comercial fiduciaria para compradores de vivienda familiar, fijación de precio de cartera sin flujo de alquiler.
+              </div>
+            </div>
+
+            <!-- Botones de Acción del Reporte -->
+            <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-1.5">
+              <button onclick="event.stopPropagation(); previewReportItem('p5', 'B')" class="flex-1 py-2 px-2.5 rounded-lg bg-primary hover:bg-primary-container text-white text-[11px] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>Ver Hoja A4</span>
+              </button>
+              <button onclick="event.stopPropagation(); directPrintReport('p5', 'B')" class="p-2 rounded-lg bg-white hover:bg-slate-100 text-secondary hover:text-on-surface border border-slate-200 transition-colors" title="Imprimir / Descargar PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+              </button>
+              <button onclick="event.stopPropagation(); shareWhatsappItem('Casa Familiar Surco', '$380,000', 'Comercial')" class="p-2 rounded-lg bg-white hover:bg-emerald-50 text-emerald-700 border border-slate-200 transition-colors" title="Compartir WhatsApp">
+                <span class="material-symbols-outlined text-sm">share</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Reporte 4: Dossier Inversión Loft Barranco -->
+          <div data-scenario="A" onclick="previewReportItem('p3', 'A')" class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group cursor-pointer">
+            <div class="p-5 flex flex-col gap-3.5">
+              <div class="flex items-start justify-between gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 text-[10px] font-bold border border-emerald-200 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">finance_chip</span>
+                  Escenario A · Inversión
+                </span>
+                <span class="font-mono text-[10px] text-secondary">HASH: 7c4d-a0d3</span>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-sm text-on-surface group-hover:text-primary transition-colors">
+                  Loft Estudio 58 m² · Jr. Pedro de Osma 180
+                </h3>
+                <p class="text-[11px] text-secondary mt-0.5">Barranco · Emisión: 10 Sep 2026</p>
+              </div>
+
+              <!-- Ficha Resumen de Valores en Reporte -->
+              <div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1.5 text-xs">
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Valor Tasado Venta:</span>
+                  <span class="font-bold text-primary font-['Plus_Jakarta_Sans']">$135,000 USD</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Canon Alquiler Proyectado:</span>
+                  <span class="font-semibold text-on-surface">$890 /mes</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-slate-200/60 pt-1">
+                  <span class="text-secondary text-[11px] font-semibold text-emerald-800">Cap Rate Neto Unlevered:</span>
+                  <span class="font-extrabold text-emerald-700 font-['Plus_Jakarta_Sans']">6.82%</span>
+                </div>
+              </div>
+
+              <div class="text-[10px] text-secondary leading-tight">
+                <strong>Contenido del Dossier:</strong> Reporte optimizado para inversionistas de renta corta y tradicional con retorno neto superior al promedio de Lima.
+              </div>
+            </div>
+
+            <!-- Botones de Acción del Reporte -->
+            <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-1.5">
+              <button onclick="event.stopPropagation(); previewReportItem('p3', 'A')" class="flex-1 py-2 px-2.5 rounded-lg bg-primary hover:bg-primary-container text-white text-[11px] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>Ver Hoja A4</span>
+              </button>
+              <button onclick="event.stopPropagation(); directPrintReport('p3', 'A')" class="p-2 rounded-lg bg-white hover:bg-slate-100 text-secondary hover:text-on-surface border border-slate-200 transition-colors" title="Imprimir / Descargar PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+              </button>
+              <button onclick="event.stopPropagation(); shareWhatsappItem('Loft Barranco', '$135,000', '6.82%')" class="p-2 rounded-lg bg-white hover:bg-emerald-50 text-emerald-700 border border-slate-200 transition-colors" title="Compartir WhatsApp">
+                <span class="material-symbols-outlined text-sm">share</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Reporte 5: Tasación Comercial Depa Alcanfores Miraflores -->
+          <div data-scenario="B" onclick="previewReportItem('p4', 'B')" class="bg-surface-container-lowest rounded-2xl border border-slate-200 hover:border-primary shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group cursor-pointer">
+            <div class="p-5 flex flex-col gap-3.5">
+              <div class="flex items-start justify-between gap-2">
+                <span class="px-2.5 py-1 rounded-md bg-blue-50 text-blue-800 text-[10px] font-bold border border-blue-200 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">description</span>
+                  Escenario B · Comercial
+                </span>
+                <span class="font-mono text-[10px] text-secondary">HASH: 6d5e-b1e4</span>
+              </div>
+
+              <div>
+                <h3 class="font-bold text-sm text-on-surface group-hover:text-primary transition-colors">
+                  Departamento 100 m² · Calle Alcanfores 580
+                </h3>
+                <p class="text-[11px] text-secondary mt-0.5">Miraflores · Emisión: 08 Sep 2026</p>
+              </div>
+
+              <!-- Ficha Resumen de Valores en Reporte -->
+              <div class="p-3 rounded-xl bg-surface-container-low flex flex-col gap-1.5 text-xs">
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Valor Tasado Comercial:</span>
+                  <span class="font-bold text-primary font-['Plus_Jakarta_Sans']">$245,000 USD</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-secondary text-[11px]">Valor en Moneda Local:</span>
+                  <span class="font-semibold text-on-surface">S/. 918,750 PEN</span>
+                </div>
+                <div class="flex justify-between items-center border-t border-slate-200/60 pt-1">
+                  <span class="text-secondary text-[11px] font-semibold text-blue-800">Valor Unitario por m²:</span>
+                  <span class="font-extrabold text-blue-700 font-['Plus_Jakarta_Sans']">$2,450 /m²</span>
+                </div>
+              </div>
+
+              <div class="text-[10px] text-secondary leading-tight">
+                <strong>Contenido del Dossier:</strong> Dictamen comercial con desglose de variables de microentorno, 100 m², vista exterior y 2 dormitorios.
+              </div>
+            </div>
+
+            <!-- Botones de Acción del Reporte -->
+            <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-1.5">
+              <button onclick="event.stopPropagation(); previewReportItem('p4', 'B')" class="flex-1 py-2 px-2.5 rounded-lg bg-primary hover:bg-primary-container text-white text-[11px] font-bold flex items-center justify-center gap-1 transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-sm">visibility</span>
+                <span>Ver Hoja A4</span>
+              </button>
+              <button onclick="event.stopPropagation(); directPrintReport('p4', 'B')" class="p-2 rounded-lg bg-white hover:bg-slate-100 text-secondary hover:text-on-surface border border-slate-200 transition-colors" title="Imprimir / Descargar PDF">
+                <span class="material-symbols-outlined text-sm">download</span>
+              </button>
+              <button onclick="event.stopPropagation(); shareWhatsappItem('Depa Alcanfores Miraflores', '$245,000', 'Comercial')" class="p-2 rounded-lg bg-white hover:bg-emerald-50 text-emerald-700 border border-slate-200 transition-colors" title="Compartir WhatsApp">
+                <span class="material-symbols-outlined text-sm">share</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div> <!-- Fin Pestaña 3: Centro de Reportes PDF -->
+
+    </div>
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast-message" class="hidden fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 text-xs">
+    <span class="material-symbols-outlined text-emerald-400 text-base">check_circle</span>
+    <span id="toast-text">Acción completada.</span>
+  </div>
+
+  <!-- Footer Institucional -->
+  <footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-t border-slate-100">
+    <div class="max-w-max-width-content mx-auto px-gutter-desktop py-space-md flex flex-col md:flex-row items-center justify-between gap-space-md text-xs text-secondary">
+      <span>© 2025 ValuaProp AI. Sistema de Valoración Predictiva Inmobiliaria con Machine Learning.</span>
+      <div class="flex items-center gap-4">
+        <span>Módulo de Rentabilidad Financiera (US-20, US-21)</span>
+        <span>•</span>
+        <span>Fórmula Unlevered Cap Rate</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script del Motor Financiero y Sincronización en Vivo -->
+  <script>
+    let currentCurrency = 'USD';
+    const FX_RATE = 3.75; // Tipo de cambio PEN / USD
+
+    function setCurrency(curr) {
+      if (currentCurrency === curr) return;
+      currentCurrency = curr;
+
+      const btnUsd = document.getElementById('btn-curr-usd');
+      const btnPen = document.getElementById('btn-curr-pen');
+      const symSale = document.getElementById('symbol-sale');
+      const symRent = document.getElementById('symbol-rent');
+      const inputSale = document.getElementById('input-sale-price');
+      const inputRent = document.getElementById('input-monthly-rent');
+
+      if (curr === 'PEN') {
+        btnPen.className = "px-3 py-1 rounded text-xs font-bold bg-primary text-white shadow-sm transition-all";
+        btnUsd.className = "px-3 py-1 rounded text-xs font-semibold text-secondary hover:text-on-surface transition-all";
+        symSale.innerText = "S/.";
+        symRent.innerText = "S/.";
+        inputSale.value = Math.round(parseFloat(inputSale.value) * FX_RATE);
+        inputRent.value = Math.round(parseFloat(inputRent.value) * FX_RATE);
+      } else {
+        btnUsd.className = "px-3 py-1 rounded text-xs font-bold bg-primary text-white shadow-sm transition-all";
+        btnPen.className = "px-3 py-1 rounded text-xs font-semibold text-secondary hover:text-on-surface transition-all";
+        symSale.innerText = "$";
+        symRent.innerText = "$";
+        inputSale.value = Math.round(parseFloat(inputSale.value) / FX_RATE);
+        inputRent.value = Math.round(parseFloat(inputRent.value) / FX_RATE);
+      }
+
+      calculateRentability();
+    }
+
+    function calculateRentability() {
+      const saleVal = parseFloat(document.getElementById('input-sale-price').value) || 0;
+      const rentVal = parseFloat(document.getElementById('input-monthly-rent').value) || 0;
+      const oerPct = parseFloat(document.getElementById('slider-oer').value) / 100;
+      const sym = currentCurrency === 'USD' ? '$' : 'S/.';
+
+      // Matemática del Módulo (manejo_rentabilidad.md)
+      // 1. Ingreso Bruto Anual: GSI = P_alquiler × 12
+      const gsi = rentVal * 12;
+
+      // 2. Gastos Operativos: OpEx = GSI × OER
+      const opex = gsi * oerPct;
+
+      // 3. Ingreso Operativo Neto: NOI = GSI - OpEx
+      const noi = gsi - opex;
+
+      // 4. Cap Rate Neto: (NOI / V_venta) × 100
+      const capRateNeto = saleVal > 0 ? (noi / saleVal) * 100 : 0;
+
+      // 5. Cap Rate Bruto: (GSI / V_venta) × 100
+      const capRateBruto = saleVal > 0 ? (gsi / saleVal) * 100 : 0;
+
+      // 6. Años de Recuperación (GRM): V_venta / GSI
+      const grm = gsi > 0 ? saleVal / gsi : 0;
+
+      // Actualizar KPIs Estrella Izquierda
+      document.getElementById('kpi-cap-rate-neto').innerText = `${capRateNeto.toFixed(2)}%`;
+      document.getElementById('kpi-cap-rate-bruto').innerText = `${capRateBruto.toFixed(2)}%`;
+      document.getElementById('kpi-noi-anual').innerText = `${sym}${Math.round(noi).toLocaleString()}`;
+      document.getElementById('kpi-noi-mensual').innerText = `${sym}${Math.round(noi / 12).toLocaleString()} /mes neto`;
+      document.getElementById('kpi-grm').innerText = `${grm.toFixed(1)}`;
+
+      // Actualizar Controles OER
+      document.getElementById('label-oer-display').innerText = `${Math.round(oerPct * 100)}%`;
+      document.getElementById('label-oer-usd').innerText = `(${sym}${Math.round(opex).toLocaleString()}/año)`;
+
+      // Actualizar Cascada
+      document.getElementById('formula-gsi').innerText = `P_alquiler (${sym}${rentVal.toLocaleString()}) × 12 meses`;
+      document.getElementById('formula-opex').innerText = `GSI × OER (${Math.round(oerPct * 100)}%)`;
+      document.getElementById('cascade-gsi').innerText = `${sym}${Math.round(gsi).toLocaleString()}`;
+      document.getElementById('cascade-opex').innerText = `-${sym}${Math.round(opex).toLocaleString()}`;
+      document.getElementById('cascade-noi').innerText = `${sym}${Math.round(noi).toLocaleString()}`;
+      document.getElementById('cascade-sale').innerText = `${sym}${Math.round(saleVal).toLocaleString()}`;
+
+      // Semáforo de Mercado
+      const gaugeBajo = document.getElementById('gauge-bajo');
+      const gaugePromedio = document.getElementById('gauge-promedio');
+      const gaugeAtractivo = document.getElementById('gauge-atractivo');
+
+      gaugeBajo.className = "p-2.5 rounded-xl bg-surface-container-low border border-transparent transition-all flex flex-col gap-1";
+      gaugePromedio.className = "p-2.5 rounded-xl bg-surface-container-low border border-transparent transition-all flex flex-col gap-1";
+      gaugeAtractivo.className = "p-2.5 rounded-xl bg-surface-container-low border border-transparent transition-all flex flex-col gap-1";
+
+      if (capRateNeto < 4.5) {
+        gaugeBajo.className = "p-2.5 rounded-xl bg-amber-50 border-2 border-amber-500 shadow-sm transition-all flex flex-col gap-1";
+      } else if (capRateNeto <= 6.5) {
+        gaugePromedio.className = "p-2.5 rounded-xl bg-emerald-50 border-2 border-emerald-500 shadow-sm transition-all flex flex-col gap-1";
+      } else {
+        gaugeAtractivo.className = "p-2.5 rounded-xl bg-blue-50 border-2 border-blue-500 shadow-sm transition-all flex flex-col gap-1";
+      }
+
+      // Sincronizar Lámina PDF Derecha - Escenario A
+      document.getElementById('pdf-sale-price').innerText = `${sym}${Math.round(saleVal).toLocaleString()} ${currentCurrency}`;
+      document.getElementById('pdf-monthly-rent').innerText = `${sym}${Math.round(rentVal).toLocaleString()} /mes`;
+      document.getElementById('pdf-cap-rate').innerText = `${capRateNeto.toFixed(2)}%`;
+      document.getElementById('pdf-gross-yield').innerText = `${capRateBruto.toFixed(2)}%`;
+      document.getElementById('pdf-noi-value').innerText = `${sym}${Math.round(noi).toLocaleString()}`;
+      document.getElementById('pdf-grm-value').innerText = `${grm.toFixed(1)} años`;
+      document.getElementById('pdf-gsi-value').innerText = `${sym}${Math.round(gsi).toLocaleString()} ${currentCurrency}`;
+      document.getElementById('pdf-oer-pct').innerText = `${Math.round(oerPct * 100)}%`;
+      document.getElementById('pdf-opex-value').innerText = `-${sym}${Math.round(opex).toLocaleString()} ${currentCurrency}`;
+      document.getElementById('pdf-noi-table-value').innerText = `${sym}${Math.round(noi).toLocaleString()} ${currentCurrency}`;
+
+      // Sincronizar Lámina PDF Derecha - Escenario B
+      const saleUSD = currentCurrency === 'USD' ? saleVal : (saleVal / FX_RATE);
+      const salePEN = currentCurrency === 'PEN' ? saleVal : (saleVal * FX_RATE);
+      const areaTechada = 145; // m2 del inmueble en demo
+      const unitPriceUSD = Math.round(saleUSD / areaTechada);
+
+      document.getElementById('pdf-b-sale-price').innerText = `$${Math.round(saleUSD).toLocaleString()} USD`;
+      document.getElementById('pdf-b-sale-pen').innerText = `(S/. ${Math.round(salePEN).toLocaleString()} PEN)`;
+      document.getElementById('pdf-b-unit-price').innerText = `$${unitPriceUSD.toLocaleString()} USD/m²`;
+    }
+
+    // Base de Datos en Memoria de Inmuebles Evaluados para Catálogo de Tarjetas y Reportes
+    const PROPERTIES_DB = {
+      'p1': {
+        title: 'Dúplex 145 m² · Malecón de la Reserva 740',
+        address: 'Malecón de la Reserva 740, Miraflores',
+        district: 'Miraflores',
+        salePriceUSD: 285000,
+        monthlyRentUSD: 1450,
+        area: 145,
+        rooms: '3 dorms · 2 baños · 2 cocheras',
+        hash: '9a2f-e8b4-0c18',
+        oer: 0.15
+      },
+      'p2': {
+        title: 'Penthouse 210 m² · Av. Los Conquistadores 410',
+        address: 'Av. Los Conquistadores 410, San Isidro',
+        district: 'San Isidro',
+        salePriceUSD: 512000,
+        monthlyRentUSD: 2400,
+        area: 210,
+        rooms: '4 dorms · 3 baños · 3 cocheras',
+        hash: '8b3c-f9c2-1d44',
+        oer: 0.18
+      },
+      'p3': {
+        title: 'Loft Estudio 58 m² · Jr. Pedro de Osma 180',
+        address: 'Jr. Pedro de Osma 180, Barranco',
+        district: 'Barranco',
+        salePriceUSD: 135000,
+        monthlyRentUSD: 890,
+        area: 58,
+        rooms: '1 dorm · 1 baño · 1 cochera',
+        hash: '7c4d-a0d3-2e55',
+        oer: 0.14
+      },
+      'p4': {
+        title: 'Departamento 100 m² · Calle Alcanfores 580',
+        address: 'Calle Alcanfores 580, Miraflores',
+        district: 'Miraflores',
+        salePriceUSD: 245000,
+        monthlyRentUSD: 1300,
+        area: 100,
+        rooms: '2 dorms · 2 baños · 1 cochera',
+        hash: '6d5e-b1e4-3f66',
+        oer: 0.15
+      },
+      'p5': {
+        title: 'Casa Familiar 280 m² · Chacarilla del Estanque',
+        address: 'Urb. Chacarilla del Estanque, Santiago de Surco',
+        district: 'Surco',
+        salePriceUSD: 380000,
+        monthlyRentUSD: 1600,
+        area: 280,
+        rooms: '4 dorms · 3 baños · 2 cocheras',
+        hash: '5e6f-c2f5-4a77',
+        oer: 0.15
+      }
+    };
+
+    // Control de Vistas Principales (Rentabilidad Tarjetas / Calculadora / Reportes PDF)
+    let currentMainTab = 'rentabilidad';
+    let previousView = 'rentabilidad';
+
+    function showView(viewName, optFrom) {
+      if (optFrom) {
+        previousView = optFrom;
+      } else if (currentMainTab === 'rentabilidad' || currentMainTab === 'reportes') {
+        previousView = currentMainTab;
+      }
+
+      currentMainTab = viewName;
+
+      // Paneles de contenido
+      const tabRentabilidad = document.getElementById('tab-content-rentabilidad');
+      const tabCalculadora = document.getElementById('tab-content-calculadora');
+      const tabReportes = document.getElementById('tab-content-reportes');
+
+      // Elementos de navegación en el header
+      const navRent = document.getElementById('nav-item-rentabilidad');
+      const navRep = document.getElementById('nav-item-reportes');
+
+      // Botón volver de la calculadora
+      const calcBackBtn = document.getElementById('calc-back-btn');
+      if (calcBackBtn) {
+        const labelSpan = calcBackBtn.querySelector('span:last-child');
+        if (previousView === 'reportes') {
+          calcBackBtn.onclick = function() { showView('reportes'); };
+          if (labelSpan) labelSpan.innerText = 'Volver a Centro de Reportes';
+        } else {
+          calcBackBtn.onclick = function() { showView('rentabilidad'); };
+          if (labelSpan) labelSpan.innerText = 'Volver a Cartera de Rentabilidad';
+        }
+      }
+
+      // Ocultar todos los paneles
+      if (tabRentabilidad) tabRentabilidad.classList.add('hidden');
+      if (tabCalculadora) tabCalculadora.classList.add('hidden');
+      if (tabReportes) tabReportes.classList.add('hidden');
+
+      // Resetear estados visuales en el header nav
+      const activeNavClasses = ['bg-primary-container', 'text-on-primary-container', 'font-semibold', 'shadow-sm'];
+      const inactiveNavClasses = ['text-on-surface-variant', 'hover:text-on-surface'];
+
+      if (navRent) {
+        navRent.classList.remove(...activeNavClasses);
+        navRent.classList.add(...inactiveNavClasses);
+      }
+      if (navRep) {
+        navRep.classList.remove(...activeNavClasses);
+        navRep.classList.add(...inactiveNavClasses);
+      }
+
+      // Activar vista solicitada
+      if (viewName === 'rentabilidad') {
+        if (tabRentabilidad) tabRentabilidad.classList.remove('hidden');
+        if (navRent) {
+          navRent.classList.remove(...inactiveNavClasses);
+          navRent.classList.add(...activeNavClasses);
+        }
+      } else if (viewName === 'calculadora') {
+        if (tabCalculadora) tabCalculadora.classList.remove('hidden');
+        calculateRentability();
+      } else if (viewName === 'reportes') {
+        if (tabReportes) tabReportes.classList.remove('hidden');
+        if (navRep) {
+          navRep.classList.remove(...inactiveNavClasses);
+          navRep.classList.add(...activeNavClasses);
+        }
+      }
+
+      // Actualizar URL sin recargar la página
+      const url = new URL(window.location.href);
+      url.searchParams.set('tab', viewName);
+      history.replaceState(null, '', url.toString());
+
+      // Desplazar arriba con suavidad
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Alias para compatibilidad con llamadas existentes
+    function switchMainTab(tab) {
+      showView(tab);
+    }
+
+    // Cargar Inmueble desde Tarjeta y Abrir Calculadora
+    function openPropertyRentability(key) {
+      loadPropertyInCalculator(key);
+      showView('calculadora', 'rentabilidad');
+      const calcTitle = document.getElementById('calc-current-title');
+      const p = PROPERTIES_DB[key];
+      if (calcTitle && p) {
+        calcTitle.innerText = `Inmueble: ${p.title}`;
+      }
+    }
+
+    // Cargar Inmueble desde Tarjeta a la Calculadora
+    function loadPropertyInCalculator(key) {
+      const p = PROPERTIES_DB[key];
+      if (!p) return;
+
+      // Asignar valores a los inputs
+      const inSale = document.getElementById('input-sale-price');
+      const inRent = document.getElementById('input-monthly-rent');
+      const inOer = document.getElementById('slider-oer');
+      if (inSale) inSale.value = p.salePriceUSD;
+      if (inRent) inRent.value = p.monthlyRentUSD;
+      if (inOer) inOer.value = Math.round(p.oer * 100);
+
+      // Actualizar textos de cabecera y lámina PDF
+      const contextName = document.getElementById('context-property-name');
+      if (contextName) contextName.innerText = `Inmueble Activo: ${p.title}`;
+
+      const pdfTitle = document.getElementById('pdf-prop-title');
+      if (pdfTitle) pdfTitle.innerText = p.title;
+
+      const pdfSub = document.getElementById('pdf-prop-subtitle');
+      if (pdfSub) pdfSub.innerText = `${p.district} · ${p.area} m² techados · ${p.rooms}`;
+
+      const docHash = document.getElementById('pdf-doc-hash');
+      if (docHash) docHash.innerText = `HASH: ${p.hash}`;
+
+      showToast(`Inmueble cargado: ${p.title}`);
+    }
+
+    // Previsualizar Reporte de una Tarjeta
+    function previewReportItem(key, scenario) {
+      loadPropertyInCalculator(key);
+      setReportScenario(scenario);
+      showView('calculadora', 'reportes');
+      const calcTitle = document.getElementById('calc-current-title');
+      const p = PROPERTIES_DB[key];
+      if (calcTitle && p) {
+        calcTitle.innerText = `Reporte: ${p.title} (${scenario === 'A' ? 'Dossier Inversión' : 'Tasación Comercial'})`;
+      }
+      setTimeout(() => {
+        const sheet = document.getElementById('printable-pdf-sheet');
+        if (sheet) sheet.scrollIntoView({ behavior: 'smooth' });
+      }, 200);
+    }
+
+    // Filtrar Tarjetas de Reportes
+    function filterReportCards(type) {
+      const grid = document.getElementById('reports-grid');
+      if (!grid) return;
+      const cards = grid.querySelectorAll('[data-scenario]');
+      cards.forEach(c => {
+        if (type === 'all' || c.getAttribute('data-scenario') === type) {
+          c.classList.remove('hidden');
+        } else {
+          c.classList.add('hidden');
+        }
+      });
+
+      // Actualizar estilos de los botones de filtro
+      ['all', 'A', 'B'].forEach(t => {
+        const btn = document.getElementById(`rf-${t}`);
+        if (!btn) return;
+        if (t === type) {
+          btn.className = "px-3.5 py-1.5 rounded-lg bg-primary text-white text-xs font-bold shadow-xs cursor-pointer";
+        } else {
+          btn.className = "px-3.5 py-1.5 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-secondary text-xs font-medium border border-slate-200 cursor-pointer";
+        }
+      });
+    }
+
+    // Impresión o Descarga directa de Reporte
+    function directPrintReport(key, scenario) {
+      loadPropertyInCalculator(key);
+      setReportScenario(scenario);
+      triggerDownloadPDF();
+    }
+
+    // Compartir por WhatsApp desde tarjeta
+    function shareWhatsappItem(title, price, metric) {
+      const text = encodeURIComponent(`Hola! Te comparto el Reporte Oficial ValuaProp AI para ${title}: Valor Comercial ${price} y retorno ${metric}. Puedes consultarlo de forma fidedigna.`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    function openPropertyReportDirect(key) {
+      previewReportItem(key, 'A');
+    }
+
+    // Gestión Dinámica de Escenarios de Reporte (Escenario A vs Escenario B) - Selector Minimalista
+    let currentScenario = 'A';
+
+    function setReportScenario(scenario) {
+      currentScenario = scenario;
+      const btnA = document.getElementById('btn-scenario-a');
+      const btnB = document.getElementById('btn-scenario-b');
+      const printBtnLabel = document.getElementById('btn-print-label');
+
+      // Elementos del PDF
+      const formatLabel = document.getElementById('pdf-format-label');
+      const docHash = document.getElementById('pdf-doc-hash');
+      const headerTitle = document.getElementById('pdf-header-title');
+      const headerSubtitle = document.getElementById('pdf-header-subtitle');
+      const blockDualML = document.getElementById('pdf-block-dual-ml');
+      const blockSingleML = document.getElementById('pdf-block-single-ml');
+      const blockRentability = document.getElementById('pdf-block-rentability');
+      const blockShap = document.getElementById('pdf-block-shap-commercial');
+
+      if (scenario === 'A') {
+        // UI Selector Minimalista A
+        if (btnA && btnB) {
+          btnA.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-primary shadow-xs transition-all flex items-center gap-1.5 cursor-pointer";
+          btnB.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-secondary hover:text-on-surface transition-all flex items-center gap-1.5 cursor-pointer";
+        }
+        if (printBtnLabel) printBtnLabel.innerText = "Descargar Reporte Completo (A)";
+
+        // PDF Sheet A
+        if (formatLabel) formatLabel.innerText = "Formato A4 Certificado para Inversionista";
+        if (headerTitle) headerTitle.innerText = "INFORME EJECUTIVO DE VALORACIÓN & RENTABILIDAD";
+        if (headerSubtitle) headerSubtitle.innerText = "Fines Crediticios y de Inversión Inmobiliaria (Escenario A)";
+        if (blockDualML) blockDualML.classList.remove('hidden');
+        if (blockSingleML) blockSingleML.classList.add('hidden');
+        if (blockRentability) blockRentability.classList.remove('hidden');
+        if (blockShap) blockShap.classList.add('hidden');
+      } else {
+        // UI Selector Minimalista B
+        if (btnA && btnB) {
+          btnB.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-primary shadow-xs transition-all flex items-center gap-1.5 cursor-pointer";
+          btnA.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-secondary hover:text-on-surface transition-all flex items-center gap-1.5 cursor-pointer";
+        }
+        if (printBtnLabel) printBtnLabel.innerText = "Descargar Tasación Comercial (B)";
+
+        // PDF Sheet B
+        if (formatLabel) formatLabel.innerText = "Formato A4 Certificado de Tasación Comercial";
+        if (headerTitle) headerTitle.innerText = "INFORME OFICIAL DE TASACIÓN COMERCIAL";
+        if (headerSubtitle) headerSubtitle.innerText = "Valor Comercial para Vivienda / Salida al Mercado (Escenario B)";
+        if (blockDualML) blockDualML.classList.add('hidden');
+        if (blockSingleML) {
+          blockSingleML.classList.remove('hidden');
+          blockSingleML.classList.add('flex');
+        }
+        if (blockRentability) blockRentability.classList.add('hidden');
+        if (blockShap) {
+          blockShap.classList.remove('hidden');
+          blockShap.classList.add('flex');
+        }
+      }
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast-message');
+      const toastText = document.getElementById('toast-text');
+      if (toastText) toastText.innerText = text;
+      if (toast) {
+        toast.classList.remove('hidden');
+        setTimeout(() => { toast.classList.add('hidden'); }, 3000);
+      }
+    }
+
+    function copyPublicLink() {
+      const url = new URL(window.location.href);
+      url.searchParams.set('escenario', currentScenario);
+      url.searchParams.delete('print');
+      navigator.clipboard.writeText(url.toString()).then(() => {
+        showToast(`Enlace público del informe (${currentScenario === 'A' ? 'Escenario A - Completo' : 'Escenario B - Tasación Comercial'}) copiado al portapapeles.`);
+      });
+    }
+
+    function shareWhatsapp() {
+      let text = "";
+      if (currentScenario === 'A') {
+        const cap = document.getElementById('kpi-cap-rate-neto').innerText;
+        text = encodeURIComponent(`Hola! Te comparto el Reporte Integral de Inversión ValuaProp AI para el Dúplex en Miraflores: Cap Rate Neto de ${cap} y proyección de flujo NOI. Revisa la lámina fiduciaria.`);
+      } else {
+        const sale = document.getElementById('pdf-b-sale-price').innerText;
+        text = encodeURIComponent(`Hola! Te comparto la Tasación Comercial Oficial ValuaProp AI para el Dúplex en Miraflores: Valor de Mercado ${sale} con desglose de explicabilidad SHAP.`);
+      }
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    function triggerDownloadPDF() {
+      showToast(`Generando PDF fiduciario en formato ${currentScenario === 'A' ? 'Integral (Venta + Rentabilidad)' : 'Tasación Comercial Oficial'}...`);
+      setTimeout(() => { window.print(); }, 400);
+    }
+
+    // Ejecución inicial y lectura de URL parameters
+    document.addEventListener('DOMContentLoaded', () => {
+      calculateRentability();
+
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get('tab');
+      const idParam = params.get('id');
+
+      // Si viene con ID de predio específico
+      if (idParam && PROPERTIES_DB[idParam]) {
+        loadPropertyInCalculator(idParam);
+      }
+
+      const scenarioParam = params.get('escenario') || params.get('scenario');
+      if (scenarioParam && scenarioParam.toUpperCase() === 'B') {
+        setReportScenario('B');
+      } else {
+        setReportScenario('A');
+      }
+
+      // Si viene con tab especificado
+      if (tabParam === 'calculadora') {
+        showView('calculadora');
+      } else if (tabParam === 'reportes') {
+        showView('reportes');
+      } else {
+        showView('rentabilidad');
+      }
+
+      // Si viene con orden de impresión directa desde la ficha del inmueble
+      if (params.get('print') === '1') {
+        setTimeout(() => {
+          triggerDownloadPDF();
+        }, 600);
+      }
+    });
+  </script>
+
+</body>
+</html>
